@@ -44,9 +44,7 @@ function Navbar() {
         setToggleDropDown(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -102,12 +100,7 @@ function Navbar() {
           onClick={() => setNavDialogue(false)}
         >
           <div id="nav-bar" className=" flex justify-between px-4">
-            {/* ---------buttons */}
             <Link className="flex  items-center text-[33px] font-bold">
-              {/* <img
-                className="w-[40px] h-[40px]  ml-6 rounded-[50px]"
-                src={ESLogo}
-              /> */}
               Sprintify
             </Link>
 
@@ -137,10 +130,10 @@ function Navbar() {
             </Link>
             <div className="h-[1px] bg-black"></div>
 
-            {/* Add to cart */}
+            {/* About Us*/}
             <Link
               className="font-medium cursor-pointer m-1 p-3 py-2 flex items-center justify-between hover:bg-gray-50 rounded-lg"
-              to="/AddToCart"
+              to="/"
             >
               <div className="flex items-center h-full w-full">
                 <LanguageIcon sx={{ fontSize: 30 }} />
@@ -156,7 +149,7 @@ function Navbar() {
             {/*------- Dashboards */}
             <Link
               className="font-medium cursor-pointer m-1 p-3 py-2 flex items-center justify-between hover:bg-gray-50 rounded-lg"
-              to="/wishlist"
+              to="/"
             >
               <div className="flex items-center h-full w-full">
                 <DashboardCustomizeOutlined sx={{ fontSize: 30 }} />
