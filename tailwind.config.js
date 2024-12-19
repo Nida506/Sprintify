@@ -6,6 +6,11 @@ export default {
       fontFamily: {
         Roboto: ['Roboto', 'serif'],
       },
+      colors: {
+        purple: '#644A8E',
+        blue: '#0a16bf',
+        darkBlue: '#00008B',
+      },
     },
   },
   plugins: [require('daisyui')],

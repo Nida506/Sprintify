@@ -5,8 +5,8 @@ import "aos/dist/aos.css";
 
 //----------INTERNAL IMPORTS
 import './index.css';
-import Body from './Features/Body/Body';
-import SignUp from "./Features/Signup/SignUp";
+import Body from './Pages/Body/Body';
+import SignUp from "./Pages/Signup/SignUp";
 function App() {
   
   return (
