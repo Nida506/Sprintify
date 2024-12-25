@@ -8,6 +8,7 @@ import './index.css';
 import Body from './Pages/Body/Body';
 import SignUp from "./Pages/Signup/SignUp";
 import Faqs from './Pages/FAQS/FAQS';
+import Home from './Pages/Home/Home';
 
 import { useEffect } from "react";
 import AOS from "aos";
@@ -28,7 +29,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Body />}>
           <Route path='/signup' element={ <SignUp/>} />
-          <Route path='/faqs' element={<Faqs></Faqs>}></Route>
+          <Route path='/faqs' element={<Faqs/>}/>
+          <Route path='/home' element={<Home/>}/>
         </Route>
     </Routes>
     </BrowserRouter>

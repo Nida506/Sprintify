@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
-import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined'; // Icon for the open state
+import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined'; 
 
 function Faqs() {
-  // Manage the state of all questions, initially all are closed (false)
+  
   const [openQuestions, setOpenQuestions] = useState([false, false, false]);
 
   // Toggle function for the dropdown
@@ -34,9 +34,9 @@ function Faqs() {
             >
               <p className="flex-1 text-[16px] md:text-[18px] font-semibold font-roboto">{faq.question}</p>
               {openQuestions[index] ? (
-                <ArrowDropUpOutlinedIcon /> // Icon for when the answer is open
+                <ArrowDropUpOutlinedIcon /> 
               ) : (
-                <ArrowDropDownOutlinedIcon /> // Icon for when the answer is closed
+                <ArrowDropDownOutlinedIcon /> 
               )}
             </div>
             <div
