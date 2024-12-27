@@ -1,7 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 // ---------------icons
+<<<<<<< HEAD
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import HomeIcon from '@mui/icons-material/Home';
@@ -10,6 +11,17 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LoginIcon from '@mui/icons-material/Login';
 import Sprintify_Logo from '../../assets/Sprintify_Logo.png';
 import { DashboardCustomizeOutlined } from '@mui/icons-material';
+=======
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import HomeIcon from "@mui/icons-material/Home";
+import LanguageIcon from "@mui/icons-material/Language";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import LoginIcon from "@mui/icons-material/Login";
+import Sprintify_Logo from "../../assets/Sprintify_Logo.png";
+import Aos from "aos";
+import { DashboardCustomizeOutlined } from "@mui/icons-material";
+>>>>>>> 5d793ef8c5e28fc4ff62c4c268a6b2ea641f59f3
 
 function Navbar() {
   let [navDialogue, setNavDialogue] = useState(false);
@@ -37,14 +49,14 @@ function Navbar() {
         dropdownBtnRef.current &&
         !dropdownBtnRef.current.contains(event.target)
       ) {
-        console.log('Clicked outside the button');
+        console.log("Clicked outside the button");
         // Call your function here
         setToggleDropDown(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   });
 
@@ -53,10 +65,19 @@ function Navbar() {
       <div
         className="h-full b w-[200px] md:w-[250px] flex justify-center items-center bg-darkBlue"
         style={{
-          clipPath: 'polygon(0 0, 85% 0, 100% 100%, 0 100%)',
+          clipPath: "polygon(0 0, 85% 0, 100% 100%, 0 100%)",
         }}
       >
+<<<<<<< HEAD
         <Link className="flex text-white items-center text-[28px] gap-2 font-bold max-[500px]:text-[24px] " to={'/'}>
+=======
+        <Link
+          className="flex text-white items-center text-[28px] gap-2 font-bold "
+          to={"/"}
+        >
+>>>>>>> 5d793ef8c5e28fc4ff62c4c268a6b2ea641f59f3
+          
+          
           <img
             className="w-[45px] h-[45px]  rounded-[50px] max-[823px]:h-[35px]  max-[823px]:w-[35px]"
             src={Sprintify_Logo}
@@ -71,22 +92,22 @@ function Navbar() {
           Home
         </Link>
 
-        <Link className="flex items-center text-[17px]" to={'/'}>
+        <Link className="flex items-center text-[17px]" to={"/"}>
           About Us
         </Link>
 
-        <Link className="flex items-center text-[17px]" to={'/'}>
+        <Link className="flex items-center text-[17px]" to={"/"}>
           Dashboards
         </Link>
       </div>
       <div id="nav-menu" className="hidden  min-[823px]:flex gap-8 ">
         {/* -------------dropdown */}
-        <Link to={'/signup'} className="font-medium text-[25px]">
+        <Link to={"/signup"} className="font-medium text-[25px]">
           Sign up
         </Link>
 
         <Link
-          to={'/'}
+          to={"/login"}
           className="font-medium text-[22px] w-[auto] px-3  rounded bg-blue  text-white "
         >
           Login
@@ -113,10 +134,11 @@ function Navbar() {
             <div
               className="h-full w-[200px] flex justify-center items-center bg-darkBlue"
               style={{
-                clipPath: 'polygon(0 0, 85% 0, 100% 100%, 0 100%)',
-                color: 'white',
+                clipPath: "polygon(0 0, 85% 0, 100% 100%, 0 100%)",
+                color: "white",
               }}
             >
+<<<<<<< HEAD
              <Link className="flex text-white items-center text-[28px] gap-2 font-bold max-[500px]:text-[24px] " to={'/'}>
           <img
             className="w-[45px] h-[45px]  rounded-[50px] max-[823px]:h-[35px]  max-[823px]:w-[35px]"
@@ -124,6 +146,15 @@ function Navbar() {
           />
           Sprintify
         </Link>
+=======
+              <Link className="flex  items-center text-[28px]  gap-2" to={"/"}>
+                <img
+                  className="w-[45px] h-[45px] font-semibold rounded-[50px] text-white"
+                  src={Sprintify_Logo}
+                />
+                Sprintify
+              </Link>
+>>>>>>> 5d793ef8c5e28fc4ff62c4c268a6b2ea641f59f3
             </div>
 
             <button
@@ -133,7 +164,7 @@ function Navbar() {
                 setNavDialogue(false);
               }}
             >
-              {' '}
+              {" "}
               <CloseIcon sx={{ fontSize: 30 }} />
             </button>
           </div>
