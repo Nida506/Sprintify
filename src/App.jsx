@@ -1,26 +1,40 @@
 //----------EXTERNAL IMPORTS
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Aos from 'aos';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Aos from "aos";
 import "aos/dist/aos.css";
 
 //----------INTERNAL IMPORTS
 import "./index.css";
 import Body from "./Pages/Body/Body";
 import SignUp from "./Pages/Signup/SignUp";
-function App() {
-  
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Body />}>
-          <Route  path='/'  element={ <LandingPage/>} />
-          <Route path='/signup' element={ <SignUp/>} />
-          <Route path='/faqs' element={<Faqs/>}/>
-          <Route path='/home' element={<Home/>}/>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
-}
+import LandingPage from './Pages/LandingPage/landingPage';
+import Faqs from './Pages/FAQS/FAQS';
+import Home from './Pages/Home/Home';
+import Login from "./Pages/Login/Login";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import AOS CSS
 
+function App() {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
+    return (
+  
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Body />}>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path='/' element={<LandingPage />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/faqs' element={<Faqs />} />
+            <Route path='/home' element={<Home />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    );
+  
+}
 export default App;

@@ -2,16 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
 // ---------------icons
-<<<<<<< HEAD
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-import HomeIcon from '@mui/icons-material/Home';
-import LanguageIcon from '@mui/icons-material/Language';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import LoginIcon from '@mui/icons-material/Login';
-import Sprintify_Logo from '../../assets/Sprintify_Logo.png';
-import { DashboardCustomizeOutlined } from '@mui/icons-material';
-=======
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import HomeIcon from "@mui/icons-material/Home";
@@ -21,7 +11,6 @@ import LoginIcon from "@mui/icons-material/Login";
 import Sprintify_Logo from "../../assets/Sprintify_Logo.png";
 import Aos from "aos";
 import { DashboardCustomizeOutlined } from "@mui/icons-material";
->>>>>>> 5d793ef8c5e28fc4ff62c4c268a6b2ea641f59f3
 
 function Navbar() {
   let [navDialogue, setNavDialogue] = useState(false);
@@ -68,14 +57,10 @@ function Navbar() {
           clipPath: "polygon(0 0, 85% 0, 100% 100%, 0 100%)",
         }}
       >
-<<<<<<< HEAD
-        <Link className="flex text-white items-center text-[28px] gap-2 font-bold max-[500px]:text-[24px] " to={'/'}>
-=======
         <Link
           className="flex text-white items-center text-[28px] gap-2 font-bold "
           to={"/"}
         >
->>>>>>> 5d793ef8c5e28fc4ff62c4c268a6b2ea641f59f3
           
           
           <img
@@ -138,15 +123,6 @@ function Navbar() {
                 color: "white",
               }}
             >
-<<<<<<< HEAD
-             <Link className="flex text-white items-center text-[28px] gap-2 font-bold max-[500px]:text-[24px] " to={'/'}>
-          <img
-            className="w-[45px] h-[45px]  rounded-[50px] max-[823px]:h-[35px]  max-[823px]:w-[35px]"
-            src={Sprintify_Logo}
-          />
-          Sprintify
-        </Link>
-=======
               <Link className="flex  items-center text-[28px]  gap-2" to={"/"}>
                 <img
                   className="w-[45px] h-[45px] font-semibold rounded-[50px] text-white"
@@ -154,7 +130,6 @@ function Navbar() {
                 />
                 Sprintify
               </Link>
->>>>>>> 5d793ef8c5e28fc4ff62c4c268a6b2ea641f59f3
             </div>
 
             <button

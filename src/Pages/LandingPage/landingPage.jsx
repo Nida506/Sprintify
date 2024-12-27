@@ -5,7 +5,7 @@ import ProductivitiyPowerHouse from "../../components/ProductivitiyPowerHouse/Pr
 function LandingPage() {
   return (
     <>
-    <div className="h-sc bg-custom-gradient  flex flex-col-reverse max-[843px]:items-center  min-[843px]:justify-center min-[843px]:items-center min-[843px]:flex-row   mix-[780px]:p-11 pt-[100px]">
+    <div className="md:h-screen bg-custom-gradient  flex flex-col-reverse max-[843px]:items-center  min-[843px]:justify-center min-[843px]:items-center min-[843px]:flex-row   mix-[780px]:p-11 pt-[100px]">
       <div className="flex flex-col justify-center 2xl:h-[900px] mx-auto px-6 mb-10 lg:text-left w-[100%]  min-[843px]:w-[50%] min-[843px]:h-[450px] ">
         {/* Text Content */}
         <h1 className="text-2xl min-[500px]:text-4xl mt-3 lg:text-4xl  text-white font-semibold mb-6 2xl:mt-[100px]  2xl:text-8xl ">
