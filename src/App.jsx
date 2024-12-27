@@ -12,8 +12,6 @@ import Faqs from './Pages/FAQS/FAQS';
 import Home from './Pages/Home/Home';
 import Login from "./Pages/Login/Login";
 import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS CSS
 
 function App() {
   useEffect(() => {
@@ -37,4 +35,7 @@ function App() {
     );
   
 }
+
+
+
 export default App;

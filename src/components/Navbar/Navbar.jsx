@@ -61,8 +61,6 @@ function Navbar() {
           className="flex text-white items-center text-[28px] gap-2 font-bold "
           to={"/"}
         >
-          
-          
           <img
             className="w-[45px] h-[45px]  rounded-[50px] max-[823px]:h-[35px]  max-[823px]:w-[35px]"
             src={Sprintify_Logo}
