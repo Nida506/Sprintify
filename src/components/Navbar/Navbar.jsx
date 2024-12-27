@@ -9,7 +9,6 @@ import LanguageIcon from '@mui/icons-material/Language';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LoginIcon from '@mui/icons-material/Login';
 import Sprintify_Logo from '../../assets/Sprintify_Logo.png';
-import Aos from 'aos';
 import { DashboardCustomizeOutlined } from '@mui/icons-material';
 
 function Navbar() {
@@ -18,9 +17,7 @@ function Navbar() {
   let dropdownBtnRef = useRef();
   let navigate = useNavigate();
 
-  useEffect(() => {
-    Aos.init({ duration: 100 });
-  }, []);
+  
 
   // --------Handlers
 
@@ -52,16 +49,16 @@ function Navbar() {
   });
 
   return (
-    <nav className="shadow-xl fixed w-full font-Roboto  z-[1000] top-[0%] flex justify-between items-center   bg-white h-[80px]  md:pe-12">
+    <nav className="shadow-xl fixed w-full font-Roboto  z-[1000] top-[0%] flex justify-between items-center   bg-white h-[80px]  max-[823px]:h-[60px]  max-[823px]:h-[60px]  min-[823px]:pe-12">
       <div
-        className="h-full w-[200px] md:w-[250px] flex justify-center items-center bg-darkBlue"
+        className="h-full b w-[200px] md:w-[250px] flex justify-center items-center bg-darkBlue"
         style={{
           clipPath: 'polygon(0 0, 85% 0, 100% 100%, 0 100%)',
         }}
       >
-        <Link className="flex text-white items-center text-[28px] gap-2 font-bold " to={'/'}>
+        <Link className="flex text-white items-center text-[28px] gap-2 font-bold max-[500px]:text-[24px] " to={'/'}>
           <img
-            className="w-[45px] h-[45px]  rounded-[50px]"
+            className="w-[45px] h-[45px]  rounded-[50px] max-[823px]:h-[35px]  max-[823px]:w-[35px]"
             src={Sprintify_Logo}
           />
           Sprintify
@@ -69,7 +66,7 @@ function Navbar() {
       </div>
 
       {/* --------------------------------For large Screens -Menu */}
-      <div className=" hidden md:flex gap-10 ">
+      <div className=" hidden min-[823px]:flex gap-8 ">
         <Link className=" p-0 flex items-center text-[17px]" to={`/`}>
           Home
         </Link>
@@ -82,7 +79,7 @@ function Navbar() {
           Dashboards
         </Link>
       </div>
-      <div id="nav-menu" className="hidden md:flex gap-8 ">
+      <div id="nav-menu" className="hidden  min-[823px]:flex gap-8 ">
         {/* -------------dropdown */}
         <Link to={'/signup'} className="font-medium text-[25px]">
           Sign up
@@ -97,9 +94,9 @@ function Navbar() {
       </div>
 
       {/* ------------------Small screen navbar bar content */}
-      <div className="flex md:hidden h-full justify-around items-center w-[50px] me-4">
+      <div className="flex  min-[823px]:hidden h-full justify-around items-center w-[50px] me-4">
         <button className="" onClick={() => setNavDialogue(true)}>
-          <MenuIcon sx={{ fontSize: 45 }} />
+          <MenuIcon sx={{ fontSize: 40 }} />
         </button>
       </div>
 
@@ -109,10 +106,10 @@ function Navbar() {
           data-aos="fade-right"
           data-aos-easing="ease-in-sine"
           data-aos-duration="300"
-          className=" fixed bg-white inset-0 z-[1000] md:hidden "
+          className=" fixed bg-white inset-0 z-[1000]  min-[823px]:hidden "
           onClick={() => setNavDialogue(false)}
         >
-          <div id="nav-bar" className=" flex justify-between h-[80px] ">
+          <div id="nav-bar" className=" flex justify-between h-[80px] max-[843px]:h-[60px]">
             <div
               className="h-full w-[200px] flex justify-center items-center bg-darkBlue"
               style={{
@@ -120,20 +117,17 @@ function Navbar() {
                 color: 'white',
               }}
             >
-              <Link
-                className="flex  items-center text-[28px]  gap-2"
-                to={'/'}
-              >
-                <img
-                  className="w-[45px] h-[45px] font-semibold rounded-[50px] text-white"
-                  src={Sprintify_Logo}
-                />
-                Sprintify
-              </Link>
+             <Link className="flex text-white items-center text-[28px] gap-2 font-bold max-[500px]:text-[24px] " to={'/'}>
+          <img
+            className="w-[45px] h-[45px]  rounded-[50px] max-[823px]:h-[35px]  max-[823px]:w-[35px]"
+            src={Sprintify_Logo}
+          />
+          Sprintify
+        </Link>
             </div>
 
             <button
-              className="md:hidden font-bold me-4"
+              className=" min-[823px]:hidden font-bold me-4"
               onClick={(e) => {
                 e.preventDefault();
                 setNavDialogue(false);

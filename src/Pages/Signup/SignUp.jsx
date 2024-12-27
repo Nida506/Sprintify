@@ -8,9 +8,9 @@ import { useState } from 'react';
 function SignUp() {
   let [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="w-full  pt-[130px]  pb-0">
+    <div className="w-full h-screen md:min-h-[800px] pt-[130px]  pb-8">
       <div className="w-full flex justify-around">
-      <div className='items-end h-[500px] hidden md:flex fixed left-0 bottom-3'>
+      <div className='items-end h-[500px] hidden md:flex left-0 bottom-3'>
         <img src={SideBarImage1} className="hidden min-[820px]:flex min-[820px]:w-[250px] min-[820px]:h-[250px] min-[1100px]:w-[400px] min-[1100px]:h-[400px]" />
       </div>
       <div className="card text-black bg-white w-[320px]  min-[1400px]:w-[450px] h-fit max-w-96 shadow-2xl ">
@@ -128,7 +128,7 @@ function SignUp() {
           </div>
         </div>
       </div>
-      <div className=' items-end h-[500px] hidden md:flex fixed right-0 bottom-5 '>
+      <div className=' items-end h-[500px] hidden md:flex   right-0 bottom-5 '>
         <img src={SideBarImage2} className="hidden min-[820px]:flex min-[820px]:w-[250px] min-[820px]:h-[250px] min-[1100px]:w-[400px] min-[1100px]:h-[400px]" />
         </div>
         </div>
