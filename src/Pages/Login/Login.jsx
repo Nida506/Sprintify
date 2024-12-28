@@ -16,7 +16,10 @@ const Login = () => {
     <div className="flex justify-between max-[776px]:justify-center   h-screen w-screen">
       {/* for left side image */}
 
-      <div className="items-end  hidden md:flex pb-3">
+      <div
+        className="items-end h-[500px] hidden md:flex 
+      left-0 bottom-3"
+      >
         <img
           src={sideBarImage1}
           alt="side image"
@@ -112,7 +115,10 @@ const Login = () => {
       </div>
 
       {/* for right side image */}
-      <div className=" items-end  hidden md:flex right-0 pb-3">
+      <div
+        className="items-end h-[500px] hidden md:flex 
+      left-0 bottom-3"
+      >
         <img
           src={sideBarImage2}
           alt="side image"

@@ -7,10 +7,11 @@ import "aos/dist/aos.css";
 import "./index.css";
 import Body from "./Pages/Body/Body";
 import SignUp from "./Pages/Signup/SignUp";
-import LandingPage from './Pages/LandingPage/landingPage';
-import Faqs from './Pages/FAQS/FAQS';
-import Home from './Pages/Home/Home';
+import LandingPage from "./Pages/LandingPage/landingPage";
+import Faqs from "./Pages/FAQS/FAQS";
+import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import Reporting from "./Pages/Reporting/Reporting";
 import { useEffect } from "react";
 
 function App() {
@@ -18,24 +19,21 @@ function App() {
     Aos.init();
   }, []);
 
-    return (
-  
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Body />}>
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path='/' element={<LandingPage />} />
-            <Route path='/signup' element={<SignUp />} />
-            <Route path='/faqs' element={<Faqs />} />
-            <Route path='/home' element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    );
-  
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Body />}>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/faqs" element={<Faqs />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/reporting" element={<Reporting />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-
 
 export default App;

@@ -18,8 +18,6 @@ function Navbar() {
   let dropdownBtnRef = useRef();
   let navigate = useNavigate();
 
-  
-
   // --------Handlers
 
   let handleMenu = () => {
@@ -71,17 +69,11 @@ function Navbar() {
 
       {/* --------------------------------For large Screens -Menu */}
       <div className=" hidden min-[823px]:flex gap-8 ">
-        <Link className=" p-0 flex items-center text-[17px]" to={`/`}>
-          Home
-        </Link>
+        <Link className=" p-0 flex items-center text-[17px]">Home</Link>
 
-        <Link className="flex items-center text-[17px]" to={"/"}>
-          About Us
-        </Link>
+        <Link className="flex items-center text-[17px]">About Us</Link>
 
-        <Link className="flex items-center text-[17px]" to={"/"}>
-          Dashboards
-        </Link>
+        <Link className="flex items-center text-[17px]">Dashboards</Link>
       </div>
       <div id="nav-menu" className="hidden  min-[823px]:flex gap-8 ">
         {/* -------------dropdown */}
@@ -113,7 +105,10 @@ function Navbar() {
           className=" fixed bg-white inset-0 z-[1000]  min-[823px]:hidden "
           onClick={() => setNavDialogue(false)}
         >
-          <div id="nav-bar" className=" flex justify-between h-[80px] max-[843px]:h-[60px]">
+          <div
+            id="nav-bar"
+            className=" flex justify-between h-[80px] max-[843px]:h-[60px]"
+          >
             <div
               className="h-full w-[200px] flex justify-center items-center bg-darkBlue"
               style={{
