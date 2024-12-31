@@ -8,11 +8,11 @@ import { Provider } from "react-redux";
 import "./index.css";
 import Body from "./Pages/Body/Body";
 import SignUp from "./Pages/Signup/SignUp";
-import LandingPage from './Pages/LandingPage/landingPage';
-import Faqs from './Pages/FAQS/FAQS';
-import Home from './Pages/Home/Home';
+import LandingPage from "./Pages/LandingPage/landingPage";
+import Faqs from "./Pages/FAQS/FAQS";
+import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
-import Dashboards from "./Pages/Dashboards/Dashboards";
+import Reporting from "./Pages/Reporting/Reporting";
 import { useEffect } from "react";
 import store from "./Redux/Store";
 
@@ -32,7 +32,10 @@ function App() {
             <Route path='/signup' element={<SignUp />} />
             <Route path='/faqs' element={<Faqs />} />
             <Route path='/home' element={<Home />} />
-            <Route path="/dashboards" element={<Dashboards />}/>
+              <Route path="/dashboards" element={<Dashboards />} />
+              <Route path="reporting"element={<Dashboards />} />
+
+              
           </Route>
         </Routes>
         </BrowserRouter>
@@ -40,7 +43,5 @@ function App() {
     );
   
 }
-
-
 
 export default App;
