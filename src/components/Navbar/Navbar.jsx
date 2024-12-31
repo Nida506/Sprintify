@@ -18,9 +18,7 @@ function Navbar() {
   let dropdownBtnRef = useRef();
   let navigate = useNavigate();
 
-  
-
-  // --------Handlers
+    // --------Handlers
 
   let handleMenu = () => {
     setNavDialogue((ps) => !ps);
@@ -91,7 +89,7 @@ function Navbar() {
 
         <Link
           to={"/login"}
-          className="font-medium text-[22px] w-[auto] px-3  rounded bg-blue  text-white "
+          className="font-medium text-[22px] w-[auto] px-3  rounded bg-customBlue  text-white "
         >
           Login
         </Link>
@@ -187,7 +185,7 @@ function Navbar() {
 
             {/*-----User Login  button*/}
 
-            <button className="block w-full bg-blue text-left text-white hover:bg-white hover:text-black">
+            <button className="block w-full bg-customBlue text-left text-white hover:bg-white hover:text-black">
               <Link
                 className="font-medium cursor-pointer m-3   flex items-center justify-between  rounded-lg"
                 to="/Login"

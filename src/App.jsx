@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { Provider } from "react-redux";
 
 //----------INTERNAL IMPORTS
 import "./index.css";
@@ -11,7 +12,9 @@ import LandingPage from './Pages/LandingPage/landingPage';
 import Faqs from './Pages/FAQS/FAQS';
 import Home from './Pages/Home/Home';
 import Login from "./Pages/Login/Login";
+import Dashboards from "./Pages/Dashboards/Dashboards";
 import { useEffect } from "react";
+import store from "./Redux/Store";
 
 function App() {
   useEffect(() => {
@@ -19,7 +22,7 @@ function App() {
   }, []);
 
     return (
-  
+        <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Body />}>
@@ -29,9 +32,11 @@ function App() {
             <Route path='/signup' element={<SignUp />} />
             <Route path='/faqs' element={<Faqs />} />
             <Route path='/home' element={<Home />} />
+            <Route path="/dashboards" element={<Dashboards />}/>
           </Route>
         </Routes>
-      </BrowserRouter>
+        </BrowserRouter>
+        </Provider>
     );
   
 }
