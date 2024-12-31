@@ -11,6 +11,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import Sprintify_Logo from "../../assets/Sprintify_Logo.png";
 import Aos from "aos";
 import { DashboardCustomizeOutlined } from "@mui/icons-material";
+import { Link2 } from "lucide-react";
 
 function Navbar() {
   let [navDialogue, setNavDialogue] = useState(false);
@@ -71,9 +72,9 @@ function Navbar() {
       <div className=" hidden min-[823px]:flex gap-8 ">
         <Link className=" p-0 flex items-center text-[17px]">Home</Link>
 
-        <Link className="flex items-center text-[17px]">About Us</Link>
+        <Link className="flex items-center text-[17px] " to={'/faqs'}>FAQS</Link>
 
-        <Link className="flex items-center text-[17px]">Dashboards</Link>
+        <Link className="flex items-center text-[17px] " to={'/dashboards'}>Dashboards</Link>
       </div>
       <div id="nav-menu" className="hidden  min-[823px]:flex gap-8 ">
         {/* -------------dropdown */}
@@ -142,10 +143,10 @@ function Navbar() {
               className="font-medium cursor-pointer m-1 p-3 py-2 flex items-center justify-between hover:bg-gray-50 rounded-lg"
               to="/"
             >
-              <div className="flex items-center h-full w-full">
+              <link className="flex items-center h-full w-full" to={'/'}>
                 <HomeIcon sx={{ fontSize: 30 }} />
                 <label className="text-[20px] mt-1 ml-2">Home</label>
-              </div>
+              </link>
 
               <ChevronRightIcon sx={{ fontSize: 30 }} />
             </Link>
@@ -154,11 +155,11 @@ function Navbar() {
             {/* About Us*/}
             <Link
               className="font-medium cursor-pointer m-1 p-3 py-2 flex items-center justify-between hover:bg-gray-50 rounded-lg"
-              to="/"
+              to="/faqs"
             >
               <div className="flex items-center h-full w-full">
                 <LanguageIcon sx={{ fontSize: 30 }} />
-                <label className="text-[20px] mt-1 ml-2">About Us</label>
+                <label className="text-[20px] mt-1 ml-2"  to={'/faqs'}>FAQS</label>
               </div>
 
               <ChevronRightIcon sx={{ fontSize: 30 }} />
@@ -170,11 +171,11 @@ function Navbar() {
             {/*------- Dashboards */}
             <Link
               className="font-medium cursor-pointer m-1 p-3 py-2 flex items-center justify-between hover:bg-gray-50 rounded-lg"
-              to="/"
+              to={'/dashboards'}
             >
               <div className="flex items-center h-full w-full">
                 <DashboardCustomizeOutlined sx={{ fontSize: 30 }} />
-                <label className="text-[20px] mt-1 ml-2">Dashboards</label>
+                <label className="text-[20px] mt-1 ml-2" >Dashboards</label>
               </div>
               <ChevronRightIcon sx={{ fontSize: 30 }} />
             </Link>

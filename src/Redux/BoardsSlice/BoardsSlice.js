@@ -11,7 +11,7 @@ const boardSlice = createSlice({
         bgColor: 'pink',
         lists: [
           {
-            id: '4',
+            id: '4sdfsdf',
             title: 'To do',
             items: [
               {
@@ -33,7 +33,7 @@ const boardSlice = createSlice({
             ],
           },
           {
-            id: '9',
+            id: '9sdfdf',
             title: 'Done Tasks',
             items: [
               {
@@ -55,7 +55,7 @@ const boardSlice = createSlice({
             ],
           },
           {
-            id: '0',
+            id: '0sdfsdfdsf',
             title: 'Incoming Tasks',
             items: [
               {
@@ -106,7 +106,7 @@ const boardSlice = createSlice({
         bgColor: 'green',
         lists: [
           {
-            id: '78k',
+            id: '78ksdfsd',
             title: 'To do',
             items: [
               {
@@ -128,7 +128,7 @@ const boardSlice = createSlice({
             ],
           },
           {
-            id: '98h',
+            id: '98hsdfd',
             title: 'Done Tasks',
             items: [
               {
@@ -150,7 +150,7 @@ const boardSlice = createSlice({
             ],
           },
           {
-            id: 'io3',
+            id: 'io3sdfds',
             title: 'Incoming Tasks',
             items: [
               {
