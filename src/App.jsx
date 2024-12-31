@@ -15,12 +15,14 @@ import Login from "./Pages/Login/Login";
 import Reporting from "./Pages/Reporting/Reporting";
 import { useEffect } from "react";
 import store from "./Redux/Store";
+import Dashboards from "./Pages/Dashboards/Dashboards";
 
 function App() {
   useEffect(() => {
     Aos.init();
   }, []);
 
+  console.log("I am configuting");
     return (
         <Provider store={store}>
       <BrowserRouter>
@@ -28,12 +30,12 @@ function App() {
           <Route path='/' element={<Body />}>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path='/' element={<LandingPage />} />
+         <Route path='/' element={<LandingPage />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/faqs' element={<Faqs />} />
             <Route path='/home' element={<Home />} />
-              <Route path="/dashboards" element={<Dashboards />} />
-              <Route path="reporting"element={<Dashboards />} />
+              <Route path="/dashboards" element={<Dashboards />} /> 
+              <Route path="reporting"element={<Reporting />} />
 
               
           </Route>

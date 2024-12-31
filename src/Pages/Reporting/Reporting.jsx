@@ -7,7 +7,7 @@ const Reporting = () => {
   let doneTasks = 3;
   let inProgressTasks = 4;
   let stuckTasks = 3;
-
+  
   const data = [
     {
       name: "Done",

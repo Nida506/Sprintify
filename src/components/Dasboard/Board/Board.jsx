@@ -3,12 +3,19 @@ import Lists from "./Lists";
 import { useDispatch, useSelector } from "react-redux";
 
 function Board({dashboardData}) {
-    let activeDashboard = useSelector(store => (store?.boards?.active ? store?.boards?.active:store?.boards?.boards[0] ));
-
+    let activeDashboard = useSelector(store => (store?.boards?.active ? store?.boards?.active:{} ));
+   
     return (
         <div className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-            <Header activeDashboard={activeDashboard} />
+           {
+            (!activeDashboard.toString())? 
+            <div>
+                     
+            </div>:
+           <>
+           <Header activeDashboard={activeDashboard} />
             <Lists activeDashboard={activeDashboard} />
+            </>}
         </div>
     )
 }
