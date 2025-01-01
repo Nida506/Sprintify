@@ -25,43 +25,61 @@ function Lists({ activeDashboard }) {
   };
 
   const onDragEnd = (result) => {
-    const { source, destination } = result;
-
+    const { source, destination, type } = result;
+  
     // Exit if dropped outside any list or card
     if (!destination) return;
-
-    // Handle dragging cards
-    if (source.droppableId !== destination.droppableId) {
-      // Move card between lists
-      const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
-
-      const sourceListIndex = newLists.findIndex(
-        (list) => list.id.toString() === source.droppableId
-      );
-      const destinationListIndex = newLists.findIndex(
-        (list) => list.id.toString() === destination.droppableId
-      );
-
-      const sourceList = newLists[sourceListIndex];
-      const destinationList = newLists[destinationListIndex];
-
-      // Remove the card from the source list
-      const [movedCard] = sourceList.items.splice(source.index, 1);
-
-      // Add the card to the destination list
-      destinationList.items.splice(destination.index, 0, movedCard);
-
-      dispatch(updateBoardListOnDrag(newLists));
-    } else {
-      // Handle dragging lists
+  
+    if (type === "group") {
+      // Handle dragging lists (reordering lists within the dashboard)
       const newLists = [...activeDashboard.lists];
-      const [movedList] = newLists.splice(source.index, 1);  // Remove the list from its original position
-      newLists.splice(destination.index, 0, movedList);  // Add it to the new position
-
+      const [movedList] = newLists.splice(source.index, 1);
+      newLists.splice(destination.index, 0, movedList);
+  
       // Dispatch the updated lists order to Redux
       dispatch(updateBoardListOnDrag(newLists));
+    } else if (type === "CARD") {
+      // Handle dragging cards (moving cards within or between lists)
+      if (source.droppableId !== destination.droppableId) {
+        // Move card between different lists
+        const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
+  
+        const sourceListIndex = newLists.findIndex(
+          (list) => list.id.toString() === source.droppableId
+        );
+        const destinationListIndex = newLists.findIndex(
+          (list) => list.id.toString() === destination.droppableId
+        );
+  
+        const sourceList = newLists[sourceListIndex];
+        const destinationList = newLists[destinationListIndex];
+  
+        // Remove the card from the source list
+        const [movedCard] = sourceList.items.splice(source.index, 1);
+  
+        // Add the card to the destination list
+        destinationList.items.splice(destination.index, 0, movedCard);
+  
+        // Dispatch the updated board state to Redux
+        dispatch(updateBoardListOnDrag(newLists));
+      } else {
+        // Reorder card within the same list
+        const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
+  
+        const listIndex = newLists.findIndex(
+          (list) => list.id.toString() === source.droppableId
+        );
+  
+        const list = newLists[listIndex];
+        const [movedCard] = list.items.splice(source.index, 1);
+        list.items.splice(destination.index, 0, movedCard);
+  
+        // Dispatch the updated board state to Redux
+        dispatch(updateBoardListOnDrag(newLists));
+      }
     }
   };
+  
 
   useEffect(() => {
     dispatch(activeAddCardListId(''));
