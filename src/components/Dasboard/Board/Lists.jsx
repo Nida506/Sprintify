@@ -5,6 +5,7 @@ import { CopyAllRounded, Edit } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { activeAddCardListId, updateBoardListOnDrag } from '@/Redux/BoardsSlice/BoardsSlice';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { useRef } from 'react';
 
 // INTERNAL IMPORTS
 import AddCard from './AddCard';
@@ -77,17 +78,20 @@ function Lists({ activeDashboard }) {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
+
+                {/* -----Lists ----- */}
                 {activeDashboard?.lists?.map((list, index) => (
                   <Draggable key={list.id.toString()} draggableId={list.id.toString()} index={index}>
                     {(provided) => (
-                      <div
-                        className="flex flex-col gap-2 w-60 h-fit rounded-md p-2 bg-[#EFF2F3] flex-shrink-0"
-                        {...provided.dragHandleProps}
-                        {...provided.draggableProps}
-                        ref={provided.innerRef}
-                      
+                      <div  className='bg-[#EFF2F3] flex-shrink-0 h-fit w-64 rounded-2xl overflow-x-hidden'
+                      {...provided.dragHandleProps}
+                      {...provided.draggableProps}
+                      ref={provided.innerRef}
                       >
-                        <div className="px-0.5 flex justify-between">
+                      <div
+                        className="flex flex-col h-fit  max-h-[400px]   p-2 overflow-x-hidden "
+                      >
+                        <div className="px-0.5 mt-1 flex justify-between">
                           <span className="font-semibold">{list?.title}</span>
                           <button className="hover:bg-gray-400 p-1 rounded">
                             <MoreHorizontalIcon className="text-[30px] hover:text-black" />
@@ -95,7 +99,8 @@ function Lists({ activeDashboard }) {
                         </div>
 
                         {/* Render cards */}
-                        <ul className="flex flex-col gap-2">
+                          <ul className="py-2 overflow-x-hidden flex flex-col gap-2 overflow-y-auto h-full scrollbar-thin
+                         scrollbar-thumb-gray-400 scrollbar-track-gray-200 scrollbar-w-[4px] scroll-m-3">
                           <Droppable key={list.id.toString()} droppableId={list.id.toString()} type="CARD">
                             {(provided, snapshot) => (
                               <div
@@ -106,19 +111,21 @@ function Lists({ activeDashboard }) {
                                   <Draggable key={card.id.toString()} draggableId={card.id.toString()} index={index}>
                                     {(provided, snapshot) => (
                                       <div
-                                        className={`group border shadow-md item flex justify-between items-center py-2 px-1 mt-[7px] hover:border-cyan-400 hover:border-2 bg-white rounded-lg ${
-                                          snapshot.isDragging ? 'bg-gray-300 opacity-50 mb-11 transform rotate-6' : ''
-                                        }`}
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                      >
-                                        <p className="text-[14px] px-1">{card.content}</p>
-                                        {/* Ensure the Edit icon is a child of the group */}
-                                        <div className='hidden group-hover:block'>
-                                          <Edit fontSize="13" className="cursor-pointer" />
-                                        </div>
+                                      className={`box-border group z-[1000] border relative shadow-md item flex justify-between items-center py-2 px-1 mt-[7px] hover:border-cyan-400 hover:border-[2px] bg-white rounded-lg ${
+                                        snapshot.isDragging ? 'bg-gray-300 opacity-50 mb-11 transform rotate-6' : ''
+                                      }`}
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                    >
+                                      <p className="text-[14px] px-1 w-full break-words h-fit">{card.content}</p>
+                                      
+                                      {/* Edit icon */}
+                                      <div className="hidden group-hover:flex  justify-center bg-white items-center hover:bg-slate-200 h-[25px] w-[25px] absolute top-1 right-1 rounded-full  px-1 opacity-0 group-hover:opacity-100">
+                                        <Edit fontSize="18" className="cursor-pointer  rounded-full" />
                                       </div>
+                                    </div>
+                                    
                                     )}
                                   </Draggable>
                                 ))}
@@ -126,12 +133,18 @@ function Lists({ activeDashboard }) {
                               </div>
                             )}
                           </Droppable>
-                        </ul>
-
-                        {/* Add Card Section */}
+                       
+                                   {/* Add Card Section */}
                         {activeAddCardListID === list.id && <AddCard list={list} />}
+                          </ul>
+
+                 
+                     
+                        
+                        </div>
+                        <div>
                         {activeAddCardListID !== list.id && (
-                          <li className="item flex p-[5px] rounded cursor-pointer">
+                          <li className="item flex p-[5px] rounded cursor-pointer ">
                             <div
                               className="flex flex-row w-[90%] gap-1 items-center hover:bg-gray-300 p-1 rounded-lg"
                               onClick={() => activeShowAddCardSection(list.id)}
@@ -144,7 +157,9 @@ function Lists({ activeDashboard }) {
                             <CopyAllRounded className="text-[10px] text-gray-500 hover:text-black" />
                           </li>
                         )}
-                      </div>
+                        </div>
+                        </div>
+                      
                     )}
                   </Draggable>
                 ))}

@@ -25,7 +25,7 @@ function AddCard({ list}) {
         id=""
         cols={55}
         rows={2}
-        className="border-1 rounded-lg p-1 w-full border-black border-2"
+        className="border-1 focus:border-0 outline-none px-2 p-1 w-full border-black border-none  shadow-md item flex justify-between items-center py-2  mt-[7px] hover:border-cyan-400 hover:border-2 bg-white rounded-lg"
         placeholder="Enter a title or paste a link"
         onChange={(e)=>setItemText(e.target.value)}
       ></textarea>
