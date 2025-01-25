@@ -11,7 +11,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import Sprintify_Logo from "../../assets/Sprintify_Logo.png";
 import Aos from "aos";
 import { DashboardCustomizeOutlined } from "@mui/icons-material";
-import { Link2 } from "lucide-react";
+import { LaptopMinimalCheckIcon } from "lucide-react";
 
 function Navbar() {
   let [navDialogue, setNavDialogue] = useState(false);
@@ -143,10 +143,10 @@ function Navbar() {
               className="font-medium cursor-pointer m-1 p-3 py-2 flex items-center justify-between hover:bg-gray-50 rounded-lg"
               to="/"
             >
-              <link className="flex items-center h-full w-full" to={'/'}>
+              <Link className="flex items-center h-full w-full" to={'/'}>
                 <HomeIcon sx={{ fontSize: 30 }} />
                 <label className="text-[20px] mt-1 ml-2">Home</label>
-              </link>
+              </Link>
 
               <ChevronRightIcon sx={{ fontSize: 30 }} />
             </Link>
