@@ -11,6 +11,7 @@ import "./index.css";
 import Dashboards from "./Pages/Dashboards/Dashboards";
 import Login from "../src/Pages/Login/Login.jsx";
 import Signup from "../src/Pages/Signup/Signup.jsx";
+import AboutUs from "./Pages/AboutUs/AboutUs";
 
 function App() {
   useEffect(() => {
