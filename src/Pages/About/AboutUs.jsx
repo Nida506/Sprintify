@@ -1,120 +1,88 @@
 import React from "react";
-import { FaCheckCircle } from "react-icons/fa";
+import AboutUs_pic1 from "../../assets/AboutUs_pic1.png";
+import AboutUs_pic2 from "../../assets/AboutUs_pic2.png";
+import Icon1 from "../../assets/AboutUs_Icon1.png";
+import Icon2 from "../../assets/AboutUs_Icon2.png";
+import Icon3 from "../../assets/AboutUs_Icon3.png";
+import Icon4 from "../../assets/AboutUs_Icon4.png";
 
 const AboutUs = () => {
   return (
-    <div className="w-full">
-      {/* Header */}
-      <header className="flex justify-between p-4 shadow-md bg-white">
-        <h1 className="text-xl font-bold">Sprintify</h1>
-        <nav className="flex gap-4">
-          <a href="#" className="text-gray-600">Home</a>
-          <a href="#" className="text-gray-600">About</a>
-          <a href="#" className="text-gray-600">Blog</a>
-          <a href="#" className="text-blue-500">Contact</a>
-          <a href="#" className="text-blue-500">Workplace</a>
-        </nav>
-        <div className="flex gap-2">
-          <button className="border border-gray-400 px-4 py-2 rounded-md">Login</button>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md">Signup</button>
-        </div>
-      </header>
-
+    <div className="about-us">
+    
       {/* Hero Section */}
-      <section className="bg-orange-100 p-10 flex justify-between items-center">
-        <div>
-          <h2 className="text-4xl font-bold mb-4">
-            We Offer Teams To Organize, Prioritize And Manage Projects
-          </h2>
-          <ul className="space-y-2">
-            {[
-              "Real-time collaboration",
-              "Task Tracking and due date",
-              "User Friendly Interface",
-              "Customizable Workflows",
-              "Drag and Drop simplicity",
-              "Mobile and Desktop Access",
-            ].map((item, index) => (
-              <li key={index} className="flex items-center gap-2 text-lg">
-                <FaCheckCircle className="text-blue-600" /> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <section className="hero bg-orange-100 py-20 px-8 flex flex-col md:flex-row items-center">
+  {/* Text Section */}
+  <div className="text-section md:w-1/2">
+    <h1 className="text-5xl font-bold mb-6">
+      We Offer Teams To Organize, Prioritize And Manage Projects
+    </h1>
+    <ul className="pl-6 space-y-4 text-lg">
+      {[ "Real-time collaboration", "Task Tracking and Due Date", "User Friendly Interface", "Customizable Workflows", "Drag and Drop Simplicity", "Mobile and Desktop Access" ]
+        .map((item, index) => (
+        <li key={index} className="flex items-center gap-3">
+          <svg
+            className="w-6 h-6 text-blue-700"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              d="M12 2a10 10 0 1 1-9.95 10.53A10 10 0 0 1 12 2zm-1.1 13.24l6.2-6.2a1 1 0 1 0-1.4-1.42l-5.5 5.5-2.3-2.3a1 1 0 1 0-1.4 1.42l3 3a1 1 0 0 0 1.4 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
 
-      {/* Why Choose Sprintify */}
-      <section className="p-10 flex flex-col md:flex-row gap-8 items-center">
-        <div className="flex-1">
+  {/* Right Image Section */}
+  <div className="image-section md:w-1/2 flex justify-center">
+    <img
+      src={AboutUs_pic1}
+      alt="About Us"
+      className="w-full max-w-md rounded-lg shadow-lg"
+    />
+  </div>
+</section>
+
+
+
+      {/* Why Choose Us Section */}
+      <section className="why-choose-us py-20 px-8 flex flex-col md:flex-row items-center">
+        <div className="image-section md:w-1/2 flex justify-center">
+          <img src={AboutUs_pic2} alt="Why Choose Us" className="max-w-full" />
+        </div>
+        <div className="text-section md:w-1/2">
           <h2 className="text-3xl font-bold mb-4">Why Choose Sprintify?</h2>
-          <p className="text-gray-700">
-            Choose Sprintify for its intuitive, visual interface that makes projects collaborative.
-            Stay organized, boost productivity, and streamline your workflows with ease.
+          <p className="text-lg text-gray-700">
+            Choose Sprintify for its intuitive, visual interface that makes projects collaborative. Stay organized, boost productivity, and streamline your workflows with ease.
           </p>
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            {[
-              "Organize tasks efficiently with user-friendly boards.",
-              "Collaboration, productivity and management at one place.",
-              "Track time and add personalized tools to your boards.",
-              "100% secure chats and meetings.",
-            ].map((feature, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <FaCheckCircle className="text-blue-600" /> <span>{feature}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="p-10 bg-gray-100">
-        <h2 className="text-3xl font-bold mb-6">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          {[
-            { q: "What is Sprintify?", a: "Sprintify is a project management tool." },
-            { q: "Is Sprintify free to use?", a: "Yes, Sprintify offers a free plan with essential features." },
-            { q: "Can I use Sprintify for personal tasks?", a: "Yes, it is suitable for both personal and professional use." },
-            { q: "How do I collaborate with my team on Sprintify?", a: "You can invite team members and assign tasks easily." },
-            { q: "What are Power-Ups in Sprintify?", a: "Power-Ups allow additional integrations and features." },
-          ].map((faq, index) => (
-            <div key={index} className="border p-4 rounded-md bg-white">
-              <h3 className="font-semibold">{faq.q}</h3>
-              <p className="text-gray-600 mt-2">{faq.a}</p>
-            </div>
-          ))}
+      {/* Features Section */}
+      <section className="features py-16 bg-gray-100 px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div className="feature flex flex-col items-center">
+          <img src={Icon1} alt="Feature 1" className="w-16 h-16 mb-4" />
+          <p>Organize tasks efficiently with our user-friendly boards.</p>
+        </div>
+        <div className="feature flex flex-col items-center">
+          <img src={Icon2} alt="Feature 2" className="w-16 h-16 mb-4" />
+          <p>Collaboration, productivity, and management at one place.</p>
+        </div>
+        <div className="feature flex flex-col items-center">
+          <img src={Icon3} alt="Feature 3" className="w-16 h-16 mb-4" />
+          <p>Track time and add personalized tools to your boards.</p>
+        </div>
+        <div className="feature flex flex-col items-center">
+          <img src={Icon4} alt="Feature 4" className="w-16 h-16 mb-4" />
+          <p>100% secure chats and meetings.</p>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="p-10 bg-blue-900 text-white">
-        <div className="grid grid-cols-3 gap-6">
-          <div>
-            <h3 className="font-bold">Services</h3>
-            <ul>
-              <li>Dashboard</li>
-              <li>Chat</li>
-              <li>Meeting</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold">Social Media</h3>
-            <ul>
-              <li>Twitter</li>
-              <li>LinkedIn</li>
-              <li>Facebook</li>
-              <li>Instagram</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold">Contacts</h3>
-            <ul>
-              <li>+91-9837366124</li>
-              <li>uvesmursalin@gmail.com</li>
-              <li>257 Fireweed Ln, Ketchikan, Alaska</li>
-            </ul>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

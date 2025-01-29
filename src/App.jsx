@@ -4,30 +4,32 @@ import { Provider } from "react-redux";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import store from "./Redux/Store";
+
 //----------INTERNAL IMPORTS
 import Body from "./Pages/Body/Body";
-//----------INTERNAL IMPORTS
-import "./index.css";
 import Dashboards from "./Pages/Dashboards/Dashboards";
-import Login from "../src/Pages/Login/Login.jsx";
-import Signup from "../src/Pages/Signup/Signup.jsx";
-import AboutUs from "./Pages/AboutUs/AboutUs";
+import Login from "./Pages/Login/Login";
+import Signup from "./Pages/Signup/Signup";
+import AboutUs from "./Pages/About/AboutUs"; // Ensure correct path
+import "./index.css";
 
 function App() {
   useEffect(() => {
     Aos.init();
   }, []);
 
-  console.log("I am configuting");
+  console.log("I am configuring");
+
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Body />}>
-            <Route path="/dashboards" element={<Dashboards />}></Route>
+            <Route path="/dashboards" element={<Dashboards />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/about" element={<AboutUs />} /> {/* Added About Us */}
         </Routes>
       </BrowserRouter>
     </Provider>
