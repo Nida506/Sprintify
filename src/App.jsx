@@ -14,6 +14,7 @@ import AboutUs from "./Pages/About/AboutUs"; // Ensure correct path
 import "./index.css";
 import Blog from "./Pages/Blog/Blog";
 import WorkPlace from "./Pages/WorkPlace/WorkPlace";
+import Chart from "./Pages/Chart/Chart";
 
 function App() {
   useEffect(() => {
@@ -31,6 +32,7 @@ function App() {
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/blog" element={<Blog/>}/>
+          <Route path="/chart" element={<Chart/>}/>
           <Route path="/workplace" element={<WorkPlace/>}/>
           <Route path="/signup" element={<Signup />} />
           <Route path="/about" element={<AboutUs />} /> {/* Added About Us */}

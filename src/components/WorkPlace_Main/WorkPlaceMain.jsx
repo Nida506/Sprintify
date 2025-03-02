@@ -38,7 +38,7 @@ const WorkPlaceMain = () => {
             className="w-16 h-16 "
           />
           <div>
-            <h2 className="text-xl font-semibold">Asia Workplace</h2>
+            <h2 className="text-xl font-semibold">Asia's Workplace</h2>
             <span className="text-gray-500 text-sm">🔒 Private</span>
           </div>
         </div>
