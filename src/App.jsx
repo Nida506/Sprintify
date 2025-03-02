@@ -12,6 +12,7 @@ import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import AboutUs from "./Pages/About/AboutUs"; // Ensure correct path
 import "./index.css";
+import Blog from "./Pages/Blog/Blog";
 
 function App() {
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
             <Route path="/dashboards" element={<Dashboards />} />
           </Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/blog" element={<Blog/>}/>
           <Route path="/signup" element={<Signup />} />
           <Route path="/about" element={<AboutUs />} /> {/* Added About Us */}
         </Routes>

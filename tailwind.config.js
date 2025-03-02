@@ -10,6 +10,7 @@ export default {
       },
       fontFamily: {
         Roboto: ['Roboto', 'serif'],
+        outfit: ['Outfit', 'sans-serif'],
       },
       colors: {
         purple: '#644A8E',
