@@ -28,7 +28,7 @@ const BlogNews = () => {
       </h2>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {news.map((item, index) => (
-          <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div key={index} data-aos="zoom-in" className="bg-white shadow-md rounded-lg overflow-hidden">
             <img
               src={item.imgSrc}
               alt="News"

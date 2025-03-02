@@ -24,9 +24,9 @@ const WorkPlaceMain = () => {
          
          </div>
         <div className="flex space-x-3">
-          <button className=" px-4 py-2 rounded-md">Follow</button>
-          <button className="bg-gray-200 px-4 py-2 rounded-md">Share</button>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md">+ Add</button>
+          <button className=" px-4 py-2 rounded-md" >Follow</button>
+          <button className="bg-gray-200 px-4 py-2 rounded-md" data-aos="zoom-in">Share</button>
+          <button className="bg-blue-600 text-white px-4 py-2 rounded-md" data-aos="zoom-in">+ Add</button>
         </div>
       </div>
 
@@ -36,9 +36,10 @@ const WorkPlaceMain = () => {
             src="images/user2.png" 
             alt="Profile"
             className="w-16 h-16 "
+            data-aos="zoom-in"
           />
           <div>
-            <h2 className="text-xl font-semibold">Asia's Workplace</h2>
+            <h2 className="text-xl font-semibold">{`Asia's Workplace`}</h2>
             <span className="text-gray-500 text-sm">🔒 Private</span>
           </div>
         </div>
@@ -48,7 +49,7 @@ const WorkPlaceMain = () => {
       {/* Filters */}
       <div className="flex md:flex-row flex-col justify-between mb-6">
         <div className="flex md:flex-row flex-col md:space-x-4">
-          <div className="flex flex-col gap-2 text-[16px]">
+          <div className="flex flex-col gap-2 text-[16px] " data-aos="zoom-in">
                 <p className="">Sort By</p>
                 <select className="border text-gray-400 px-4 py-2 rounded-md">
                   <option>Most Recently Active</option>
@@ -56,7 +57,7 @@ const WorkPlaceMain = () => {
                 </select>
           </div>
           
-          <div className="flex flex-col gap-2 text-[16px]">
+          <div className="flex flex-col gap-2 text-[16px]" data-aos="zoom-in">
                 <p className="">Filter By</p>
                 <select className="border text-gray-400 px-4 py-2 rounded-md">
                   <option>Most Recently Active</option>
@@ -65,7 +66,7 @@ const WorkPlaceMain = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2" data-aos="zoom-in">
         <p className="">Search By</p>
         <div className="flex border items-center px-4 py-2 rounded-md">
          <FaSearch className=" text-gray-400" />
@@ -84,6 +85,7 @@ const WorkPlaceMain = () => {
          {boards.map((board) => (
                <div
                  key={board.id}
+                 
                  className="p-[30px] rounded-lg shadow-md text-white font-semibold"
                  style={{
                    backgroundImage: `url(${board.imgsrc})`, // Dynamically use the board's image

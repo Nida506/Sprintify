@@ -7,7 +7,7 @@ const MainNavBar = () => {
   return (
     <nav className="bg-white font-outfit  shadow-md md:py-[20px] md:px-[100px] p-[20px] flex justify-between items-center">
       {/* Logo */}
-      <h1 className="md:text-4xl text-2xl font-bold text-gray-900">Sprintify</h1>
+      <h1 className="md:text-4xl text-2xl font-bold text-gray-900" data-aos="zoom-in">Sprintify</h1>
        {/* Desktop Menu */}
        <ul className="hidden lg:flex space-x-6 text-gray-600">
         <li className="hover:text-blue-700 cursor-pointer">Home</li>
@@ -18,8 +18,8 @@ const MainNavBar = () => {
       </ul>
    {/* Buttons */}
    <div className="hidden lg:flex space-x-4">
-        <button className="px-5 py-2 border-[1px] border-gray-400 rounded-full">Login</button>
-        <button className="px-5 py-2 bg-[#091954] text-white rounded-full">
+        <button className="px-5 py-2 border-[1px] border-gray-400 rounded-full" data-aos="zoom-in">Login</button>
+        <button className="px-5 py-2 bg-[#091954] text-white rounded-full" data-aos="zoom-in">
           Signup
         </button>
       </div>
@@ -39,8 +39,8 @@ const MainNavBar = () => {
             <li className="hover:text-blue-700 cursor-pointer">Contact</li>
             <li className="hover:text-blue-700 cursor-pointer">Workspaces</li>
           </ul>
-          <button className="px-5 py-2 border-[1px] border-gray-400 rounded-full">Login</button>
-          <button className="px-5 py-2 bg-[#091954] text-white rounded-full">
+          <button data-aos="zoom-in" className="px-5 py-2 border-[1px] border-gray-400 rounded-full">Login</button>
+          <button data-aos="zoom-in" className="px-5 py-2 bg-[#091954] text-white rounded-full">
              Signup
           </button>
         </div>

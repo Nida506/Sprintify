@@ -29,7 +29,7 @@ const BlogCards = () => {
       </h2>
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {blogs.map((item, index) => (
-          <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div key={index} className="bg-white shadow-md rounded-lg overflow-hidden" data-aos="zoom-in">
             <img
               src={item.imgSrc}
               alt="Blog"

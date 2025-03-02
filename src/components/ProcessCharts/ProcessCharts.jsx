@@ -16,7 +16,7 @@ const PieChart = (Props) => {
   };
 
   return (
-    <div className="flex flex-col items-center w-[200px] md:w-[250px]">
+    <div className="flex flex-col items-center w-[200px] md:w-[250px]" data-aos="zoom-in">
       <h3 className="text-2xl font-semibold mb-2 ">{Props.title}</h3>
       <Pie data={data} />
       <p className="mt-2 text-gray-600">{Props.percentage}%</p>

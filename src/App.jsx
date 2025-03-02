@@ -18,7 +18,12 @@ import Chart from "./Pages/Chart/Chart";
 
 function App() {
   useEffect(() => {
-    Aos.init();
+    Aos.init({
+      duration: 1200, // Global animation duration (in ms)
+      easing: 'ease-in-out', // Global easing function
+      once: true, // Only trigger animation once
+      offset: 200, // Trigger animations when scrolled 200px from the bottom
+    });
   }, []);
 
   console.log("I am configuring");

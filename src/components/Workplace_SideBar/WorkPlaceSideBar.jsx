@@ -20,14 +20,14 @@ function WorkPlaceSideBar() {
          {/* pert 2 */}
           <div className="font-outfit bg-white flex flex-col gap-[20px] p-[20px] w-full md:w-[320px]  overflow-hidden">
          {/* Profile Section */}
-         <div className="bg-[#3845B1] bg-opacity-[81%] text-white p-4 flex shadow-lg rounded-lg  gap-4">
+         <div data-aos="zoom-in" className="bg-[#3845B1] bg-opacity-[81%] text-white p-4 flex shadow-lg rounded-lg  gap-4">
         <img
           src="images/user1.png"
           alt="Profile"
           className="w-12 h-12 rounded-full object-cover border-2 border-white"
         />
         <div>
-          <h3 className="font-semibold">Asia's Workplace</h3>
+          <h3 className="font-semibold">{`Asia's Workplace`}</h3>
           <p className="text-sm">Free</p>
         </div>
          </div>
@@ -43,6 +43,7 @@ function WorkPlaceSideBar() {
           {boards.map((board, index) => (
             <li
               key={index}
+              data-aos="zoom-in"
               className="text-gray-700 flex items-center gap-2 text-[16px] font-medium cursor-pointer hover:text-blue-400"
             >
               <MdKeyboardArrowRight className='text-[18px]'/>

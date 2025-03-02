@@ -7,7 +7,7 @@ const MainFooter = () => {
         
         {/* Services Section */}
         <div>
-          <h3 className="md:text-3xl text-xl font-semibold mb-4">Services</h3>
+          <h3 className="md:text-3xl text-xl font-semibold mb-4" data-aos="zoom-out">Services</h3>
           <ul className="space-y-4 text-[#FFFFFF] opacity-[75%]">
             <li>Dashboard</li>
             <li>Chat</li>
@@ -17,7 +17,7 @@ const MainFooter = () => {
 
         {/* Social Media Section */}
         <div>
-          <h3 className="md:text-3xl text-xl font-semibold mb-4 ">Social Media</h3>
+          <h3 className="md:text-3xl text-xl font-semibold mb-4 " data-aos="zoom-out">Social Media</h3>
           <ul className="space-y-4 text-[#FFFFFF] opacity-[75%]">
             <li><a href="#" className="hover:underline">Twitter <span className="text-xl pl-[5px]">↗</span></a></li>
             <li><a href="#" className="hover:underline">LinkedIn <span className="text-xl pl-[5px]">↗</span></a></li>
@@ -28,11 +28,11 @@ const MainFooter = () => {
 
          {/* Contacts Section */}
          <div>
-          <h3 className="md:text-3xl text-xl font-semibold mb-4">Contacts</h3>
+          <h3 className="md:text-3xl text-xl font-semibold mb-4" data-aos="zoom-out">Contacts</h3>
           <ul className="space-y-6 text-[#FFFFFF] opacity-[75%]">
             <div className="flex gap-[10px]">
                 {/* icon div */}
-                 <div className="border-[1px] border-white p-[12px] rounded-md">
+                 <div data-aos="zoom-in" className="border-[1px] border-white p-[12px]  rounded-md">
                      <FaPhoneAlt className="text-white"/>
                  </div>
                 <div className="flex flex-col gap-[1px]">
@@ -45,7 +45,7 @@ const MainFooter = () => {
             {/* email */}
             <div className="flex gap-[10px]">
                 {/* icon div */}
-                 <div className="border-[1px] border-white text-white p-[12px] rounded-md">
+                 <div data-aos="zoom-in" className="border-[1px] border-white text-white p-[12px] rounded-md">
                       <FaEnvelope />     
                  </div>
                 <div className="flex flex-col gap-[1px]">
@@ -60,7 +60,7 @@ const MainFooter = () => {
             <div className="flex gap-[10px]">
                 {/* icon div */}
                  <div className="border-[1px] border-white text-white p-[12px] rounded-md">
-                     <FaMapMarkerAlt className="fill-white"/>  
+                     <FaMapMarkerAlt className="fill-white"  data-aos="zoom-in"/>  
                  </div>
                 <div className="flex flex-col gap-[1px]">
                    <li className="flex items-center gap-2">  257 Fireweed Ln, Ketchikan,</li>

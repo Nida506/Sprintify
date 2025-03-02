@@ -70,9 +70,11 @@ function Navbar() {
 
       {/* --------------------------------For large Screens -Menu */}
       <div className=" hidden min-[823px]:flex gap-8 ">
-        <Link className=" p-0 flex items-center text-[17px]">Home</Link>
+        <Link className=" p-0 flex items-center text-[17px]" to={'/blog'}>Blog</Link>
 
-        <Link className="flex items-center text-[17px] " to={'/faqs'}>FAQS</Link>
+        <Link className=" p-0 flex items-center text-[17px]" to={'/chart'}>Chart</Link>
+
+        <Link className="flex items-center text-[17px] " to={'/workplace'}>Workplace</Link>
 
         <Link className="flex items-center text-[17px] " to={'/dashboards'}>Dashboards</Link>
       </div>
