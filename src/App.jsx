@@ -17,6 +17,7 @@ import Blog from './Pages/Blog/Blog';
 import WorkPlace from './Pages/WorkPlace/WorkPlace';
 import Chart from './Pages/Chart/Chart';
 import Spinner from './ReuseableComponents/Loading/Spinner';
+import ChatPage from './Pages/ChatPage/ChatPage';
 
 function App() {
   const ResetPassword = lazy(() =>
@@ -57,6 +58,8 @@ function App() {
                 </Suspense>} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/about" element={<AboutUs />} /> {/* Added About Us */}
+          
+          <Route path="/ChatPage" element={<ChatPage/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
