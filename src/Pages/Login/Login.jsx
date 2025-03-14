@@ -9,7 +9,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="min-h-screen  bg-black text-white flex flex-col items-center relative overflow-hidden">
+    <div className="min-h-screen font-outfit  bg-black text-white flex flex-col items-center relative overflow-hidden">
     
 
 {/* Background Circles */}
@@ -52,7 +52,7 @@ const LoginPage = () => {
       </nav>
 
       {/* Main Section */}
-      <div className="flex w-full max-w-7xl items-center justify-between mt-8 px-10">
+      <div className="flex font-outfit w-full max-w-7xl items-center justify-between mt-8 px-10">
         {/* Left Section */}
         <div className="w-full pr-50">
           <h2 className="text-8xl font-bold mb-8 leading-tight text-center">

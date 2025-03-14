@@ -14,7 +14,7 @@ const WorkPlaceMain = () => {
       {/* Header */}
       <div className="flex md:flex-row flex-col gap-3 justify-between mb-6 ">
          {/* input */}
-         <div className="flex border items-center px-4 py-2 rounded-md md:w-[400px] w-[300px]">
+         <div className="flex border items-center px-4 py-2 rounded-md lg:w-[400px] md:w-[650px]  w-[300px]">
          <FaSearch className=" text-gray-400" />
          <input
             type="text"

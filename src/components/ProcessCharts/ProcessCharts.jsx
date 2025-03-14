@@ -26,7 +26,7 @@ const PieChart = (Props) => {
 
 const ProcessCharts = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-center items-center gap-8 p-6">
+    <div className="grid place-items-center lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center items-center gap-8 p-6">
       <PieChart title="Done" percentage={81} color="green" />
       <PieChart title="Working" percentage={70} color="yellow" />
       <PieChart title="Pending" percentage={60} color="red" />
