@@ -23,6 +23,8 @@ function App() {
     import('./Pages/ForgetPassword/ForgetPassword')
   );
 
+  const Contactus = lazy(() => import('./Pages/Contactus/Contactus'));
+
   useEffect(() => {
     Aos.init({
       duration: 1200, // Global animation duration (in ms)
@@ -50,6 +52,9 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/chart" element={<Chart />} />
             <Route path="/workplace" element={<WorkPlace />} />
+            <Route path="/Contactus" element={<Suspense fallback={<Spinner />}>
+                  <Contactus/>
+                </Suspense>} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/about" element={<AboutUs />} /> {/* Added About Us */}
           </Route>
