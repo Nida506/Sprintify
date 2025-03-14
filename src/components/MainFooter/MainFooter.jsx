@@ -3,7 +3,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 const MainFooter = () => {
   return (
     <footer className="bg-[#091054] text-white md:py-[50px] md:px-[100px] p-[23px] font-outfit">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 text-sm">
         
         {/* Services Section */}
         <div>

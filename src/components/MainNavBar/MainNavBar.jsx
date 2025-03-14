@@ -31,7 +31,7 @@ const MainNavBar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute bg-[#FAF7F2] top-16 left-0 w-full shadow-md p-6 flex flex-col items-center space-y-4 lg:hidden">
+        <div className="absolute bg-[#FAF7F2] bg-opacity-85 z-10 top-16 left-0 w-full shadow-md p-6 flex flex-col items-center space-y-4 lg:hidden">
           <ul className="space-y-4 text-gray-600 text-lg">
             <li className="hover:text-blue-700 cursor-pointer">Home</li>
             <li className="hover:text-blue-700 cursor-pointer">About</li>
