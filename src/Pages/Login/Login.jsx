@@ -9,22 +9,16 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="min-h-screen font-outfit  bg-black text-white flex flex-col items-center relative overflow-hidden">
-    
-
-{/* Background Circles */}
-<div className="absolute right-[340px] top-[80px] z-0 w-[200px] h-[200px] rounded-full bg-gradient-to-b from-pink-400 to-blue-600">
-</div>
-
-{/* Bottom Circle with Smooth Gradient */}
-<div className="absolute bottom-[3px] right-[10px] w-[200px] h-[200px] rounded-full bg-gradient-to-b from-blue-600 to-pink-400">
-</div>
-
+    <div className="min-h-screen font-outfit bg-black text-white flex flex-col items-center relative overflow-hidden">
+      {/* Background Circles */}
+      <div className="absolute right-[10%] top-[5%] z-[-10] w-[100px] h-[100px] rounded-full bg-gradient-to-b from-pink-400 to-blue-600 md:right-[340px] md:top-[80px] md:w-[200px] md:h-[200px]"></div>
+      {/* Bottom Circle with Smooth Gradient */}
+      <div className="absolute bottom-[2%] right-[5%] w-[100px] h-[100px] rounded-full bg-gradient-to-b from-blue-600 to-pink-400 md:bottom-[3px] md:right-[10px] md:w-[200px] md:h-[200px]"></div>
 
       {/* Navbar */}
-      <nav className="w-full bg-white text-black flex justify-between items-center px-10 py-4">
+      <nav className="w-full bg-white text-black flex justify-between items-center px-4 py-4 md:px-10">
         <h1 className="text-2xl font-bold">Sprintify</h1>
-        <div className="flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-6">
           <Link to="/" className="hover:underline">
             Home
           </Link>
@@ -45,32 +39,34 @@ const LoginPage = () => {
           <button className="border border-black bg-blue-600 px-4 py-2 rounded-full text-white hover:bg-white hover:text-black transition">
             Login
           </button>
-          <button className=" border border-black px-4 py-2 rounded-full hover:bg-white-700 transition">
+          <button className="border border-black px-4 py-2 rounded-full hover:bg-white-700 transition">
             Signup
           </button>
         </div>
       </nav>
 
       {/* Main Section */}
-      <div className="flex font-outfit w-full max-w-7xl items-center justify-between mt-8 px-10">
+      <div className="flex font-outfit w-full max-w-7xl items-center justify-between mt-8 px-4 md:px-10 flex-col lg:flex-row">
         {/* Left Section */}
-        <div className="w-full pr-50">
-          <h2 className="text-8xl font-bold mb-8 leading-tight text-center">
+        <div className="w-full lg:w-1/2 lg:pr-50 text-center lg:text-left">
+          <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-8 leading-tight">
             Welcome Back
             <br />
             To Sprintify!
           </h2>
-          <div className="w-full flex justify-end">
-            <h3 className="text-gray-400">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</h3>
+          <div className="w-full flex justify-center lg:justify-end">
+            <h3 className="text-gray-400">
+              - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            </h3>
           </div>
-          <button className=" ml-96 mt-1 border border-white px-6 py-3 text-white font-medium hover:bg-white hover:text-black transition">
+          <button className="mt-4 lg:ml-96 border border-white px-6 py-3 text-white font-medium hover:bg-white hover:text-black transition">
             Login to get started
           </button>
         </div>
 
         {/* Login Form */}
-        <div className="w-2/5 bg-opacity-20 backdrop-blur-lg p-10 rounded-3xl shadow-2xl border-2 border-white/50">
-          <h3 className="text-3xl font-semibold mb-2">Login</h3>
+        <div className="w-full lg:w-2/5 bg-opacity-20 backdrop-blur-lg p-6 md:p-10 rounded-3xl shadow-2xl border-2 border-white/50 mt-8 lg:mt-0">
+          <h3 className="text-2xl md:text-3xl font-semibold mb-2">Login</h3>
           <p className="text-gray-400 mb-4">Glad you're back!</p>
           <form>
             <div className="mb-3">
@@ -113,7 +109,10 @@ const LoginPage = () => {
               Login
             </button>
 
-            <Link to="/forgot-password" className="text-blue-600 hover:underline text-center block mt-2">
+            <Link
+              to="/forgot-password"
+              className="text-blue-600 hover:underline text-center block mt-2"
+            >
               Forgot password?
             </Link>
           </form>
@@ -139,18 +138,16 @@ const LoginPage = () => {
               Signup
             </Link>
           </p>
-          <div className="flex justify-center items-center gap-4 text-gray-400 mt-1 text-sm">
-  <Link to="/terms" className="hover:underline whitespace-nowrap">
-    Terms & Conditions
-  </Link>
-  <Link to="/support" className="hover:underline whitespace-nowrap">
-    Support
-  </Link>
-  <Link to="/customer-care" className="hover:underline whitespace-nowrap">
-    Customer Care
-  </Link>
-
-
+          <div className="flex justify-center items-center gap-4 text-gray-400 mt-1 text-sm flex-wrap">
+            <Link to="/terms" className="hover:underline whitespace-nowrap">
+              Terms & Conditions
+            </Link>
+            <Link to="/support" className="hover:underline whitespace-nowrap">
+              Support
+            </Link>
+            <Link to="/customer-care" className="hover:underline whitespace-nowrap">
+              Customer Care
+            </Link>
           </div>
         </div>
       </div>
