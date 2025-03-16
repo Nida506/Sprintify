@@ -11,13 +11,12 @@ const SignupPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center relative overflow-hidden">
-      
       {/* Background Circles */}
       <div className="absolute right-[340px] top-[80px] z-0 w-[200px] h-[200px] rounded-full bg-gradient-to-b from-pink-400 to-blue-600"></div>
       <div className="absolute bottom-[3px] right-[10px] w-[200px] h-[200px] rounded-full bg-gradient-to-b from-blue-600 to-pink-400"></div>
 
       {/* Navbar */}
-      <nav className="w-full bg-white text-black flex justify-between items-center px-10 py-4">
+      {/* <nav className="w-full bg-white text-black flex justify-between items-center px-10 py-4">
         <h1 className="text-2xl font-bold">Sprintify</h1>
         <div className="flex items-center gap-6">
           <Link to="/" className="hover:underline">Home</Link>
@@ -34,7 +33,7 @@ const SignupPage = () => {
             Signup
           </button>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Main Section */}
       <div className="flex w-full max-w-7xl items-center justify-between mt-3 px-10">
@@ -46,7 +45,11 @@ const SignupPage = () => {
             Started
           </h2>
           <div className="w-full flex justify-end">
-            <h3 className="text-gray-400 "> - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</h3>
+            <h3 className="text-gray-400 ">
+              {" "}
+              - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+              - - - - - - - -
+            </h3>
           </div>
           <button className="ml-96 mt-1  border border-white px-6 py-3 text-white font-medium hover:bg-white hover:text-black transition">
             Skip the lag?
@@ -101,7 +104,11 @@ const SignupPage = () => {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-200"
               >
-                {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                {showConfirmPassword ? (
+                  <VisibilityOffIcon />
+                ) : (
+                  <VisibilityIcon />
+                )}
               </button>
             </div>
 
@@ -137,17 +144,19 @@ const SignupPage = () => {
             </Link>
           </p>
           <div className="flex justify-center items-center gap-4 text-gray-400 mt-1 text-sm">
-  <Link to="/terms" className="hover:underline whitespace-nowrap">
-    Terms & Conditions
-  </Link>
-  <Link to="/support" className="hover:underline whitespace-nowrap">
-    Support
-  </Link>
-  <Link to="/customer-care" className="hover:underline whitespace-nowrap">
-    Customer Care
-  </Link>
-</div>
-
+            <Link to="/terms" className="hover:underline whitespace-nowrap">
+              Terms & Conditions
+            </Link>
+            <Link to="/support" className="hover:underline whitespace-nowrap">
+              Support
+            </Link>
+            <Link
+              to="/customer-care"
+              className="hover:underline whitespace-nowrap"
+            >
+              Customer Care
+            </Link>
+          </div>
         </div>
       </div>
     </div>

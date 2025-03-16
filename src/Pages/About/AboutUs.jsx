@@ -49,7 +49,7 @@ const AboutUs = () => {
   return (
     <div className="about-us">
       {/* Navbar */}
-      <nav className="w-full bg-white text-black flex justify-between items-center px-10 py-5">
+      {/* <nav className="w-full bg-white text-black flex justify-between items-center px-10 py-5">
         <h1 className="text-2xl font-bold">Sprintify</h1>
         <div className="flex items-center justify-center gap-6 w-full">
           <Link to="/" className="hover:underline">
@@ -68,17 +68,18 @@ const AboutUs = () => {
             Workplace
           </Link>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Hero Section */}
       <section className="hero bg-orange-100 py-11 px-8 flex flex-col md:flex-row items-center">
         {/* Text Section */}
         <div className="text-section md:w-1/2 md:ml-16">
           <h1 className="text-5xl font-bold mb-6 leading-tight">
-            We Offer Teams To <br /> Organize, Prioritize <br /> And Manage Projects
+            We Offer Teams To <br /> Organize, Prioritize <br /> And Manage
+            Projects
           </h1>
           <ul className="space-y-2 text-xl">
-            {[ 
+            {[
               "Real-time collaboration",
               "Task Tracking and Due Date",
               "User Friendly Interface",
@@ -107,17 +108,23 @@ const AboutUs = () => {
 
         {/* Image Section */}
         <div className="image-section md:w-1/2 flex justify-start">
-          <img src={AboutUs_pic1} className="w-[500px] max-w-lg object-contain mr-64" alt="Slack Image" />
+          <img
+            src={AboutUs_pic1}
+            className="w-[500px] max-w-lg object-contain mr-64"
+            alt="Slack Image"
+          />
         </div>
       </section>
 
-       {/* Why Choose Us Section */}
-       <section className="why-choose-us py-11 px-8 w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-8">
+      {/* Why Choose Us Section */}
+      <section className="why-choose-us py-11 px-8 w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-8">
         <div className="image-section md:w-1/2 flex justify-center">
           <img src={AboutUs_pic2} alt="Why Choose Us" className="max-w-full" />
         </div>
         <div className="text-section md:w-1/2">
-          <h2 className="text-5xl md:text-5xl font-bold mb-2">Why Choose Sprintify?</h2>
+          <h2 className="text-5xl md:text-5xl font-bold mb-2">
+            Why Choose Sprintify?
+          </h2>
           <p className="text-sm md:text-base text-gray-600 leading-relaxed">
             Choose Sprintify for its intuitive, visual interface that makes
             <br />
@@ -134,11 +141,20 @@ const AboutUs = () => {
       {/* Features Section */}
       <section className="py-24 px-8 text-center flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-[1050px] w-full">
-          {[ 
-            { text: "Organize tasks efficiently with our user-friendly boards.", icon: AboutUs_Icon1 },
-            { text: "Collaboration, productivity, and management at one place.", icon: AboutUs_Icon2 },
-            { text: "Track time and add personalized tools to your boards.", icon: AboutUs_Icon3 },
-            { text: "100% secure chats and meetings.", icon: AboutUs_Icon4 }
+          {[
+            {
+              text: "Organize tasks efficiently with our user-friendly boards.",
+              icon: AboutUs_Icon1,
+            },
+            {
+              text: "Collaboration, productivity, and management at one place.",
+              icon: AboutUs_Icon2,
+            },
+            {
+              text: "Track time and add personalized tools to your boards.",
+              icon: AboutUs_Icon3,
+            },
+            { text: "100% secure chats and meetings.", icon: AboutUs_Icon4 },
           ].map((feature, index) => (
             <div key={index} className="feature flex flex-col items-center">
               <img
@@ -152,7 +168,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-
       {/* FAQS section */}
       <section className="flex flex-col items-center bg-[#F9F6F1] w-full py-[85px]">
         <div className="flex flex-col items-center gap-[40px] w-full max-w-screen-md px-4 sm:px-6 md:px-8">
@@ -161,7 +176,11 @@ const AboutUs = () => {
           </h2>
           <div className="flex flex-col items-start gap-4 w-[1050px]">
             {faqs.map((item, index) => (
-              <FAQItem key={index} question={item.question} answer={item.answer} />
+              <FAQItem
+                key={index}
+                question={item.question}
+                answer={item.answer}
+              />
             ))}
           </div>
         </div>
@@ -174,20 +193,50 @@ const AboutUs = () => {
           <div className="ml-[200px]">
             <h3 className="text-lg text-white font-semibold mb-4">Services</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:underline">Dashboard</a></li>
-              <li><a href="#" className="hover:underline">Chat</a></li>
-              <li><a href="#" className="hover:underline">Meeting</a></li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Chat
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Meeting
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Social Media Section */}
           <div className="ml-[40px]">
-            <h3 className="text-lg text-white font-semibold mb-4">Social Media</h3>
+            <h3 className="text-lg text-white font-semibold mb-4">
+              Social Media
+            </h3>
             <ul className="space-y-3">
-              <li><a href="#" className="hover:underline">Twitter ↗</a></li>
-              <li><a href="#" className="hover:underline">LinkedIn ↗</a></li>
-              <li><a href="#" className="hover:underline">Facebook ↗</a></li>
-              <li><a href="#" className="hover:underline">Instagram ↗</a></li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Twitter ↗
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  LinkedIn ↗
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Facebook ↗
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Instagram ↗
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -197,15 +246,23 @@ const AboutUs = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
                 <img src={AboutUs_Icon5} className="w-6 h-6" alt="Phone Icon" />
-                <span>+91-9837366124 <br></br>+91-8650074147</span>
+                <span>
+                  +91-9837366124 <br></br>+91-8650074147
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <img src={AboutUs_Icon6} className="w-6 h-6" alt="Email Icon" />
                 <span>uswemsunali3@gmail.com</span>
               </li>
               <li className="flex items-center gap-3">
-                <img src={AboutUs_Icon7} className="w-6 h-6" alt="Location Icon" />
-                <span>257 Fireweed Ln, Ketchikan,<br></br> Alaska 99901, USA</span>
+                <img
+                  src={AboutUs_Icon7}
+                  className="w-6 h-6"
+                  alt="Location Icon"
+                />
+                <span>
+                  257 Fireweed Ln, Ketchikan,<br></br> Alaska 99901, USA
+                </span>
               </li>
             </ul>
           </div>
@@ -213,13 +270,15 @@ const AboutUs = () => {
 
         {/* Bottom Section */}
         <div className="max-w-6xl mx-auto mt-8 border-t border-gray-500 pt-6 flex flex-col md:flex-row items-center justify-between">
-          <p className="text-sm text-gray-400">
-            © 2023 Webtechsolution.in
-          </p>
+          <p className="text-sm text-gray-400">© 2023 Webtechsolution.in</p>
           <div className="flex gap-4">
-            <a href="#" className="text-sm hover:underline text-gray-400">Privacy Policy</a>
+            <a href="#" className="text-sm hover:underline text-gray-400">
+              Privacy Policy
+            </a>
             <span className="text-gray-400">|</span>
-            <a href="#" className="text-sm hover:underline text-gray-400">Cookies</a>
+            <a href="#" className="text-sm hover:underline text-gray-400">
+              Cookies
+            </a>
           </div>
         </div>
       </footer>
@@ -237,10 +296,12 @@ const FAQItem = ({ question, answer }) => {
     >
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold">{question}</h3>
-        <div
-          className="w-4 h-4 flex items-center justify-center rounded-full border border-black text-black cursor-pointer"
-        >
-          {isOpen ? <img src={AboutUs_Icon9} alt="Minus" className="w-4 h-4" /> : <img src={AboutUs_Icon8} alt="Plus" className="w-4 h-4" />}
+        <div className="w-4 h-4 flex items-center justify-center rounded-full border border-black text-black cursor-pointer">
+          {isOpen ? (
+            <img src={AboutUs_Icon9} alt="Minus" className="w-4 h-4" />
+          ) : (
+            <img src={AboutUs_Icon8} alt="Plus" className="w-4 h-4" />
+          )}
         </div>
       </div>
       {isOpen && <p className="mt-3 text-gray-600">{answer}</p>}

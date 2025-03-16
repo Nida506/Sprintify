@@ -1,14 +1,13 @@
-import Navbar from "@/components/Navbar/Navbar";
-import { Outlet } from "react-router-dom"
-
+import MainNavBar from "@/components/MainNavBar/MainNavBar";
+import { Outlet } from "react-router-dom";
 
 function Body() {
-    return (
-        <div>
-           <Navbar/>
-            <Outlet/>
-        </div>
-    )
+  return (
+    <div>
+      <MainNavBar />
+      <Outlet />
+    </div>
+  );
 }
 
 export default Body;
