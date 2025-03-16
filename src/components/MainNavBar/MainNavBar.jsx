@@ -87,9 +87,7 @@ const MainNavBar = () => {
                       <NavLink
                         to={item.path}
                         className={({ isActive }) =>
-                          isActive
-                            ? "text-white bg-blue-700 px-3 py-1 rounded"
-                            : "mt-0.5"
+                          isActive ? "text-white  px-3 py-1 rounded" : "mt-0.5"
                         }
                       >
                         {item.name}{" "}
@@ -112,7 +110,7 @@ const MainNavBar = () => {
               </button>
             </NavLink>
             <NavLink to="/signup">
-              <button className="px-6 py-2 bg-[#091954] text-white rounded-full">
+              <button className="px-6 py-2  text-white rounded-full">
                 Signup
               </button>
             </NavLink>
