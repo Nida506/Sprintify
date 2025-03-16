@@ -48,34 +48,13 @@ const AboutUs = () => {
 
   return (
     <div className="about-us">
-      {/* Navbar */}
-      <nav className="w-full bg-white text-black flex justify-between items-center px-4 py-5 md:px-10">
-        <h1 className="text-2xl font-bold">Sprintify</h1>
-        <div className="hidden md:flex items-center justify-center gap-6 w-full">
-          <Link to="/" className="hover:underline">
-            Home
-          </Link>
-          <Link to="/about" className="hover:underline">
-            About
-          </Link>
-          <Link to="/blog" className="hover:underline">
-            Blog
-          </Link>
-          <Link to="/contact" className="hover:underline">
-            Contact
-          </Link>
-          <Link to="/workplace" className="hover:underline">
-            Workplace
-          </Link>
-        </div>
-      </nav> 
-
       {/* Hero Section */}
       <section className="hero bg-orange-100 py-11 px-6 md:px-8 flex flex-col md:flex-row items-center">
         {/* Text Section */}
         <div className="text-section md:w-1/2 md:ml-0 lg:ml-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            We Offer Teams To <br /> Organize, Prioritize <br /> And Manage Projects
+            We Offer Teams To <br /> Organize, Prioritize <br /> And Manage
+            Projects
           </h1>
           <ul className="space-y-2 text-lg md:text-xl">
             {[
@@ -121,7 +100,9 @@ const AboutUs = () => {
           <img src={AboutUs_pic2} alt="Why Choose Us" className="max-w-full" />
         </div>
         <div className="text-section md:w-1/2">
-          <h2 className="text-4xl md:text-5xl font-bold mb-2">Why Choose Sprintify?</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-2">
+            Why Choose Sprintify?
+          </h2>
           <p className="text-sm md:text-base text-gray-600 leading-relaxed">
             Choose Sprintify for its intuitive, visual interface that makes
             <br />
@@ -139,10 +120,19 @@ const AboutUs = () => {
       <section className="py-16 md:py-24 px-6 md:px-8 text-center flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-4xl w-full">
           {[
-            { text: "Organize tasks efficiently with our user-friendly boards.", icon: AboutUs_Icon1 },
-            { text: "Collaboration, productivity, and management at one place.", icon: AboutUs_Icon2 },
-            { text: "Track time and add personalized tools to your boards.", icon: AboutUs_Icon3 },
-            { text: "100% secure chats and meetings.", icon: AboutUs_Icon4 }
+            {
+              text: "Organize tasks efficiently with our user-friendly boards.",
+              icon: AboutUs_Icon1,
+            },
+            {
+              text: "Collaboration, productivity, and management at one place.",
+              icon: AboutUs_Icon2,
+            },
+            {
+              text: "Track time and add personalized tools to your boards.",
+              icon: AboutUs_Icon3,
+            },
+            { text: "100% secure chats and meetings.", icon: AboutUs_Icon4 },
           ].map((feature, index) => (
             <div key={index} className="feature flex flex-col items-center">
               <img
@@ -157,75 +147,125 @@ const AboutUs = () => {
       </section>
 
       {/* FAQS section */}
-<section className="flex flex-col items-center bg-[#F9F6F1] w-full py-12 md:py-[85px]">
-  <div className="flex flex-col items-center gap-6 md:gap-[40px] w-full px-4 sm:px-6 md:px-8"> {/* Removed max-w-xl */}
-    <h2 className="text-[#141414] text-2xl sm:text-3xl md:text-[48px] font-bold leading-normal text-center">
-      Frequently Asked Questions
-    </h2>
-    <div className="flex flex-col items-start gap-4 w-full">
-      {faqs.map((item, index) => (
-        <FAQItem key={index} question={item.question} answer={item.answer} />
-      ))}
-    </div>
-  </div>
-</section>
+      <section className="flex flex-col items-center bg-[#F9F6F1] w-full py-12 md:py-[85px]">
+        <div className="flex flex-col items-center gap-6 md:gap-[40px] w-full px-4 sm:px-6 md:px-8">
+          {" "}
+          {/* Removed max-w-xl */}
+          <h2 className="text-[#141414] text-2xl sm:text-3xl md:text-[48px] font-bold leading-normal text-center">
+            Frequently Asked Questions
+          </h2>
+          <div className="flex flex-col items-start gap-4 w-full">
+            {faqs.map((item, index) => (
+              <FAQItem
+                key={index}
+                question={item.question}
+                answer={item.answer}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
-{/* Footer */}
-<footer className="bg-[#0B1443] text-gray-400 py-16 px-6 md:px-16">
-  <div className="max-w-6xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-3"> {/* Moved md:grid-cols-3 */}
-    {/* Services Section */}
-    <div className="md:ml-0 md:pl-0">
-      <h3 className="text-lg text-white font-semibold mb-4">Services</h3>
-      <ul className="space-y-3">
-        <li><a href="#" className="hover:underline">Dashboard</a></li>
-        <li><a href="#" className="hover:underline">Chat</a></li>
-        <li><a href="#" className="hover:underline">Meeting</a></li>
-      </ul>
-    </div>
+      {/* Footer */}
+      <footer className="bg-[#0B1443] text-gray-400 py-16 px-6 md:px-16">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-3">
+          {" "}
+          {/* Moved md:grid-cols-3 */}
+          {/* Services Section */}
+          <div className="md:ml-0 md:pl-0">
+            <h3 className="text-lg text-white font-semibold mb-4">Services</h3>
+            <ul className="space-y-3">
+              <li>
+                <a href="#" className="hover:underline">
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Chat
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Meeting
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* Social Media Section */}
+          <div className="md:ml-0 md:pl-0">
+            <h3 className="text-lg text-white font-semibold mb-4">
+              Social Media
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a href="#" className="hover:underline">
+                  Twitter ↗
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  LinkedIn ↗
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Facebook ↗
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Instagram ↗
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* Contacts Section */}
+          <div className="md:ml-0 md:pl-0">
+            <h3 className="text-lg text-white font-semibold mb-4">Contacts</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3">
+                <img src={AboutUs_Icon5} className="w-6 h-6" alt="Phone Icon" />
+                <span>
+                  +91-9837366124 <br />
+                  +91-8650074147
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <img src={AboutUs_Icon6} className="w-6 h-6" alt="Email Icon" />
+                <span>uswemsunali3@gmail.com</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <img
+                  src={AboutUs_Icon7}
+                  className="w-6 h-6"
+                  alt="Location Icon"
+                />
+                <span>
+                  257 Fireweed Ln, Ketchikan,
+                  <br /> Alaska 99901, USA
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-    {/* Social Media Section */}
-    <div className="md:ml-0 md:pl-0">
-      <h3 className="text-lg text-white font-semibold mb-4">Social Media</h3>
-      <ul className="space-y-3">
-        <li><a href="#" className="hover:underline">Twitter ↗</a></li>
-        <li><a href="#" className="hover:underline">LinkedIn ↗</a></li>
-        <li><a href="#" className="hover:underline">Facebook ↗</a></li>
-        <li><a href="#" className="hover:underline">Instagram ↗</a></li>
-      </ul>
-    </div>
-
-    {/* Contacts Section */}
-    <div className="md:ml-0 md:pl-0">
-      <h3 className="text-lg text-white font-semibold mb-4">Contacts</h3>
-      <ul className="space-y-3">
-        <li className="flex items-center gap-3">
-          <img src={AboutUs_Icon5} className="w-6 h-6" alt="Phone Icon" />
-          <span>+91-9837366124 <br />+91-8650074147</span>
-        </li>
-        <li className="flex items-center gap-3">
-          <img src={AboutUs_Icon6} className="w-6 h-6" alt="Email Icon" />
-          <span>uswemsunali3@gmail.com</span>
-        </li>
-        <li className="flex items-center gap-3">
-          <img src={AboutUs_Icon7} className="w-6 h-6" alt="Location Icon" />
-          <span>257 Fireweed Ln, Ketchikan,<br /> Alaska 99901, USA</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Bottom Section */}
-  <div className="max-w-6xl mx-auto mt-8 border-t border-gray-500 pt-6 flex flex-col md:flex-row items-center justify-between">
-    <p className="text-sm text-gray-400 text-center md:text-left">
-      © 2023 Webtechsolution.in
-    </p>
-    <div className="flex flex-col md:flex-row gap-4 items-center">
-      <a href="#" className="text-sm hover:underline text-gray-400">Privacy Policy</a>
-      <span className="text-gray-400">|</span>
-      <a href="#" className="text-sm hover:underline text-gray-400">Cookies</a>
-    </div>
-  </div>
-</footer>
+        {/* Bottom Section */}
+        <div className="max-w-6xl mx-auto mt-8 border-t border-gray-500 pt-6 flex flex-col md:flex-row items-center justify-between">
+          <p className="text-sm text-gray-400 text-center md:text-left">
+            © 2023 Webtechsolution.in
+          </p>
+          <div className="flex flex-col md:flex-row gap-4 items-center">
+            <a href="#" className="text-sm hover:underline text-gray-400">
+              Privacy Policy
+            </a>
+            <span className="text-gray-400">|</span>
+            <a href="#" className="text-sm hover:underline text-gray-400">
+              Cookies
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

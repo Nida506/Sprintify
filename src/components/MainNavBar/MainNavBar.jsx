@@ -25,21 +25,31 @@ const MainNavBar = () => {
 
       {/* Desktop Menu */}
       <ul className="hidden lg:flex space-x-6 text-gray-600">
-        {["Home", "About", "Blog", "Contact", "Workspaces"].map(
-          (item, index) => (
-            <NavLink
-              key={index}
-              to={`/${item.toLowerCase()}`}
-              className={({ isActive }) =>
-                isActive
-                  ? "text-white bg-blue-700 px-3 py-1 rounded"
-                  : "hover:text-blue-700"
-              }
-            >
-              <li>{item}</li>
-            </NavLink>
-          )
-        )}
+        <li>
+          <Link to="/" className="hover:text-blue-700">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className="hover:text-blue-700">
+            About
+          </Link>
+        </li>
+        <li>
+          <Link to="/blog" className="hover:text-blue-700">
+            Blog
+          </Link>
+        </li>
+        <li>
+          <Link to="/contact" className="hover:text-blue-700">
+            Contact
+          </Link>
+        </li>
+        <li>
+          <Link to="/workplace" className="hover:text-blue-700">
+            Workspaces
+          </Link>
+        </li>
       </ul>
 
       {/* Right Section */}
@@ -70,7 +80,7 @@ const MainNavBar = () => {
                     { name: "About", path: "/about" },
                     { name: "Blog", path: "/blog" },
                     { name: "Contact", path: "/contact" },
-                    { name: "Workplace", path: "/workplace" },
+                    { name: "Workspaces", path: "/workplace" },
                     { name: "Logout", path: "/" },
                   ].map((item, index) => (
                     <li key={index} onClick={closeDropdown}>
