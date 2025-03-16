@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import store from "./Redux/Store";
+import { lazy, Suspense } from "react";
 
 //----------INTERNAL IMPORTS
 import Body from "./Pages/Body/Body";
@@ -19,6 +20,12 @@ import Chart from "./Pages/Chart/Chart";
 import Profile from "./Pages/Profile/Profile";
 
 function App() {
+  const ResetPassword = lazy(() =>
+    import("./Pages/ForgetPassword/ForgetPassword")
+  );
+
+  const Contactus = lazy(() => import("./Pages/Contactus/Contactus"));
+
   useEffect(() => {
     Aos.init({
       duration: 1200, // Global animation duration (in ms)
@@ -27,8 +34,6 @@ function App() {
       offset: 200, // Trigger animations when scrolled 200px from the bottom
     });
   }, []);
-
-  console.log("I am configuring");
 
   return (
     <Provider store={store}>
