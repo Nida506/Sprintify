@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer/Footer";
 import { CarouselPlugin } from "../../components/ShadcnComponents/carousal";
 import MainFooter from "@/components/MainFooter/MainFooter";
 

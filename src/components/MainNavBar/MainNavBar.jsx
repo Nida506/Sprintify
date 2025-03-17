@@ -41,7 +41,7 @@ const MainNavBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/contact" className="hover:text-blue-700">
+          <Link to="/contactus" className="hover:text-blue-700">
             Contact
           </Link>
         </li>
@@ -79,7 +79,7 @@ const MainNavBar = () => {
                     { name: "Home", path: "/" },
                     { name: "About", path: "/about" },
                     { name: "Blog", path: "/blog" },
-                    { name: "Contact", path: "/contact" },
+                    { name: "Contact", path: "/contactus" },
                     { name: "Workspaces", path: "/workplace" },
                     { name: "Logout", path: "/" },
                   ].map((item, index) => (

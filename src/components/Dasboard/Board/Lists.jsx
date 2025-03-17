@@ -13,7 +13,7 @@ import CardDetail from "./CardDetail";
 
 function Lists({ activeDashboard }) {
   const dispatch = useDispatch();
-  const [selectedCard, setSelectedCard] = useState(null); // Store selected card
+  const [selectedCard, setSelectedCard] = useState(null);
   const activeAddCardListID = useSelector(
     (store) => store.boards.activeAddCardListId
   );
@@ -68,9 +68,23 @@ function Lists({ activeDashboard }) {
     dispatch(activeAddCardListId(""));
   }, [activeDashboard]);
 
+  // Prevent background scrolling when modal is open
+  useEffect(() => {
+    if (selectedCard) {
+      document.body.style.overflow = "hidden"; // Hide background scroll
+    } else {
+      document.body.style.overflow = "auto"; // Restore scroll when modal closes
+    }
+
+    return () => {
+      document.body.style.overflow = "auto"; // Cleanup
+    };
+  }, [selectedCard]);
+
   return (
-    <div className="flex flex-col w-full flex-grow relative h-full">
-      <div className="flex mb-1 pb-2 px-[20px] pt-3 overflow-x-auto overflow-y-auto h-[90%] w-full">
+    <div className="flex flex-col w-full flex-grow relative h-full overflow-hidden">
+      {/* Scrollable Container - This ensures scrollbar appears on right */}
+      <div className="flex flex-col h-full w-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable
             droppableId="root-container-lists"
@@ -79,7 +93,7 @@ function Lists({ activeDashboard }) {
           >
             {(provided) => (
               <div
-                className="flex gap-3"
+                className="flex gap-3 p-4 w-full"
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
@@ -91,12 +105,12 @@ function Lists({ activeDashboard }) {
                   >
                     {(provided) => (
                       <div
-                        className="bg-[#EFF2F3] flex-shrink-0 h-fit w-64 rounded-2xl overflow-x-hidden"
+                        className="bg-[#EFF2F3] flex-shrink-0 h-fit w-64 rounded-2xl overflow-hidden"
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}
                         ref={provided.innerRef}
                       >
-                        <div className="flex flex-col h-fit max-h-[400px] p-2 overflow-x-hidden">
+                        <div className="flex flex-col h-full max-h-[400px] p-2">
                           <div className="px-0.5 mt-1 flex justify-between">
                             <span className="font-semibold">{list?.title}</span>
                             <button className="hover:bg-gray-400 p-1 rounded">
@@ -104,13 +118,13 @@ function Lists({ activeDashboard }) {
                             </button>
                           </div>
 
-                          <ul className="py-2 flex flex-col gap-2 overflow-y-auto h-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 scrollbar-w-[4px] scroll-m-3">
+                          <ul className="py-2 flex flex-col gap-2 overflow-y-auto h-full">
                             <Droppable
                               key={list.id.toString()}
                               droppableId={list.id.toString()}
                               type="CARD"
                             >
-                              {(provided, snapshot) => (
+                              {(provided) => (
                                 <div
                                   ref={provided.innerRef}
                                   {...provided.droppableProps}
@@ -133,7 +147,7 @@ function Lists({ activeDashboard }) {
                                             setSelectedCard({
                                               ...card,
                                               listTitle: list.title,
-                                            }); // Open modal with card details
+                                            });
                                           }}
                                           ref={provided.innerRef}
                                           {...provided.draggableProps}
@@ -142,7 +156,6 @@ function Lists({ activeDashboard }) {
                                           <p className="text-[14px] px-1 w-full break-words h-fit">
                                             {card.content}
                                           </p>
-
                                           <div className="hidden group-hover:flex justify-center bg-white items-center hover:bg-slate-200 h-[25px] w-[25px] absolute top-1 right-1 rounded-full px-1 opacity-0 group-hover:opacity-100">
                                             <Edit
                                               fontSize="18"
@@ -173,7 +186,7 @@ function Lists({ activeDashboard }) {
                                 }
                               >
                                 <AddIcon className="text-[10px] text-gray-500 hover:text-black font-bold" />
-                                <span className="text-[13px] text-gray-500 hover:text-black font-bold font-Roboto">
+                                <span className="text-[13px] text-gray-500 hover:text-black font-bold">
                                   Add Card
                                 </span>
                               </div>
@@ -194,24 +207,20 @@ function Lists({ activeDashboard }) {
 
       {/* Card Details Modal */}
       {selectedCard && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
-          <div className="w-fit h-96 bg-white flex  justify-between rounded-lg shadow-lg px-10 py-4 relative">
-            <div className="pe-5">
-              {" "}
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[1000]  ">
+          <div className=" max-h-[88vh] bg-white rounded-lg shadow-lg relative flex flex-col overflow-hidden">
+            <div className="px-5 pt-2 pb-3 flex-1 overflow-y-auto">
               <CardDetail
                 selectedCard={selectedCard}
                 listTitle={selectedCard.listTitle}
               />
             </div>
-            <div>
-              {" "}
-              <button
-                className="absolute top-2 mt-1 right-4 text-black font-extrabold hover:bg-gray-300 px-[13px] py-2 hover:rounded-full"
-                onClick={() => setSelectedCard(null)}
-              >
-                ✕
-              </button>
-            </div>
+            <button
+              className="absolute top-4 right-8 text-black font-extrabold px-3 py-2 rounded-full hover:bg-gray-300"
+              onClick={() => setSelectedCard(null)}
+            >
+              ✕
+            </button>
           </div>
         </div>
       )}

@@ -49,6 +49,8 @@ function App() {
             <Route path="/workplace" element={<WorkPlace />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/about" element={<AboutUs />} /> {/* Added About Us */}
+            <Route path="/contactus" element={<Contactus />} />{" "}
+            {/* Added About Us */}
           </Route>
         </Routes>
       </BrowserRouter>

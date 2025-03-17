@@ -43,7 +43,6 @@ const LoginPage = () => {
           </button>
         </div>
       </nav>{" "}
-      */}
       {/* Main Section */}
       <div className="flex font-outfit w-full max-w-7xl items-center justify-between mt-8 px-4 md:px-10 flex-col lg:flex-row">
         {/* Left Section */}
