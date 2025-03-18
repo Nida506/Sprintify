@@ -17,8 +17,9 @@ import Blog from "./Pages/Blog/Blog";
 import WorkPlace from "./Pages/WorkPlace/WorkPlace";
 import Chart from "./Pages/Chart/Chart";
 import Profile from "./Pages/Profile/Profile";
-import LandingPage from "./Pages/LandingPage/LandingPage.jsx";
+
 import SignupPage from "./Pages/Signup/Signup";
+import LandingPage from "./Pages/LandingPage/LandingPage";
 
 function App() {
   const ResetPassword = lazy(() =>
