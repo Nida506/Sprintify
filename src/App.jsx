@@ -11,7 +11,6 @@ import Body from "./Pages/Body/Body";
 import Dashboards from "@/Pages/Dashboards/Dashboards";
 // import LandingPage from "./Pages/LandingPage/LandingPage";
 import Login from "./Pages/Login/Login";
-import Signup from "./Pages/Signup/Signup";
 import AboutUs from "./Pages/About/AboutUs"; // Ensure correct path
 import "./index.css";
 import Blog from "./Pages/Blog/Blog";
@@ -19,6 +18,7 @@ import WorkPlace from "./Pages/WorkPlace/WorkPlace";
 import Chart from "./Pages/Chart/Chart";
 import Profile from "./Pages/Profile/Profile";
 import LandingPage from "./Pages/LandingPage/LandingPage.jsx";
+import SignupPage from "./Pages/Signup/Signup";
 
 function App() {
   const ResetPassword = lazy(() =>
@@ -48,7 +48,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/chart" element={<Chart />} />
             <Route path="/workplace" element={<WorkPlace />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/signup" element={<SignupPage />} />
             <Route path="/about" element={<AboutUs />} /> {/* Added About Us */}
             <Route path="/contactus" element={<Contactus />} />{" "}
             {/* Added About Us */}
