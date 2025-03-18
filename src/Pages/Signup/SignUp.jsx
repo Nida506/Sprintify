@@ -5,10 +5,9 @@ import slackIcon from "../../assets/slack.png";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const SignupPage = () => {
+const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center relative overflow-hidden">
       {/* Background Circles */}
@@ -174,4 +173,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default Signup;
