@@ -2,6 +2,9 @@ import { CarouselPlugin } from "../../components/ShadcnComponents/carousal";
 import MainFooter from "@/components/MainFooter/MainFooter";
 
 const LandingPage = () => {
+  console.log("hello");
+
+  console.log("first");
   return (
     <div className=" font-trebuchet">
       {/* Main display section*/}
