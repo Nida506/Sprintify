@@ -9,7 +9,7 @@ import { lazy, Suspense } from "react";
 //----------INTERNAL IMPORTS
 import Body from "./Pages/Body/Body";
 import Dashboards from "./Pages/Dashboards/Dashboards";
-import LandingPage from "./Pages/LandingPage/LandingPage";
+// import LandingPage from "./Pages/LandingPage/LandingPage";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import AboutUs from "./Pages/About/AboutUs"; // Ensure correct path
@@ -40,7 +40,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Body />}>
-            <Route path="/" element={<LandingPage />} />
+            {/* <Route path="/" element={<LandingPage />} /> */}
             <Route path="/dashboards" element={<Dashboards />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
