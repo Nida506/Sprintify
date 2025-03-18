@@ -1,7 +1,7 @@
 import { CarouselPlugin } from "../../components/ShadcnComponents/carousal";
 import MainFooter from "@/components/MainFooter/MainFooter";
 
-const landingPage = () => {
+const LandingPage = () => {
   return (
     <div className=" font-trebuchet">
       {/* Main display section*/}
@@ -283,4 +283,4 @@ const landingPage = () => {
   );
 };
 
-export default landingPage;
+export default LandingPage;
