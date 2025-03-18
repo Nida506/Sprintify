@@ -8,7 +8,7 @@ import { lazy, Suspense } from "react";
 
 //----------INTERNAL IMPORTS
 import Body from "./Pages/Body/Body";
-import Dashboards from "./Pages/Dashboards/Dashboards";
+import Dashboards from "@/Pages/Dashboards/Dashboards";
 // import LandingPage from "./Pages/LandingPage/LandingPage";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
