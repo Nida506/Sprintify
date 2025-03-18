@@ -18,6 +18,7 @@ import Blog from "./Pages/Blog/Blog";
 import WorkPlace from "./Pages/WorkPlace/WorkPlace";
 import Chart from "./Pages/Chart/Chart";
 import Profile from "./Pages/Profile/Profile";
+import LandingPage from "./Pages/LandingPage/LandingPage.jsx";
 
 function App() {
   const ResetPassword = lazy(() =>
@@ -40,7 +41,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Body />}>
-            {/* <Route path="/" element={<LandingPage />} /> */}
+            <Route path="/" element={<LandingPage />} />
             <Route path="/dashboards" element={<Dashboards />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
