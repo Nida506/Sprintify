@@ -60,7 +60,7 @@ export function AppSidebar({ dashboardData }) {
     dispatch(activeBoard(id));
   }
   return (
-    <Sidebar className="pt-[85px]">
+    <Sidebar className="pt-[85px]" side="left">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-sm h-auto text-black border-b py-2 gap-2 rounded-none border-b-slate-[#9fadbc29]">

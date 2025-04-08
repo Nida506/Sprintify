@@ -11,11 +11,16 @@ export default function Dashboards() {
 
   return (
     <SidebarProvider className="overflow-hidden">
+      
       <AppSidebar dashboardData={dashboardData} />
-      <main className="w-full overflow-hidden pt-[80px]">
-        <SidebarTrigger className="bg-white absolute z-[5000] ms-3 mt-4" />
+      <main className="w-full overflow-hidden ">
+        <SidebarTrigger className="bg-white absolute z-[5000] ms-3 mt-4" >
+        </SidebarTrigger>
         <Board dashboardData={dashboardData} />
+      
+       
       </main>
+      
     </SidebarProvider>
   );
 }

@@ -105,7 +105,7 @@ const MainNavBar = () => {
               </div>
 
               {dropdownOpen && (
-                <ul className="menu menu-sm text-white dropdown-content bg-black rounded-box z-[1] mt-10 border-2 border-blueish w-52 p-2 shadow">
+                <ul className="z-[6000] menu menu-sm text-white dropdown-content bg-black rounded-box  mt-10 border-2 border-blueish w-52 p-2 shadow">
                   {[
                     { name: "Profile", path: "/profile", badge: "New" },
                     { name: "Home", path: "/" },
