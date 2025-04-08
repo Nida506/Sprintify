@@ -2,7 +2,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // import { removeUser } from "../redux/userSlice"; // adjust path as necessary
 // const BASE_URL = "https://yourapi.com"; // Replace with actual base URL
 import { BASE_URL } from "@/utils/constants";
@@ -12,6 +12,7 @@ const MainNavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Replace with real auth logic
+  const user = useSelector((store) => store.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,7 +32,7 @@ const MainNavBar = () => {
   return (
     <nav className="bg-white font-outfit shadow-md px-5 sm:px-[40px] md:px-[100px] py-4 flex justify-between items-center">
       {/* Logo */}
-      <NavLink to="/">
+      <NavLink to={user?.firstName ? "/" : "/signup"}>
         <h1
           className="md:text-4xl ps-10 lg:ps-0 text-2xl font-bold text-gray-900"
           data-aos="zoom-in"
@@ -43,27 +44,42 @@ const MainNavBar = () => {
       {/* Desktop Menu */}
       <ul className="hidden lg:flex space-x-6 text-gray-600">
         <li>
-          <Link to="/" className="hover:text-blue-700">
+          <Link
+            to={user?.firstName ? "/" : "/signup"}
+            className="hover:text-blue-700"
+          >
             Home
           </Link>
         </li>
         <li>
-          <Link to="/about" className="hover:text-blue-700">
+          <Link
+            to={user?.firstName ? "/about" : "/signup"}
+            className="hover:text-blue-700"
+          >
             About
           </Link>
         </li>
         <li>
-          <Link to="/blog" className="hover:text-blue-700">
+          <Link
+            to={user?.firstName ? "/blog" : "/signup"}
+            className="hover:text-blue-700"
+          >
             Blog
           </Link>
         </li>
         <li>
-          <Link to="/contactus" className="hover:text-blue-700">
+          <Link
+            to={user?.firstName ? "/contactus" : "/signup"}
+            className="hover:text-blue-700"
+          >
             Contact
           </Link>
         </li>
         <li>
-          <Link to="/workplace" className="hover:text-blue-700">
+          <Link
+            to={user?.firstName ? "/workplace" : "/signup"}
+            className="hover:text-blue-700"
+          >
             Workspaces
           </Link>
         </li>
@@ -71,10 +87,10 @@ const MainNavBar = () => {
 
       {/* Right Section */}
       <div className="flex items-center gap-2">
-        {isAuthenticated ? (
+        {isAuthenticated && user?.firstName ? (
           <>
             <div className="form-control text-black font-semibold text-lg">
-              Hi, Nida
+              Hi, {user?.firstName}
             </div>
             <div className="dropdown dropdown-end ms-1 me-3 flex">
               <div
@@ -135,7 +151,7 @@ const MainNavBar = () => {
               </button>
             </NavLink>
             <NavLink to="/signup">
-              <button className="px-6 py-2 text-white rounded-full">
+              <button className="px-6 py-2 border border-gray-400 rounded-full">
                 Signup
               </button>
             </NavLink>

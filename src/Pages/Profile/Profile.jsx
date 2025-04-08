@@ -1,34 +1,38 @@
+import { BASE_URL } from "../../utils/constants";
+import { addUser } from "../../utils/userSlice";
+import axios from "axios";
 import { useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
 const Profile = () => {
-  const [firstName, setFirstName] = useState("Nida");
-  const [lastName, setLastName] = useState("Waheed");
+  const user = useSelector((store) => store.user);
+  const [firstName, setFirstName] = useState(user?.firstName);
+  const [lastName, setLastName] = useState(user?.lastName);
   const [photoUrl, setPhotoUrl] = useState("images/profileImg.png");
-  const [age, setAge] = useState("44");
-  const [gender, setGender] = useState("Female");
+  const [age, setAge] = useState("24");
   const [about, setAbout] = useState("I am a user of Sprintify");
 
   const [showToast, setShowToast] = useState(false);
+  const dispatch = useDispatch();
+  //editProfile handler
+  const editProfileHandler = async () => {
+    try {
+      const res = await axios.patch(
+        BASE_URL + "/profile/edit",
+        { firstName, lastName },
+        { withCredentials: true }
+      );
+      console.log("hello");
+      console.log(res);
+      dispatch(addUser(res.data.data));
 
-  //   //editProfile handler
-  //   const editProfileHandler = async () => {
-  //     try {
-  //       const res = await axios.patch(
-  //         BASE_URL + "/profile/edit",
-  //         { firstName, lastName, photoUrl, age, gender, about },
-  //         { withCredentials: true }
-  //       );
-
-  //       dispatch(addUser(res.data.data));
-
-  //       setShowToast(true);
-  //       setTimeout(() => {
-  //         setShowToast(false);
-  //       }, 3000);
-  //     } catch (err) {
-  //       setError(err?.response?.data);
-  //     }
-  //   };
+      setShowToast(true);
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -36,7 +40,7 @@ const Profile = () => {
 
       {showToast && (
         <div className="toast toast-top toast-center">
-          <div className="alert alert-success">
+          <div className="alert alert-success bg-[#28c433] font-normal text-white">
             <span>Profile Saved Successfully</span>
           </div>
         </div>
@@ -108,6 +112,7 @@ const Profile = () => {
             {/* for save profile button */}
             <div className="card-actions flex justify-center  mt-4">
               <button
+                onClick={editProfileHandler}
                 className={` px-8 py-2 rounded-full border-2 bg-darkBlue text-white font-semibold`}
               >
                 Save Profile

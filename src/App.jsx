@@ -3,7 +3,7 @@ import Aos from "aos";
 import { Provider } from "react-redux";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
-import store from "./Redux/Store";
+import appStore from "./utils/appStore";
 import { lazy, Suspense } from "react";
 
 //----------INTERNAL IMPORTS
@@ -38,7 +38,7 @@ function App() {
   }, []);
 
   return (
-    <Provider store={store}>
+    <Provider store={appStore}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Body />}>

@@ -3,8 +3,10 @@ import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { BASE_URL } from "@/utils/constants";
-import { addUser } from "@/utils/userSlice";
+import { BASE_URL } from "../../utils/constants";
+import { addUser } from "../../utils/userSlice";
+// import { BASE_URL } from "@/utils/constants";
+// import { addUser } from "@/utils/userSlice";
 
 function Body() {
   const dispatch = useDispatch();
