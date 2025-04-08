@@ -10,6 +10,7 @@ import {
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import AddCard from "./AddCard";
 import CardDetail from "./CardDetail";
+import { BASE_URL } from "@/utils/constants";
 
 function Lists({ activeDashboard }) {
   const dispatch = useDispatch();
@@ -80,6 +81,11 @@ function Lists({ activeDashboard }) {
       document.body.style.overflow = "auto"; // Cleanup
     };
   }, [selectedCard]);
+
+
+  
+
+  
 
   return (
     <div className="flex flex-col w-full flex-grow relative h-full overflow-hidden">

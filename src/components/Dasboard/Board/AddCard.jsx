@@ -3,18 +3,32 @@ import { activeAddCardListId, addNewCardToList } from '@/Redux/BoardsSlice/Board
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
+import { BASE_URL } from "@/utils/constants";
 
 function AddCard({ list}) {
   let dispatch = useDispatch();
   let [itemText, setItemText] = useState("");
   let activeDashboard = useSelector(store => (store?.boards?.active ? store?.boards?.active:store?.boards?.boards[0] ));
 
-  let addCardToList = () =>
+  let addCardToList = async() =>
   {
-    let listId = list.id;
-    let item = itemText;
-     dispatch(addNewCardToList({item, listId}))
+    try {
+          
+      const res = await axios.post(
+        BASE_URL + "/create",
+
+        { itemText},
+        { withCredentials: true }
+      );
+
+      let listId = list.id;
+      let item = itemText;
+       dispatch(addNewCardToList({item, listId}))
+      return navigate("/create");
+    } catch (err) {
+      console.error(err);
+    }
+
   }
   
   return (

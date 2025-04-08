@@ -1,6 +1,7 @@
 import Header from "../Header/Header"
 import Lists from "./Lists";
 import { useDispatch, useSelector } from "react-redux";
+import { BASE_URL } from "@/utils/constants";
 
 function Board({dashboardData}) {
     let activeDashboard = useSelector(store => (store?.boards?.active ? store?.boards?.active:{} ));
