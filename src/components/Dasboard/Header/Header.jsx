@@ -19,10 +19,11 @@ function Header({activeDashboard}) {
         </div>
 
         
-        <button className="bg-white flex text-black px-2 py-1 rounded-lg gap-1">
+        <button className="bg-white flex text-black  px-2 py-1 rounded-lg gap-1">
           
           <ChatPage/>
-          </button>
+        </button>
+        
         <button className="bg-white flex text-black px-2 py-1 rounded-lg gap-1">
                   <PersonAddAltIcon className="text-[35px] mb-1 " />
                   <h1>

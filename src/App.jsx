@@ -20,6 +20,7 @@ import Profile from "./Pages/Profile/Profile";
 
 import Homepage from "./Pages/Homepage/Homepage";
 import Signup from "./Pages/Signup/SignUp";
+import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword";
 
 function App() {
   const ResetPassword = lazy(() =>
@@ -52,6 +53,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/about" element={<AboutUs />} /> {/* Added About Us */}
             <Route path="/contactus" element={<Contactus />} />{" "}
+            <Route path="/forget-password" element={<ForgetPassword/>}/>
             {/* Added About Us */}
           </Route>
         </Routes>

@@ -33,7 +33,9 @@ const ChatHeader = ({ contactData }) => {
       {/* Close Button */}
       <CancelIcon 
         className="text-black hover:text-gray-600 cursor-pointer transition-colors"
-        onClick={closeChat}
+        onClick={() => {
+            document.getElementById("my-drawer-4").checked = false; // This will uncheck the checkbox and close the drawer
+          }}
       />
     </div>
   );

@@ -39,7 +39,7 @@ function ChatPage() {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Page content here */}
-        <label htmlFor="my-drawer-4" className="drawer-button cursor-pointer">
+        <label htmlFor="my-drawer-4" className="drawer-button cursor-pointer z-0">
         <MessageSquareText className="text-[45px] mb-1 " />
         </label>
       </div>
