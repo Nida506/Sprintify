@@ -1,13 +1,30 @@
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+// import { removeUser } from "../redux/userSlice"; // adjust path as necessary
+// const BASE_URL = "https://yourapi.com"; // Replace with actual base URL
+import { BASE_URL } from "@/utils/constants";
+import { removeUser } from "@/utils/userSlice";
 
 const MainNavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Replace with real auth logic
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // Function to close menus
+  const logoutHandler = async () => {
+    try {
+      await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
+      dispatch(removeUser());
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout error:", err);
+    }
+  };
+
   const closeMenu = () => setMenuOpen(false);
   const closeDropdown = () => setDropdownOpen(false);
 
@@ -55,7 +72,6 @@ const MainNavBar = () => {
       {/* Right Section */}
       <div className="flex items-center gap-2">
         {isAuthenticated ? (
-          // Show user dropdown when logged in on all the screens
           <>
             <div className="form-control text-black font-semibold text-lg">
               Hi, Nida
@@ -81,13 +97,12 @@ const MainNavBar = () => {
                     { name: "Blog", path: "/blog" },
                     { name: "Contact", path: "/contactus" },
                     { name: "Workspaces", path: "/workplace" },
-                    { name: "Logout", path: "/" },
                   ].map((item, index) => (
                     <li key={index} onClick={closeDropdown}>
                       <NavLink
                         to={item.path}
                         className={({ isActive }) =>
-                          isActive ? "text-white  px-3 py-1 rounded" : "mt-0.5"
+                          isActive ? "text-white px-3 py-1 rounded" : "mt-0.5"
                         }
                       >
                         {item.name}{" "}
@@ -97,12 +112,22 @@ const MainNavBar = () => {
                       </NavLink>
                     </li>
                   ))}
+                  <li>
+                    <button
+                      onClick={() => {
+                        logoutHandler();
+                        closeDropdown();
+                      }}
+                      className="mt-0.5 text-left w-full"
+                    >
+                      Logout
+                    </button>
+                  </li>
                 </ul>
               )}
             </div>
           </>
         ) : (
-          // Show Login & Signup buttons when not logged in on desktop
           <div className="hidden lg:flex space-x-4">
             <NavLink to="/login">
               <button className="px-6 py-2 border border-gray-400 rounded-full">
@@ -110,34 +135,13 @@ const MainNavBar = () => {
               </button>
             </NavLink>
             <NavLink to="/signup">
-              <button className="px-6 py-2  text-white rounded-full">
+              <button className="px-6 py-2 text-white rounded-full">
                 Signup
               </button>
             </NavLink>
           </div>
         )}
       </div>
-
-      {/* Mobile Menu when not logged in  */}
-      {menuOpen && (
-        <div className="absolute bg-[#FAF7F2] top-16 left-0 w-full shadow-md p-6 flex-col items-start space-y-6 lg:hidden">
-          {/* Mobile Login/Signup for logged-out users */}
-          {!isAuthenticated && (
-            <div className="flex flex-col space-y-3 w-full items-center">
-              <NavLink to="/login" onClick={closeMenu} className="w-3/4">
-                <button className="px-5 py-2 border border-gray-400 rounded-full w-full">
-                  Login
-                </button>
-              </NavLink>
-              <NavLink to="/signup" onClick={closeMenu} className="w-3/4">
-                <button className="px-5 py-2 bg-[#091954] text-white rounded-full w-full">
-                  Signup
-                </button>
-              </NavLink>
-            </div>
-          )}
-        </div>
-      )}
     </nav>
   );
 };

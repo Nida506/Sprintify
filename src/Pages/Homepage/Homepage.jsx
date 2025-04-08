@@ -1,6 +1,6 @@
 import { CarouselPlugin } from "../../components/ShadcnComponents/carousal";
 import MainFooter from "@/components/MainFooter/MainFooter";
-
+import { NavLink } from "react-router-dom";
 const Homepage = () => {
   return (
     <div className=" font-trebuchet">
@@ -19,9 +19,12 @@ const Homepage = () => {
               placeholder="Enter your email address"
               className="px-6  mb-4 rounded-sm me-4 py-2 placeholder:text-black border-none text-black outline-none"
             />
-            <button className="px-3 py-2   bg-blue-600 rounded-sm">
-              Sign up - it's free!
-            </button>
+            <NavLink to="/signup">
+              {" "}
+              <button className="px-3 py-2   bg-blue-600 rounded-sm">
+                Sign up - it's free!
+              </button>
+            </NavLink>
           </div>
         </div>
         <div className="text-white  max-[1140px]:w-[0px] max-[1140px]:pe-0  w-[40%] pe-20">
