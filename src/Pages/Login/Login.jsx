@@ -5,7 +5,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { BASE_URL } from "@/utils/constants";
 import { useDispatch } from "react-redux";
-import { addUser } from "@/utils/userSlice";
+import { addUser } from "@/Redux/UserSlice/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {

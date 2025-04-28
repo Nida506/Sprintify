@@ -16,7 +16,7 @@ function Lists({ activeDashboard }) {
   const dispatch = useDispatch();
   const [selectedCard, setSelectedCard] = useState(null);
   const activeAddCardListID = useSelector(
-    (store) => store.boards.activeAddCardListId
+    (store) => store?.boards?.activeAddCardListId
   );
 
   if (!activeDashboard?.toString()) return null;

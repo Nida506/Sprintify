@@ -1,5 +1,5 @@
 import { BASE_URL } from "../../utils/constants";
-import { addUser } from "../../utils/userSlice";
+import { addUser } from "../../Redux/UserSlice/userSlice";
 import axios from "axios";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";

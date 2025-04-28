@@ -7,8 +7,13 @@ import Board from "@/components/Dasboard/Board/Board";
 import { useSelector } from "react-redux";
 
 export default function Dashboards() {
-  let dashboardData = useSelector((store) => store.boards);
-
+  
+  let dashboardData = useSelector((store) => {
+    console.log(store);
+    return store.boards
+  });
+  console.log(dashboardData);
+  console.log("hEllo ho ware you");
   return (
     <SidebarProvider className="overflow-hidden">
       

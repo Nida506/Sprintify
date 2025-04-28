@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import { removeUser } from "../redux/userSlice"; // adjust path as necessary
 // const BASE_URL = "https://yourapi.com"; // Replace with actual base URL
 import { BASE_URL } from "@/utils/constants";
-import { removeUser } from "@/utils/userSlice";
+import { removeUser } from "@/Redux/UserSlice/userSlice";
 
 const MainNavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
