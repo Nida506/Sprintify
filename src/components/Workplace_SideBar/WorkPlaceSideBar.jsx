@@ -1,67 +1,132 @@
-import { FaPlus} from 'react-icons/fa'; 
-import {MdKeyboardArrowRight} from 'react-icons/md'
-
+import { useState, useEffect } from 'react';
+import { FaPlus } from 'react-icons/fa';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+import axios from 'axios'; 
+import { BASE_URL } from '@/utils/constants';
 
 function WorkPlaceSideBar() {
-  const boards = [
-    "Project Management",
-    "Sales",
-    "Productivity",
-    "Remote Work",
-    "Personal Engineering",
-  ];
+  const [boards, setBoards] = useState([]); // no predefined data
+  const [showPopup, setShowPopup] = useState(false);
+  const [newBoardName, setNewBoardName] = useState('');
+  const [bgColor, setBgColor] = useState('#ffffff');
+
+  const fetchBoards = async () => {
+    try {
+      const res = await axios.get(BASE_URL + "/boards/user", { withCredentials: true });
+      setBoards(res.data.data.boards); // 
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
+  const handleAddBoard = () => {
+    if (newBoardName.trim()) {
+      axios.post(BASE_URL + "/boards", {
+        name: newBoardName,
+        bgColor: bgColor,
+      }, { withCredentials: true }) 
+        .then(res => {
+          setBoards(prev => [...prev, res.data.data.board]); 
+          setNewBoardName('');
+          setBgColor('#ffffff');
+          setShowPopup(false);
+        })
+        .catch(err => console.error(err));
+    }
+    
+  };
+  
+  useEffect(() => {
+    fetchBoards(); // get boards on mount
+  }, []);
 
   return (
     <div className='flex'>
-          {/* part 1 */}
-          <div className="bg-[#010256] font-outfit w-[50px] flex flex-col justify-between items-center p-[10px]">
+      {/* Sidebar Strip */}
+      <div className="bg-[#010256] font-outfit w-[50px] flex flex-col justify-between items-center p-[10px]"></div>
+
+      {/* Main Sidebar */}
+      <div className="font-outfit bg-white flex flex-col gap-[20px] p-[20px] w-full md:w-[320px] overflow-hidden">
+        {/* Profile Section */}
+        <div data-aos="zoom-in" className="bg-[#3845B1] bg-opacity-[81%] text-white p-4 flex shadow-lg rounded-lg gap-4">
+          <img
+            src="images/user1.png"
+            alt="Profile"
+            className="w-12 h-12 rounded-full object-cover border-2 border-white"
+          />
+          <div>
+            <h3 className="font-semibold">Asia Workplace</h3>
+            <p className="text-sm">Free</p>
+          </div>
+        </div>
+
+        {/* Boards List */}
+        <div className="p-4 bg-gray-100 rounded-md">
+          <div className='flex justify-between items-center'>
+            <h4 className="font-semibold text-[18px] text-gray-800 mb-4">Your Boards</h4>
+            <FaPlus className="cursor-pointer hover:text-blue-500" onClick={() => setShowPopup(true)} />
           </div>
 
-         {/* pert 2 */}
-          <div className="font-outfit bg-white flex flex-col gap-[20px] p-[20px] w-full md:w-[320px]  overflow-hidden">
-         {/* Profile Section */}
-         <div data-aos="zoom-in" className="bg-[#3845B1] bg-opacity-[81%] text-white p-4 flex shadow-lg rounded-lg  gap-4">
-        <img
-          src="images/user1.png"
-          alt="Profile"
-          className="w-12 h-12 rounded-full object-cover border-2 border-white"
-        />
-        <div>
-          <h3 className="font-semibold">{`Asia's Workplace`}</h3>
-          <p className="text-sm">Free</p>
-        </div>
-         </div>
-
-          {/* Boards List */}
-        <div className="p-4 bg-gray-100 rounded-md">
-             <div className='flex justify-between items-center'>
-               <h4 className="font-semibold text-[18px] text-gray-800 mb-4">Your Boards</h4>
-               <FaPlus/>
-             </div>
-        
           <ul className="space-y-4">
-          {boards.map((board, index) => (
-            <li
-              key={index}
-              data-aos="zoom-in"
-              className="text-gray-700 flex items-center gap-2 text-[16px] font-medium cursor-pointer hover:text-blue-400"
-            >
-              <MdKeyboardArrowRight className='text-[18px]'/>
-              {board}
-            </li>
-          ))}
-        </ul>
+            {boards.map((board, index) => (
+              <li
+                key={board._id || index}
+                data-aos="zoom-in"
+                className="text-gray-700 flex items-center gap-2 text-[16px] font-medium cursor-pointer hover:text-blue-400"
+              >
+                <MdKeyboardArrowRight className='text-[18px]' />
+                {board.name}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-         </div> 
-
-           {/*create new board  */}
-            {/* Create New Board */}
-         <p className=" text-gray-700 flex pt-[10px] items-center gap-3 border-t-[1px] mt-[20px] border-t-gray-300 cursor-pointer hover:underline">
-          <FaPlus/> Create New Board
+        {/* Create New Board Footer */}
+        <p
+          className="text-gray-700 flex pt-[10px] items-center gap-3 border-t-[1px] mt-[20px] border-t-gray-300 cursor-pointer hover:underline"
+          onClick={() => setShowPopup(true)}
+        >
+          <FaPlus /> Create New Board
         </p>
+      </div>
+
+      {/* Popup Modal */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-[400px]">
+            <h2 className="text-lg font-semibold mb-4 text-gray-800">Create New Board</h2>
+            <input
+              type="text"
+              placeholder="Board Name"
+              value={newBoardName}
+              onChange={(e) => setNewBoardName(e.target.value)}
+              className="w-full mb-3 p-2 border border-gray-300 rounded"
+            />
+            <input
+              type="color"
+              value={bgColor}
+              onChange={(e) => setBgColor(e.target.value)}
+              className="w-full mb-3 p-2 h-[40px] cursor-pointer border rounded"
+            />
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setShowPopup(false)}
+                className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleAddBoard}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-    </div>
-  )
+  );
 }
 
-export default WorkPlaceSideBar
+export default WorkPlaceSideBar;

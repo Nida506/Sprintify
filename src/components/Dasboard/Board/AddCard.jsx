@@ -4,9 +4,12 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { BASE_URL } from "@/utils/constants";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function AddCard({ list}) {
   let dispatch = useDispatch();
+  const navigate = useNavigate();
   let [itemText, setItemText] = useState("");
   let activeDashboard = useSelector(store => (store?.boards?.active ? store?.boards?.active:store?.boards?.boards[0] ));
 
