@@ -24,9 +24,9 @@ function WorkPlaceSideBar() {
       axios.post(BASE_URL + "/boards", {
         name: newBoardName,
         bgColor: bgColor,
-      }, { withCredentials: true }) 
+      }, { withCredentials: true }) //
         .then(res => {
-          setBoards(prev => [...prev, res.data.data.board]); 
+          setBoards(prev => [...prev, res.data.data.board]); // 
           setNewBoardName('');
           setBgColor('#ffffff');
           setShowPopup(false);

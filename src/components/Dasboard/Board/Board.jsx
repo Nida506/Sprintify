@@ -5,7 +5,7 @@ import { BASE_URL } from "@/utils/constants";
 
 function Board({dashboardData}) {
     let activeDashboard = useSelector(store => (store?.boards?.active ? store?.boards?.active:{} ));
-   
+    const currentUser = useSelector((store) => store?.user); 
     return (
         <div className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
            {
@@ -14,7 +14,7 @@ function Board({dashboardData}) {
                      
             </div>:
            <>
-           <Header activeDashboard={activeDashboard} />
+           <Header activeDashboard={activeDashboard} currentUser={currentUser}/>
             <Lists activeDashboard={activeDashboard} />
             </>}
         </div>
