@@ -19,7 +19,6 @@ function WorkPlaceSideBar() {
   let boards = useSelector((store) => {
     return store.boards.boards
   });
-  console.log(boards);
   const fetchBoards = async () => {
     try {
       const res = await axios.get(BASE_URL + "/getallboards", { withCredentials: true });
@@ -45,7 +44,6 @@ function WorkPlaceSideBar() {
         setBgColor('#ffffff');
         setShowPopup(false);
         navigate("/dashboards");
-        console.log();
       } catch (error)
       {
         console.log(error);

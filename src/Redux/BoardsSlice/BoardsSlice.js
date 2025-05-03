@@ -194,7 +194,6 @@ const boardSlice = createSlice({
 
     //to add new item to the list of the given dashboard
     addNewCardToList: (state, action) => {
-      console.log(action);
       const newCard = { id: crypto.randomUUID(), content: action.payload.item };
       const boardList = action.payload.listId;
 
@@ -230,7 +229,6 @@ const boardSlice = createSlice({
 
     //to set which board should display on the dashbaord
     activeBoard: (state, action) => {
-      console.log(state.boards);
       let activeBoard = state.boards.filter(
         (board) => board._id === action.payload
       );
@@ -246,19 +244,26 @@ const boardSlice = createSlice({
       });
     },
     addNewListToBoard: (state, action) => {
-      if (!action?.payload?.board_id) return;
+      if (!action?.payload?.board_id || !action.payload._id) return;
 
       const boardId = action.payload.board_id;
+      const listId = action.payload._id;
 
       // Update board in state.boards
       const board = state.boards.find((b) => b._id === boardId);
       if (board) {
-        board.lists.push(action.payload);
+        const alreadyExists = board.lists.some((l) => l._id === listId);
+        if (!alreadyExists) {
+          board.lists.push(action.payload);
+        }
       }
 
       // Update active lists if it matches
       if (state.active?._id === boardId) {
-        state.active.lists.push(action.payload);
+        const alreadyExists = state.active.lists.some((l) => l._id === listId);
+        if (!alreadyExists) {
+          state.active.lists.push(action.payload);
+        }
       }
     },
   },

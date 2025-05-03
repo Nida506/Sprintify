@@ -21,7 +21,6 @@ function AddList({setAddListModel}) {
           listName: listName
         }, { withCredentials: true });
        
-        console.log(response.data.newList);
         dispatch(addNewListToBoard(response.data.newList));
         setAddListModel(false);
       } catch (error)
@@ -44,7 +43,7 @@ function AddList({setAddListModel}) {
                >
                  Add List
                </button>
-               <button  onClick={() =>dispatch(activeAddCardListId(""))}>
+               <button  >
                  <CloseIcon className=" text-black" onClick={()=>setAddListModel(false)} />
                </button>
              </div>

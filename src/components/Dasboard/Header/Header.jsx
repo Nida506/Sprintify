@@ -11,7 +11,6 @@ function Header({ activeDashboard }) {
     // Generate random meeting link using Jitsi (or any other)
     const randomId = Math.random().toString(36).substring(2, 10);
     const meetingLink = `https://meet.jit.si/${randomId}`;
-    console.log(randomId);
     // Copy to clipboard
     navigator.clipboard.writeText(meetingLink).then(() => {
       setCopied(true);

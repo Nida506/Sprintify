@@ -9,24 +9,18 @@ import { useEffect } from "react";
 function Board({dashboardData}) {
     let activeDashboard = useSelector(store => (store?.boards?.active ? store?.boards?.active:{} ));
     let { socket, connectSocket, disconnectSocket, userId } = useContext(SocketContext);
-    console.log(socket);
     let user  = useSelector(store => {
         return store.user
     });
-    console.log(user);
     useEffect(() => {
-        
+         if( !socket?.connected)
             connectSocket();
-        
-        
         socket?.emit("joinCollaboration", activeDashboard._id, userId);
-
         () =>
         {
             if (socket) disconnectSocket();
         }
     }, [activeDashboard]);
-    console.log(activeDashboard);
     
     return (
         <div className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
