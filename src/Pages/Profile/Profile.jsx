@@ -21,8 +21,7 @@ const Profile = () => {
         { firstName, lastName },
         { withCredentials: true }
       );
-      console.log("hello");
-      console.log(res);
+      
       dispatch(addUser(res.data.data));
 
       setShowToast(true);

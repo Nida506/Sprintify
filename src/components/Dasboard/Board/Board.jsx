@@ -12,24 +12,18 @@ function Board({dashboardData}) {
     const currentUser = useSelector((store) => store?.user); 
 
     let { socket, connectSocket, disconnectSocket, userId } = useContext(SocketContext);
-    console.log(socket);
     let user  = useSelector(store => {
         return store.user
     });
-    console.log(user);
     useEffect(() => {
-        
+         if( !socket?.connected)
             connectSocket();
-        
-        
         socket?.emit("joinCollaboration", activeDashboard._id, userId);
-
         () =>
         {
             if (socket) disconnectSocket();
         }
     }, [activeDashboard]);
-    console.log(activeDashboard);
     
 
     return (

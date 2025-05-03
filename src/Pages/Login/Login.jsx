@@ -24,7 +24,6 @@ const LoginPage = () => {
         },
         { withCredentials: true }
       );
-      console.log(res);
       dispatch(addUser(res.data.data));
       return navigate("/");
     } catch (err) {

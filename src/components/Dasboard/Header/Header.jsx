@@ -4,6 +4,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ChatPage from "@/Pages/ChatPage/ChatPage";
 import axios from "axios";
 import { BASE_URL } from "@/utils/constants";
+
 function Header(Props) {
   const [showModal, setShowModal] = useState(false);
   const [inviteEmail, setInviteEmail] = useState("");
@@ -14,7 +15,7 @@ function Header(Props) {
     setLoading(true);
     try {
       const res = await axios.post(
-        `${BASE_URL }/api/invitations/send-invite`,
+        `${BASE_URL}/api/invitations/send-invite`,
         {
           email: inviteEmail,
           boardId: Props.activeDashboard._id,

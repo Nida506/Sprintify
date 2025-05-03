@@ -84,7 +84,7 @@ const WorkPlaceMain = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4">
          {boards.map((board) => (
                <div
-                 key={board.id}
+                 key={board._id}
                  
                  className="p-[30px] rounded-lg shadow-md text-white font-semibold"
                  style={{
@@ -93,7 +93,7 @@ const WorkPlaceMain = () => {
                    backgroundPosition: 'center',
                  }}
                >
-                 {board.id}. {board.name}
+                 {board._id}. {board.name}
     </div>
   ))}
 </div>

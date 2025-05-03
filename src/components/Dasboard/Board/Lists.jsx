@@ -40,10 +40,10 @@ function Lists({ activeDashboard }) {
       if (source.droppableId !== destination.droppableId) {
         const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
         const sourceListIndex = newLists.findIndex(
-          (list) => list.id.toString() === source.droppableId
+          (list) => list._id.toString() === source.droppableId
         );
         const destinationListIndex = newLists.findIndex(
-          (list) => list.id.toString() === destination.droppableId
+          (list) => list._id.toString() === destination.droppableId
         );
 
         const sourceList = newLists[sourceListIndex];
@@ -56,7 +56,7 @@ function Lists({ activeDashboard }) {
       } else {
         const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
         const listIndex = newLists.findIndex(
-          (list) => list.id.toString() === source.droppableId
+          (list) => list._id.toString() === source.droppableId
         );
         const list = newLists[listIndex];
 
@@ -124,8 +124,8 @@ function Lists({ activeDashboard }) {
 
                           <ul className="py-2 flex flex-col gap-2 overflow-y-auto h-full">
                             <Droppable
-                              key={list?.id?.toString()}
-                              droppableId={list?.id?.toString()}
+                              key={list?._id?.toString()}
+                              droppableId={list?._id?.toString()}
                               type="CARD"
                             >
                               {(provided) => (

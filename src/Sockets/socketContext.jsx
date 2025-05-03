@@ -15,7 +15,6 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
 
           socket?.on("getOnlineUsers", (onlineUsers) => {
-              console.log(onlineUsers, "onlineUsers");
               setOnlineUsers(onlineUsers);
           });
     
@@ -45,7 +44,6 @@ export const SocketProvider = ({ children }) => {
     }
     const tempSocket = handleSocket();
     tempSocket.connect();
-    console.log("Socket connected");
     setSocket(tempSocket);
   };
 
@@ -61,18 +59,16 @@ export const SocketProvider = ({ children }) => {
       //Message in case of error
   
     // =====================New List added
-    socket?.on('list-added', (newList, user_id) =>
+    socket?.on('list-added', (data) =>
       {
-      console.log("new list added event received");
-      console.log(newList);
-          if (newList.user_id != user?._id)
+      console.log(data.newList);
+          if (data.newList.user_id != user?._id)
           {
-            dispatch(addNewListToBoard(newList));
+            alert("hello");
+            dispatch(addNewListToBoard(data.newList));
           }
       })
    
-    
-
       //DON'T FORGET TO REMOVE THE LISTENER
       return () => {
         socket?.off('messageReceived', handleMessage);
