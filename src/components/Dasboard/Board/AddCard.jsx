@@ -24,7 +24,7 @@ function AddCard({ list}) {
         { withCredentials: true }
       );
 
-      let listId = list.id;
+      let listId = list._id;
       let item = itemText;
        dispatch(addNewCardToList({item, listId}))
       return navigate("/create");

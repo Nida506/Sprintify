@@ -21,6 +21,7 @@ import Profile from "./Pages/Profile/Profile";
 import Homepage from "./Pages/Homepage/Homepage";
 import Signup from "./Pages/Signup/SignUp";
 import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword";
+import { SocketProvider } from "./Sockets/socketContext";
 
 function App() {
   const ResetPassword = lazy(() =>
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <Provider store={store}>
+      <SocketProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Body />}>
@@ -57,7 +59,8 @@ function App() {
             {/* Added About Us */}
           </Route>
         </Routes>
-      </BrowserRouter>
+        </BrowserRouter>
+        </SocketProvider>
     </Provider>
   );
 }

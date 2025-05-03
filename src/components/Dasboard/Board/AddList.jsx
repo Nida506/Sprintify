@@ -3,6 +3,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
 import { BASE_URL } from "@/utils/constants";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addNewListToBoard } from "@/Redux/BoardsSlice/BoardsSlice";
 
 
 function AddList({setAddListModel}) {
@@ -10,6 +12,7 @@ function AddList({setAddListModel}) {
   let active = useSelector((store) => {
       return store.boards.active
   });
+  let dispatch = useDispatch();
 
   let addListToDashbaord = async () => {
       try {
@@ -17,6 +20,8 @@ function AddList({setAddListModel}) {
           board_id: active._id,
           listName: listName
         }, { withCredentials: true });
+       
+        console.log(response.data.newList);
         dispatch(addNewListToBoard(response.data.newList));
         setAddListModel(false);
       } catch (error)

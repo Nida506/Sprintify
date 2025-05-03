@@ -3,7 +3,7 @@ import { FaPlus } from 'react-icons/fa';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import axios from 'axios'; 
 import { BASE_URL } from '@/utils/constants';
-import { activeBoard, addBoard } from '@/Redux/BoardsSlice/BoardsSlice';
+import { activeBoard, addBoard, fetchAllDashboards } from '@/Redux/BoardsSlice/BoardsSlice';
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ function WorkPlaceSideBar() {
   const fetchBoards = async () => {
     try {
       const res = await axios.get(BASE_URL + "/getallboards", { withCredentials: true });
-      dispatch(fetchAllDashboards(response.data.boards));
+      dispatch(fetchAllDashboards(res.data.boards));
     } catch (err) {
       console.error(err);
     }

@@ -10,6 +10,7 @@ import { addBoard, fetchAllDashboards } from "@/Redux/BoardsSlice/BoardsSlice";
 import { useEffect } from "react";
 import { BASE_URL } from "@/utils/constants";
 import { useDispatch } from "react-redux";
+import { useContext } from "react";
 
 
 export default function Dashboards() {
@@ -17,7 +18,6 @@ export default function Dashboards() {
   let dashboardData = useSelector((store) => {
     return store.boards
   });
-
   const fetchBoards = async () => {
       try {
         const res = await axios.get(BASE_URL + "/getallboards", { withCredentials: true });
@@ -26,10 +26,11 @@ export default function Dashboards() {
         console.error(err);
       }
   };
-  
   useEffect(() => {
-    fetchBoards(); // get boards on mount
-  }, []);
+    if(!dashboardData.length)
+      fetchBoards();
+  },[]);
+  
   return (
     <SidebarProvider className="overflow-hidden">
       
