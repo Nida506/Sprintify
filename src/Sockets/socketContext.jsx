@@ -1,17 +1,14 @@
 import { io } from 'socket.io-client';
-// import { BASE_USL } from '../utiles/constants/constant';
 import React, { createContext, useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { currentChatMessageSetter, notificationsHandler } from '@/Redux/Slices/chatSlice';
-// import toast from 'react-hot-toast';
-// import { fetchContacts } from '@/Components/ApiFunctions/Chat-ApiFunctions';
+import { useDispatch, useSelector } from 'react-redux';
+import { BASE_URL } from '@/utils/constants';
+import { addNewListToBoard } from '@/Redux/BoardsSlice/BoardsSlice';
 const SocketContext = createContext();
 
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const user = useSelector(store => store.user);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const { currentChatData,contactsData } = useSelector(store => store.chat);
   const [targetUserId, setTargetUserId] = useState("");
 
   const dispatch = useDispatch();
@@ -27,7 +24,7 @@ export const SocketProvider = ({ children }) => {
 
   
   const connectSocket = (userId) => {
-    if (socket)
+    if (socket?.connected)
     {
       return;
     }
@@ -36,9 +33,7 @@ export const SocketProvider = ({ children }) => {
     {
       if (location.hostname == "localhost")
         {
-          return io(BASE_USL,{
-            query:{userId:userId}
-          });
+          return io(BASE_URL);
         }
         else {
         return io("/", {
@@ -50,57 +45,34 @@ export const SocketProvider = ({ children }) => {
     }
     const tempSocket = handleSocket();
     tempSocket.connect();
+    console.log("Socket connected");
     setSocket(tempSocket);
   };
 
   //====================================================Messages Handler====================================================
   useEffect(() => {
       const handleMessage = (msg) => {
-        console.log('Message Received', msg);
-        if (msg.roomId === currentChatData.roomId && targetUserId) {
-          dispatch(
-            currentChatMessageSetter({
-              text: msg.newMessage.text,
-              senderId: msg.newMessage.senderId,
-              imageURL: msg.newMessage.imageURL,
-              createdAt: msg.newMessage.createdAt
-            })
-          );
-
-          const filtersContact = contactsData?.filter((contact) =>
-          {
-            return contact.roomId == msg.roomId;
-          })
-          console.log(filtersContact);
-          if (filtersContact?.length == 0)
-            fetchContacts(dispatch);
-          
-        } else {
-          fetchContacts(dispatch);
-          dispatch(
-            notificationsHandler({
-              senderId: msg?.newMessage.senderId._id,
-              roomId: msg?.roomId,
-              firstName: msg?.newMessage.senderId.firstName,
-              lastName: msg.newMessage.senderId.lastName,
-              photoUrl: msg?.newMessage.senderId.photoUrl,
-              msg: msg?.newMessage.text ? msg?.newMessage.text : '📷Photo',
-              time: msg.newMessage.createdAt,
-            })
-          );
-        }
       };
       const handleError = (problem) => {
         toast.error('Network Error');
       };
-  
-
       //HANDLER OF RECEIVE MESSAE HANDLER
       socket?.on('messageReceived', handleMessage);
       //Message in case of error
   
-      socket?.on('ImageProblem', handleError);
-      
+    // =====================New List added
+    socket?.on('list-added', (newList, user_id) =>
+      {
+      console.log("new list added event received");
+      console.log(newList);
+          if (newList.user_id != user?._id)
+          {
+            dispatch(addNewListToBoard(newList));
+          }
+      })
+   
+    
+
       //DON'T FORGET TO REMOVE THE LISTENER
       return () => {
         socket?.off('messageReceived', handleMessage);
@@ -112,7 +84,7 @@ export const SocketProvider = ({ children }) => {
     setSocket(null);
   };
   return (
-    <SocketContext.Provider value={{ socket, connectSocket, disconnectSocket,onlineUsers,setTargetUserId}}>
+    <SocketContext.Provider value={{ socket, connectSocket, disconnectSocket,userId:user?._id || null}}>
       {children}
     </SocketContext.Provider>
   );
