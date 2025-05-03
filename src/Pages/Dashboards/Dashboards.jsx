@@ -5,15 +5,31 @@ import {
 import { AppSidebar } from "@/components/Dasboard/Sidebar/AppSidebar";
 import Board from "@/components/Dasboard/Board/Board";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { addBoard, fetchAllDashboards } from "@/Redux/BoardsSlice/BoardsSlice";
+import { useEffect } from "react";
+import { BASE_URL } from "@/utils/constants";
+import { useDispatch } from "react-redux";
+
 
 export default function Dashboards() {
-  
+  let dispatch=useDispatch();
   let dashboardData = useSelector((store) => {
-    console.log(store);
     return store.boards
   });
-  console.log(dashboardData);
-  console.log("hEllo ho ware you");
+
+  const fetchBoards = async () => {
+      try {
+        const res = await axios.get(BASE_URL + "/getallboards", { withCredentials: true });
+        dispatch(fetchAllDashboards(res.data.boards));
+      } catch (err) {
+        console.error(err);
+      }
+  };
+  
+  useEffect(() => {
+    fetchBoards(); // get boards on mount
+  }, []);
   return (
     <SidebarProvider className="overflow-hidden">
       

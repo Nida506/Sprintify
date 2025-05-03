@@ -1,37 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import axios from 'axios'; 
 import { BASE_URL } from '@/utils/constants';
+import { activeBoard, addBoard } from '@/Redux/BoardsSlice/BoardsSlice';
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Dot } from 'lucide-react';
+
 
 function WorkPlaceSideBar() {
-  const [boards, setBoards] = useState([]); // no predefined data
   const [showPopup, setShowPopup] = useState(false);
   const [newBoardName, setNewBoardName] = useState('');
   const [bgColor, setBgColor] = useState('#ffffff');
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  let boards = useSelector((store) => {
+    return store.boards.boards
+  });
+  console.log(boards);
   const fetchBoards = async () => {
     try {
-      const res = await axios.get(BASE_URL + "/boards/user", { withCredentials: true });
-      setBoards(res.data.data.boards); // 
+      const res = await axios.get(BASE_URL + "/getallboards", { withCredentials: true });
+      dispatch(fetchAllDashboards(response.data.boards));
     } catch (err) {
       console.error(err);
     }
   };
   
-  const handleAddBoard = () => {
+  const handleAddBoard =async () => {
+    
     if (newBoardName.trim()) {
-      axios.post(BASE_URL + "/boards", {
-        name: newBoardName,
-        bgColor: bgColor,
-      }, { withCredentials: true }) 
-        .then(res => {
-          setBoards(prev => [...prev, res.data.data.board]); 
-          setNewBoardName('');
-          setBgColor('#ffffff');
-          setShowPopup(false);
-        })
-        .catch(err => console.error(err));
+      try {
+
+        let response =await axios.post(BASE_URL + "/createboard", {
+          name: newBoardName,
+          bgColor: bgColor,
+        }, { withCredentials: true });
+        dispatch(addBoard([response.data.data.board]));
+        dispatch(activeBoard(response.data.data.board._id));
+          // setBoards(prev => [...prev, res.data.data.board]); 
+        setNewBoardName('');
+        setBgColor('#ffffff');
+        setShowPopup(false);
+        navigate("/dashboards");
+        console.log();
+      } catch (error)
+      {
+        console.log(error);
+      }
     }
     
   };
@@ -63,7 +81,7 @@ function WorkPlaceSideBar() {
         {/* Boards List */}
         <div className="p-4 bg-gray-100 rounded-md">
           <div className='flex justify-between items-center'>
-            <h4 className="font-semibold text-[18px] text-gray-800 mb-4">Your Boards</h4>
+            <h4 className="font-semibold text-[18px]  mb-4 text-blue-800">Your Boards</h4>
             <FaPlus className="cursor-pointer hover:text-blue-500" onClick={() => setShowPopup(true)} />
           </div>
 
@@ -71,10 +89,17 @@ function WorkPlaceSideBar() {
             {boards.map((board, index) => (
               <li
                 key={board._id || index}
-                data-aos="zoom-in"
-                className="text-gray-700 flex items-center gap-2 text-[16px] font-medium cursor-pointer hover:text-blue-400"
+                // data-aos=""
+                onClick={() =>
+                {
+                  dispatch(activeBoard(board._id));
+                  navigate("/dashboards");
+                }
+                }
+                className="text-gray-700 flex items-center gap-2 text-[16px] font-medium cursor-pointer hover:text-blue-800"
               >
-                <MdKeyboardArrowRight className='text-[18px]' />
+                <Dot className=''/>
+                
                 {board.name}
               </li>
             ))}

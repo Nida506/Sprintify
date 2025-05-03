@@ -177,8 +177,13 @@ const boardSlice = createSlice({
     active: {},
   },
   reducers: {
+    fetchAllDashboards: (state, action) => {
+      return { ...state, boards: action.payload };
+    },
     //to ad new board
-    addBoard: (state, action) => action.payload,
+    addBoard: (state, action) => {
+      return { ...state, boards: [...action.payload, ...state.boards] };
+    },
 
     //to set of which list add new card section dispaly
     activeAddCardListId: (state, action) => ({
@@ -227,6 +232,7 @@ const boardSlice = createSlice({
 
     //to set which board should display on the dashbaord
     activeBoard: (state, action) => {
+      console.log(state.boards);
       let activeBoard = state.boards.filter(
         (board) => board._id === action.payload
       );
@@ -241,6 +247,17 @@ const boardSlice = createSlice({
         return dashboard;
       });
     },
+    addNewListToBoard: (state, action) => {
+      if (!action?.payload?.board_id) return;
+      let boardId = action.board_id;
+      let boards = state.boards.map((board) => {
+        if (board._id == boardId) {
+          return { ...board, lists: [...board.lists, action.payload] };
+        } else return board;
+      });
+
+      return { ...state, boards };
+    },
   },
 });
 export let {
@@ -248,7 +265,9 @@ export let {
   addList,
   activeBoard,
   activeAddCardListId,
+  addNewListToBoard,
   addNewCardToList,
   updateBoardListOnDrag,
+  fetchAllDashboards,
 } = boardSlice.actions;
 export default boardSlice.reducer;
