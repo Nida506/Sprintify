@@ -27,7 +27,7 @@ function AddCard({ list}) {
       let listId = list._id;
       let item = itemText;
        dispatch(addNewCardToList({item, listId}))
-      return navigate("/create");
+      // return navigate("/create");
     } catch (err) {
       console.error(err);
     }

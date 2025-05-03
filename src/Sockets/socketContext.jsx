@@ -64,8 +64,8 @@ export const SocketProvider = ({ children }) => {
     socket?.on('list-added', (newList, user_id) =>
       {
       console.log("new list added event received");
-      console.log(user_id, user?._id);
-          if (user_id != user?._id)
+      console.log(newList);
+          if (newList.user_id != user?._id)
           {
             dispatch(addNewListToBoard(newList));
           }
