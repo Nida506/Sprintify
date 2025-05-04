@@ -4,176 +4,177 @@ const boardSlice = createSlice({
   name: 'boardsData',
   initialState: {
     activeAddCardListId: '',
-    boards: [
-      {
-        name: 'My Trello Board',
-        _id: 'randomID2',
-        bgColor: 'pink',
-        lists: [
-          {
-            id: '4sdfsdf',
-            title: 'To do',
-            items: [
-              {
-                id: 'cdge3',
-                content: 'I have made the home Page 1',
-              },
-              {
-                id: 'cdge4',
-                content: 'I have to made Navbar',
-              },
-              {
-                id: 'cd464f',
-                content: 'I have to made Footer',
-              },
-              {
-                id: 'cdge64ad',
-                content: 'I have to made Dashboard!',
-              },
-            ],
-          },
-          {
-            id: '9sdfdf',
-            title: 'Done Tasks',
-            items: [
-              {
-                id: 'cdge453',
-                content: 'I have make repo',
-              },
-              {
-                id: 'cdgead4',
-                content: 'I have to push the code',
-              },
-              {
-                id: 'cd464adff',
-                content: 'I have to pull the code in my code',
-              },
-              {
-                id: 'cdge64aadffd',
-                content: 'I have to review the whole ocde',
-              },
-            ],
-          },
-          {
-            id: '0sdfsdfdsf',
-            title: 'Incoming Tasks',
-            items: [
-              {
-                id: 'cdgsdfe3',
-                content: 'We to design the backend',
-              },
-              {
-                id: 'cdgeasdf4',
-                content: 'We have to add authentication',
-              },
-              {
-                id: 'cd464gdsf',
-                content: 'We have to add Workplave feature',
-              },
-              {
-                id: 'cdge6asd4ad',
-                content: 'We have to set responsiveness',
-              },
-            ],
-          },
-          {
-            id: '80980sdf',
-            title: 'Completed Tasks',
-            items: [
-              {
-                id: 'cdgs98=+3',
-                content: 'We to design the backend',
-              },
-              {
-                id: 'df4',
-                content: 'We have to add authentication',
-              },
-              {
-                id: 'cd46',
-                content: 'We have to add Workplave feature',
-              },
-              {
-                id: 'd4ad',
-                content: 'We have to set responsiveness',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: 'My Second Trello Board',
-        _id: 'randomID3',
-        bgColor: 'green',
-        lists: [
-          {
-            id: '78ksdfsd',
-            title: 'To do',
-            items: [
-              {
-                id: 'cdge3',
-                content: 'I have made the home Page 1',
-              },
-              {
-                id: 'cdge4',
-                content: 'I have to made Navbar',
-              },
-              {
-                id: 'cd464f',
-                content: 'I have to made Footer',
-              },
-              {
-                id: 'cdge64ad',
-                content: 'I have to made Dashboard!',
-              },
-            ],
-          },
-          {
-            id: '98hsdfd',
-            title: 'Done Tasks',
-            items: [
-              {
-                id: 'cdge453',
-                content: 'I have make repo',
-              },
-              {
-                id: 'cdgead4',
-                content: 'I have to push the code',
-              },
-              {
-                id: 'cd464adff',
-                content: 'I have to pull the code in my code',
-              },
-              {
-                id: 'cdge64aadffd',
-                content: 'I have to review the whole ocde',
-              },
-            ],
-          },
-          {
-            id: 'io3sdfds',
-            title: 'Incoming Tasks',
-            items: [
-              {
-                id: 'cdgsdfe3',
-                content: 'We to design the backendkjhkj',
-              },
-              {
-                id: 'cdgeasdf4',
-                content: 'We have to add authenticationkkkkkk',
-              },
-              {
-                id: 'cd464gdsf',
-                content: 'We have to add Workplave featurekllkl',
-              },
-              {
-                id: 'cdge6asd4ad',
-                content: 'We have to set responsivenesslklkl',
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    // boards: [
+    //   {
+    //     name: 'My Trello Board',
+    //     _id: 'randomID2',
+    //     bgColor: 'pink',
+    //     lists: [
+    //       {
+    //         id: '4sdfsdf',
+    //         title: 'To do',
+    //         items: [
+    //           {
+    //             id: 'cdge3',
+    //             content: 'I have made the home Page 1',
+    //           },
+    //           {
+    //             id: 'cdge4',
+    //             content: 'I have to made Navbar',
+    //           },
+    //           {
+    //             id: 'cd464f',
+    //             content: 'I have to made Footer',
+    //           },
+    //           {
+    //             id: 'cdge64ad',
+    //             content: 'I have to made Dashboard!',
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         id: '9sdfdf',
+    //         title: 'Done Tasks',
+    //         items: [
+    //           {
+    //             id: 'cdge453',
+    //             content: 'I have make repo',
+    //           },
+    //           {
+    //             id: 'cdgead4',
+    //             content: 'I have to push the code',
+    //           },
+    //           {
+    //             id: 'cd464adff',
+    //             content: 'I have to pull the code in my code',
+    //           },
+    //           {
+    //             id: 'cdge64aadffd',
+    //             content: 'I have to review the whole ocde',
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         id: '0sdfsdfdsf',
+    //         title: 'Incoming Tasks',
+    //         items: [
+    //           {
+    //             id: 'cdgsdfe3',
+    //             content: 'We to design the backend',
+    //           },
+    //           {
+    //             id: 'cdgeasdf4',
+    //             content: 'We have to add authentication',
+    //           },
+    //           {
+    //             id: 'cd464gdsf',
+    //             content: 'We have to add Workplave feature',
+    //           },
+    //           {
+    //             id: 'cdge6asd4ad',
+    //             content: 'We have to set responsiveness',
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         id: '80980sdf',
+    //         title: 'Completed Tasks',
+    //         items: [
+    //           {
+    //             id: 'cdgs98=+3',
+    //             content: 'We to design the backend',
+    //           },
+    //           {
+    //             id: 'df4',
+    //             content: 'We have to add authentication',
+    //           },
+    //           {
+    //             id: 'cd46',
+    //             content: 'We have to add Workplave feature',
+    //           },
+    //           {
+    //             id: 'd4ad',
+    //             content: 'We have to set responsiveness',
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     name: 'My Second Trello Board',
+    //     _id: 'randomID3',
+    //     bgColor: 'green',
+    //     lists: [
+    //       {
+    //         id: '78ksdfsd',
+    //         title: 'To do',
+    //         items: [
+    //           {
+    //             id: 'cdge3',
+    //             content: 'I have made the home Page 1',
+    //           },
+    //           {
+    //             id: 'cdge4',
+    //             content: 'I have to made Navbar',
+    //           },
+    //           {
+    //             id: 'cd464f',
+    //             content: 'I have to made Footer',
+    //           },
+    //           {
+    //             id: 'cdge64ad',
+    //             content: 'I have to made Dashboard!',
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         id: '98hsdfd',
+    //         title: 'Done Tasks',
+    //         items: [
+    //           {
+    //             id: 'cdge453',
+    //             content: 'I have make repo',
+    //           },
+    //           {
+    //             id: 'cdgead4',
+    //             content: 'I have to push the code',
+    //           },
+    //           {
+    //             id: 'cd464adff',
+    //             content: 'I have to pull the code in my code',
+    //           },
+    //           {
+    //             id: 'cdge64aadffd',
+    //             content: 'I have to review the whole ocde',
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         id: 'io3sdfds',
+    //         title: 'Incoming Tasks',
+    //         items: [
+    //           {
+    //             id: 'cdgsdfe3',
+    //             content: 'We to design the backendkjhkj',
+    //           },
+    //           {
+    //             id: 'cdgeasdf4',
+    //             content: 'We have to add authenticationkkkkkk',
+    //           },
+    //           {
+    //             id: 'cd464gdsf',
+    //             content: 'We have to add Workplave featurekllkl',
+    //           },
+    //           {
+    //             id: 'cdge6asd4ad',
+    //             content: 'We have to set responsivenesslklkl',
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // ],
+    boards: [],
     active: {},
   },
   reducers: {
@@ -191,12 +192,8 @@ const boardSlice = createSlice({
       activeAddCardListId: action.payload,
     }),
 
-    //to add new list to the board
-    addList: (state, action) => action.payload,
-
     //to add new item to the list of the given dashboard
     addNewCardToList: (state, action) => {
-      console.log(action);
       const newCard = { id: crypto.randomUUID(), content: action.payload.item };
       const boardList = action.payload.listId;
 
@@ -232,7 +229,6 @@ const boardSlice = createSlice({
 
     //to set which board should display on the dashbaord
     activeBoard: (state, action) => {
-      console.log(state.boards);
       let activeBoard = state.boards.filter(
         (board) => board._id === action.payload
       );
@@ -248,21 +244,33 @@ const boardSlice = createSlice({
       });
     },
     addNewListToBoard: (state, action) => {
-      if (!action?.payload?.board_id) return;
-      let boardId = action.board_id;
-      let boards = state.boards.map((board) => {
-        if (board._id == boardId) {
-          return { ...board, lists: [...board.lists, action.payload] };
-        } else return board;
-      });
+      if (!action?.payload?.board_id || !action.payload._id) return;
 
-      return { ...state, boards };
+      const boardId = action.payload.board_id;
+      const listId = action.payload._id;
+
+      // Update board in state.boards
+      const board = state.boards.find((b) => b._id === boardId);
+      if (board) {
+        const alreadyExists = board.lists.some((l) => l._id === listId);
+        if (!alreadyExists) {
+          board.lists.push(action.payload);
+        }
+      }
+
+      // Update active lists if it matches
+      if (state.active?._id === boardId) {
+        const alreadyExists = state.active.lists.some((l) => l._id === listId);
+        if (!alreadyExists) {
+          state.active.lists.push(action.payload);
+        }
+      }
     },
   },
 });
 export let {
   addBoard,
-  addList,
+
   activeBoard,
   activeAddCardListId,
   addNewListToBoard,

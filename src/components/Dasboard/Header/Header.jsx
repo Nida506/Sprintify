@@ -5,12 +5,15 @@ import ChatPage from "@/Pages/ChatPage/ChatPage";
 import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
+
 function Header({ activeDashboard }) {
+  const [copied, setCopied] = useState(false);
+
   const handleCreateMeeting = () => {
     // Generate random meeting link using Jitsi (or any other)
     const randomId = Math.random().toString(36).substring(2, 10);
     const meetingLink = `https://meet.jit.si/${randomId}`;
-    console.log(randomId);
+
     // Copy to clipboard
     navigator.clipboard.writeText(meetingLink).then(() => {
       toast.success(
@@ -24,18 +27,6 @@ function Header({ activeDashboard }) {
   };
   return (
     <>
-      {/* {copied && (
-        <div className="toast toast-top toast-center ">
-          <div className="alert alert-success bg-[white] border-pink-600 border-2 font-normal text-black">
-            <span className="text-green-400 text-2xl">
-              <FaCheckCircle />
-            </span>
-            <span className="font-semibold">
-              
-            </span>
-          </div>
-        </div>
-      )} */}
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex justify-between items-center overflow-hidden  bg-black bg-opacity-30 w-full px-9  h-[55px] shadow-2xl">
         <div className="left">

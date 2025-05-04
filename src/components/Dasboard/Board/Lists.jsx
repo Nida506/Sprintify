@@ -40,10 +40,10 @@ function Lists({ activeDashboard }) {
       if (source.droppableId !== destination.droppableId) {
         const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
         const sourceListIndex = newLists.findIndex(
-          (list) => list.id.toString() === source.droppableId
+          (list) => list._id.toString() === source.droppableId
         );
         const destinationListIndex = newLists.findIndex(
-          (list) => list.id.toString() === destination.droppableId
+          (list) => list._id.toString() === destination.droppableId
         );
 
         const sourceList = newLists[sourceListIndex];
@@ -56,7 +56,7 @@ function Lists({ activeDashboard }) {
       } else {
         const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
         const listIndex = newLists.findIndex(
-          (list) => list.id.toString() === source.droppableId
+          (list) => list._id.toString() === source.droppableId
         );
         const list = newLists[listIndex];
 
@@ -124,8 +124,8 @@ function Lists({ activeDashboard }) {
 
                           <ul className="py-2 flex flex-col gap-2 overflow-y-auto h-full">
                             <Droppable
-                              key={list?.id?.toString()}
-                              droppableId={list?.id?.toString()}
+                              key={list?._id?.toString()}
+                              droppableId={list?._id?.toString()}
                               type="CARD"
                             >
                               {(provided) => (
@@ -175,18 +175,18 @@ function Lists({ activeDashboard }) {
                               )}
                             </Droppable>
 
-                            {activeAddCardListID === list.id && (
+                            {activeAddCardListID === list._id && (
                               <AddCard list={list} />
                             )}
                           </ul>
                         </div>
                         <div>
-                          {activeAddCardListID !== list.id && (
+                          {activeAddCardListID !== list._id && (
                             <li className="item flex p-[5px] rounded cursor-pointer">
                               <div
                                 className="flex flex-row w-[90%] gap-1 items-center hover:bg-gray-300 p-1 rounded-lg"
                                 onClick={() =>
-                                  activeShowAddCardSection(list.id)
+                                  activeShowAddCardSection(list._id)
                                 }
                               >
                                 <AddIcon className="text-[10px] text-gray-500 hover:text-black font-bold" />
@@ -208,7 +208,7 @@ function Lists({ activeDashboard }) {
                   {!addListModel ? (
                   <div
                     id="createNewList"
-                    className="bg-[#EFF2F3] flex-shrink-0 h-fit w-56  rounded overflow-hidden "
+                    className="bg-white/30 backdrop-blur-mdflex-shrink-0 h-fit w-56  rounded overflow-hidden "
                   >
                     {/* <input type="text" placeholder="Add new List" className="h-[70px]" /> */}
 

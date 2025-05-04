@@ -1,17 +1,14 @@
 import { io } from "socket.io-client";
-// import { BASE_USL } from '../utiles/constants/constant';
 import React, { createContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { currentChatMessageSetter, notificationsHandler } from '@/Redux/Slices/chatSlice';
-// import toast from 'react-hot-toast';
-// import { fetchContacts } from '@/Components/ApiFunctions/Chat-ApiFunctions';
+import { BASE_URL } from "@/utils/constants";
+import { addNewListToBoard } from "@/Redux/BoardsSlice/BoardsSlice";
 const SocketContext = createContext();
 
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const user = useSelector((store) => store.user);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const { currentChatData, contactsData } = useSelector((store) => store.chat);
   const [targetUserId, setTargetUserId] = useState("");
 
   const dispatch = useDispatch();
@@ -21,19 +18,21 @@ export const SocketProvider = ({ children }) => {
       setOnlineUsers(onlineUsers);
     });
 
+    socket?.on("getOnlineUsers", (onlineUsers) => {
+      setOnlineUsers(onlineUsers);
+    });
+
     return () => socket?.disconnect();
   }, [socket]);
 
   const connectSocket = (userId) => {
-    if (socket) {
+    if (socket?.connected) {
       return;
     }
 
     const handleSocket = () => {
       if (location.hostname == "localhost") {
-        return io(BASE_USL, {
-          query: { userId: userId },
-        });
+        return io(BASE_URL);
       } else {
         return io("/", {
           path: "/api/socket.io",
@@ -48,47 +47,22 @@ export const SocketProvider = ({ children }) => {
 
   //====================================================Messages Handler====================================================
   useEffect(() => {
-    const handleMessage = (msg) => {
-      console.log("Message Received", msg);
-      if (msg.roomId === currentChatData.roomId && targetUserId) {
-        dispatch(
-          currentChatMessageSetter({
-            text: msg.newMessage.text,
-            senderId: msg.newMessage.senderId,
-            imageURL: msg.newMessage.imageURL,
-            createdAt: msg.newMessage.createdAt,
-          })
-        );
-
-        const filtersContact = contactsData?.filter((contact) => {
-          return contact.roomId == msg.roomId;
-        });
-        console.log(filtersContact);
-        if (filtersContact?.length == 0) fetchContacts(dispatch);
-      } else {
-        fetchContacts(dispatch);
-        dispatch(
-          notificationsHandler({
-            senderId: msg?.newMessage.senderId._id,
-            roomId: msg?.roomId,
-            firstName: msg?.newMessage.senderId.firstName,
-            lastName: msg.newMessage.senderId.lastName,
-            photoUrl: msg?.newMessage.senderId.photoUrl,
-            msg: msg?.newMessage.text ? msg?.newMessage.text : "📷Photo",
-            time: msg.newMessage.createdAt,
-          })
-        );
-      }
-    };
+    const handleMessage = (msg) => {};
     const handleError = (problem) => {
       toast.error("Network Error");
     };
-
     //HANDLER OF RECEIVE MESSAE HANDLER
     socket?.on("messageReceived", handleMessage);
     //Message in case of error
 
-    socket?.on("ImageProblem", handleError);
+    // =====================New List added
+    socket?.on("list-added", (data) => {
+      console.log(data.newList);
+      if (data.newList.user_id != user?._id) {
+        alert("hello");
+        dispatch(addNewListToBoard(data.newList));
+      }
+    });
 
     //DON'T FORGET TO REMOVE THE LISTENER
     return () => {
@@ -106,8 +80,7 @@ export const SocketProvider = ({ children }) => {
         socket,
         connectSocket,
         disconnectSocket,
-        onlineUsers,
-        setTargetUserId,
+        userId: user?._id || null,
       }}
     >
       {children}

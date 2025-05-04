@@ -27,7 +27,6 @@ import { activeBoard } from '@/Redux/BoardsSlice/BoardsSlice';
 
 export function AppSidebar({ dashboardData }) {
   let dispatch = useDispatch();
-  console.log(dashboardData);
   let setActiveBoard = (id) =>
   {
     dispatch(activeBoard(id));

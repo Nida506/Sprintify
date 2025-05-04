@@ -20,9 +20,7 @@ const Signup = () => {
   const dispatch = useDispatch();
 
   const signUpHandler = async () => {
-    console.log(firstName, lastName, emailId, password);
     try {
-      console.log("hello");
       const res = await axios.post(
         BASE_URL + "/signup",
 

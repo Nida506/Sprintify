@@ -22,6 +22,8 @@ const Profile = () => {
         { withCredentials: true }
       );
 
+      dispatch(addUser(res.data.data));
+
       toast.success(
         <div>
           <span className="font-semibold">{res.data.message}</span>

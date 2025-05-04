@@ -1,72 +1,78 @@
-import { useState, useEffect} from 'react';
-import { FaPlus } from 'react-icons/fa';
-import { MdKeyboardArrowRight } from 'react-icons/md';
-import axios from 'axios'; 
-import { BASE_URL } from '@/utils/constants';
-import { activeBoard, addBoard } from '@/Redux/BoardsSlice/BoardsSlice';
+import { useState, useEffect } from "react";
+import { FaPlus } from "react-icons/fa";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import axios from "axios";
+import { BASE_URL } from "@/utils/constants";
+import {
+  activeBoard,
+  addBoard,
+  fetchAllDashboards,
+} from "@/Redux/BoardsSlice/BoardsSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Dot } from 'lucide-react';
-
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Dot } from "lucide-react";
 
 function WorkPlaceSideBar() {
   const [showPopup, setShowPopup] = useState(false);
-  const [newBoardName, setNewBoardName] = useState('');
-  const [bgColor, setBgColor] = useState('#ffffff');
+  const [newBoardName, setNewBoardName] = useState("");
+  const [bgColor, setBgColor] = useState("#ffffff");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let boards = useSelector((store) => {
-    return store.boards.boards
+    return store.boards.boards;
   });
-  console.log(boards);
   const fetchBoards = async () => {
     try {
-      const res = await axios.get(BASE_URL + "/getallboards", { withCredentials: true });
-      dispatch(fetchAllDashboards(response.data.boards));
+      const res = await axios.get(BASE_URL + "/getallboards", {
+        withCredentials: true,
+      });
+      dispatch(fetchAllDashboards(res.data.boards));
     } catch (err) {
       console.error(err);
     }
   };
-  
-  const handleAddBoard =async () => {
-    
+
+  const handleAddBoard = async () => {
     if (newBoardName.trim()) {
       try {
-
-        let response =await axios.post(BASE_URL + "/createboard", {
-          name: newBoardName,
-          bgColor: bgColor,
-        }, { withCredentials: true });
+        let response = await axios.post(
+          BASE_URL + "/createboard",
+          {
+            name: newBoardName,
+            bgColor: bgColor,
+          },
+          { withCredentials: true }
+        );
         dispatch(addBoard([response.data.data.board]));
         dispatch(activeBoard(response.data.data.board._id));
-          // setBoards(prev => [...prev, res.data.data.board]); 
-        setNewBoardName('');
-        setBgColor('#ffffff');
+        // setBoards(prev => [...prev, res.data.data.board]);
+        setNewBoardName("");
+        setBgColor("#ffffff");
         setShowPopup(false);
         navigate("/dashboards");
-        console.log();
-      } catch (error)
-      {
+      } catch (error) {
         console.log(error);
       }
     }
-    
   };
-  
+
   useEffect(() => {
     fetchBoards(); // get boards on mount
   }, []);
 
   return (
-    <div className='flex'>
+    <div className="flex">
       {/* Sidebar Strip */}
       <div className="bg-[#010256] font-outfit w-[50px] flex flex-col justify-between items-center p-[10px]"></div>
 
       {/* Main Sidebar */}
       <div className="font-outfit bg-white flex flex-col gap-[20px] p-[20px] w-full md:w-[320px] overflow-hidden">
         {/* Profile Section */}
-        <div data-aos="zoom-in" className="bg-[#3845B1] bg-opacity-[81%] text-white p-4 flex shadow-lg rounded-lg gap-4">
+        <div
+          data-aos="zoom-in"
+          className="bg-[#3845B1] bg-opacity-[81%] text-white p-4 flex shadow-lg rounded-lg gap-4"
+        >
           <img
             src="images/user1.png"
             alt="Profile"
@@ -80,9 +86,14 @@ function WorkPlaceSideBar() {
 
         {/* Boards List */}
         <div className="p-4 bg-gray-100 rounded-md">
-          <div className='flex justify-between items-center'>
-            <h4 className="font-semibold text-[18px]  mb-4 text-blue-800">Your Boards</h4>
-            <FaPlus className="cursor-pointer hover:text-blue-500" onClick={() => setShowPopup(true)} />
+          <div className="flex justify-between items-center">
+            <h4 className="font-semibold text-[18px]  mb-4 text-blue-800">
+              Your Boards
+            </h4>
+            <FaPlus
+              className="cursor-pointer hover:text-blue-500"
+              onClick={() => setShowPopup(true)}
+            />
           </div>
 
           <ul className="space-y-4">
@@ -90,16 +101,14 @@ function WorkPlaceSideBar() {
               <li
                 key={board._id || index}
                 // data-aos=""
-                onClick={() =>
-                {
+                onClick={() => {
                   dispatch(activeBoard(board._id));
                   navigate("/dashboards");
-                }
-                }
+                }}
                 className="text-gray-700 flex items-center gap-2 text-[16px] font-medium cursor-pointer hover:text-blue-800"
               >
-                <Dot className=''/>
-                
+                <Dot className="" />
+
                 {board.name}
               </li>
             ))}
@@ -119,7 +128,9 @@ function WorkPlaceSideBar() {
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-[400px]">
-            <h2 className="text-lg font-semibold mb-4 text-gray-800">Create New Board</h2>
+            <h2 className="text-lg font-semibold mb-4 text-gray-800">
+              Create New Board
+            </h2>
             <input
               type="text"
               placeholder="Board Name"
