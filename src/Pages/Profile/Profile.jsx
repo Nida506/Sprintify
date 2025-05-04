@@ -3,34 +3,39 @@ import { addUser } from "../../Redux/UserSlice/userSlice";
 import axios from "axios";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
 const Profile = () => {
   const user = useSelector((store) => store.user);
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
   const [photoUrl, setPhotoUrl] = useState("images/profileImg.png");
-  const [age, setAge] = useState("24");
-  const [about, setAbout] = useState("I am a user of Sprintify");
+  const [age, setAge] = useState(user?.age);
+  const [about, setAbout] = useState(user?.about);
 
-  const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
   //editProfile handler
   const editProfileHandler = async () => {
     try {
       const res = await axios.patch(
         BASE_URL + "/profile/edit",
-        { firstName, lastName },
+        { firstName, lastName, photoUrl, age: Number(age), about },
         { withCredentials: true }
       );
-      console.log("hello");
-      console.log(res);
-      dispatch(addUser(res.data.data));
 
-      setShowToast(true);
-      setTimeout(() => {
-        setShowToast(false);
-      }, 3000);
+      toast.success(
+        <div>
+          <span className="font-semibold">{res.data.message}</span>
+        </div>
+      );
+      dispatch(addUser(res.data.data));
     } catch (err) {
-      console.log(err);
+      const errorMessage =
+        err?.response?.data || err.message || "Something went wrong";
+      toast.error(
+        <div>
+          <span className="font-semibold">{errorMessage}</span>
+        </div>
+      );
     }
   };
 
@@ -38,13 +43,7 @@ const Profile = () => {
     <>
       {/* for toast : show for message */}
 
-      {showToast && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-success bg-[#28c433] font-normal text-white">
-            <span>Profile Saved Successfully</span>
-          </div>
-        </div>
-      )}
+      <Toaster position="top-center" reverseOrder={false} />
 
       <div className="flex justify-center pb-12 pt-12 ">
         {/* edit profile */}
