@@ -12,8 +12,10 @@ import AddCard from './AddCard';
 import CardDetail from './CardDetail';
 import { BASE_URL } from '@/utils/constants';
 import AddList from './AddList';
+import axios from 'axios';
 
 function Lists({ activeDashboard }) {
+  console.log(activeDashboard);
   const dispatch = useDispatch();
   const [selectedCard, setSelectedCard] = useState(null);
   const [addListModel, setAddListModel] = useState(false);
@@ -24,48 +26,54 @@ function Lists({ activeDashboard }) {
   if (!activeDashboard?.toString()) return null;
 
   const activeShowAddCardSection = (id) => {
+    console.log(id);
     dispatch(activeAddCardListId(id));
   };
 
-  const onDragEnd = (result) => {
+  const onDragEnd = async (result) => {
     const { source, destination, type } = result;
     if (!destination) return;
-
+  
     if (type === 'group') {
       const newLists = [...activeDashboard.lists];
       const [movedList] = newLists.splice(source.index, 1);
       newLists.splice(destination.index, 0, movedList);
       dispatch(updateBoardListOnDrag(newLists));
-    } else if (type === 'CARD') {
-      if (source.droppableId !== destination.droppableId) {
-        const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
-        const sourceListIndex = newLists.findIndex(
-          (list) => list._id.toString() === source.droppableId
-        );
-        const destinationListIndex = newLists.findIndex(
-          (list) => list._id.toString() === destination.droppableId
-        );
-
-        const sourceList = newLists[sourceListIndex];
-        const destinationList = newLists[destinationListIndex];
-
-        const [movedCard] = sourceList.items.splice(source.index, 1);
-        destinationList.items.splice(destination.index, 0, movedCard);
-
-        dispatch(updateBoardListOnDrag(newLists));
-      } else {
-        const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
-        const listIndex = newLists.findIndex(
-          (list) => list._id.toString() === source.droppableId
-        );
-        const list = newLists[listIndex];
-
-        const [movedCard] = list.items.splice(source.index, 1);
-        list.items.splice(destination.index, 0, movedCard);
-        dispatch(updateBoardListOnDrag(newLists));
-      }
+      return; // no backend sync needed here (unless you support moving lists)
+    }
+  
+    const newLists = JSON.parse(JSON.stringify(activeDashboard.lists));
+  
+    const sourceListIndex = newLists.findIndex(
+      (list) => list._id.toString() === source.droppableId
+    );
+    const destinationListIndex = newLists.findIndex(
+      (list) => list._id.toString() === destination.droppableId
+    );
+  
+    const sourceList = newLists[sourceListIndex];
+    const destinationList = newLists[destinationListIndex];
+  
+    const [movedCard] = sourceList.cards.splice(source.index, 1);
+    destinationList.cards.splice(destination.index, 0, movedCard);
+  
+    dispatch(updateBoardListOnDrag(newLists)); // ⏱ Optimistic UI update
+  
+    try {
+      const data= await axios.patch(`${BASE_URL}/cards/move`, {
+        cardId: movedCard._id,
+        sourceListId: source.droppableId,
+        destinationListId: destination.droppableId,
+        sourceIndex: source.index,
+        destinationIndex: destination.index,
+      },{withCredentials:true});
+      console.log(data);
+    } catch (err) {
+      console.error('Error moving card:', err);
+      // Optionally: rollback the UI state or show a toast error
     }
   };
+  
 
   useEffect(() => {
     dispatch(activeAddCardListId(''));
@@ -133,10 +141,10 @@ function Lists({ activeDashboard }) {
                                   ref={provided.innerRef}
                                   {...provided.droppableProps}
                                 >
-                                  {list?.items?.map((card, index) => (
+                                  {list?.cards?.map((card, index) => (
                                     <Draggable
-                                      key={card.id.toString()}
-                                      draggableId={card.id.toString()}
+                                      key={card._id}
+                                      draggableId={card._id}
                                       index={index}
                                     >
                                       {(provided, snapshot) => (
@@ -150,7 +158,7 @@ function Lists({ activeDashboard }) {
                                             e.stopPropagation();
                                             setSelectedCard({
                                               ...card,
-                                              listTitle: list.title,
+                                              listTitle: list.name,
                                             });
                                           }}
                                           ref={provided.innerRef}
@@ -158,7 +166,7 @@ function Lists({ activeDashboard }) {
                                           {...provided.dragHandleProps}
                                         >
                                           <p className="text-[14px] px-1 w-full break-words h-fit">
-                                            {card.content}
+                                            {card.description}
                                           </p>
                                           <div className="hidden group-hover:flex justify-center bg-white items-center hover:bg-slate-200 h-[25px] w-[25px] absolute top-1 right-1 rounded-full px-1 opacity-0 group-hover:opacity-100">
                                             <Edit
@@ -180,22 +188,25 @@ function Lists({ activeDashboard }) {
                             )}
                           </ul>
                         </div>
-                        <div>
-                          {activeAddCardListID !== list._id && (
-                            <li className="item flex p-[5px] rounded cursor-pointer">
+                        <div >
+                          {(activeAddCardListID !== list._id ) && (
+                            <div className="item flex p-[5px] rounded cursor-pointer" onClick={(e)=>e.preventDefault()}>
                               <div
-                                className="flex flex-row w-[90%] gap-1 items-center hover:bg-gray-300 p-1 rounded-lg"
-                                onClick={() =>
-                                  activeShowAddCardSection(list._id)
+                                className="flex cursor-pointer flex-row w-[90%] gap-1 items-center hover:bg-gray-300 p-1 rounded-lg"
+                                onClick={() => {
+                                  console.log(list._id);
+                                  activeShowAddCardSection(list._id);
+                                }
                                 }
                               >
+                               
                                 <AddIcon className="text-[10px] text-gray-500 hover:text-black font-bold" />
                                 <span className="text-[13px] text-gray-500 hover:text-black font-bold">
                                   Add Card
                                 </span>
                               </div>
                               <CopyAllRounded className="text-[10px] text-gray-500 hover:text-black" />
-                            </li>
+                            </div>
                           )}
                         </div>
                       </div>

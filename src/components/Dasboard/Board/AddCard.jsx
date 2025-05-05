@@ -16,17 +16,18 @@ function AddCard({ list}) {
   let addCardToList = async() =>
   {
     try {
-          
-      const res = await axios.post(
-        BASE_URL + "/create",
-
-        { itemText},
+      const res = await axios.patch(
+        BASE_URL + "/board/addNewCard",
+         
+        { list_id:list._id, description:itemText } ,
         { withCredentials: true }
       );
 
+      // console.log(res.data);
       let listId = list._id;
-      let item = itemText;
-       dispatch(addNewCardToList({item, listId}))
+      let item = res.data.card;
+      console.log(res.data.card);
+      dispatch(addNewCardToList({item, listId}))
       // return navigate("/create");
     } catch (err) {
       console.error(err);
@@ -53,7 +54,7 @@ function AddCard({ list}) {
         >
           Add Card
         </button>
-        <button  onClick={() =>dispatch(activeAddCardListId(""))}>
+        <button  onClick={() =>dispatch(activeAddCardListId(false))}>
           <CloseIcon className=" text-black" />
         </button>
       </div>

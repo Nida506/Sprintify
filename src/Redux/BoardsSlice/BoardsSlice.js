@@ -187,41 +187,34 @@ const boardSlice = createSlice({
     },
 
     //to set of which list add new card section dispaly
-    activeAddCardListId: (state, action) => ({
-      ...state,
-      activeAddCardListId: action.payload,
-    }),
+    activeAddCardListId: (state, action) => {
+      return {
+        ...state,
+        activeAddCardListId: action.payload,
+      };
+    },
 
     //to add new item to the list of the given dashboard
     addNewCardToList: (state, action) => {
-      const newCard = { id: crypto.randomUUID(), content: action.payload.item };
+      const newCard = action.payload.item;
       const boardList = action.payload.listId;
 
       // Update the active board's lists
       const updatedBoard = {
         ...state.active,
         lists: state.active.lists.map((list) => {
-          if (list.id === boardList) {
+          if (list._id === boardList) {
             // Append the new card to the items array
-            return { ...list, items: [...list.items, newCard] };
+            return { ...list, cards: [...list.cards, newCard] };
           } else {
             return list;
           }
         }),
       };
 
-      // Update the boards array
-      const boardsNewData = state.boards.map((board) => {
-        if (board._id === state.active._id) {
-          return updatedBoard;
-        } else {
-          return board;
-        }
-      });
       // Return the new state
       return {
         ...state,
-        boards: boardsNewData,
         activeAddCardListId: '', // Reset the active add card ID
         active: updatedBoard, // Update the active board
       };
@@ -229,11 +222,7 @@ const boardSlice = createSlice({
 
     //to set which board should display on the dashbaord
     activeBoard: (state, action) => {
-      let activeBoard = state.boards.filter(
-        (board) => board._id === action.payload
-      );
-      if (!activeBoard?.length) return state;
-      return { ...state, active: activeBoard[0] };
+      return { ...state, active: action.payload };
     },
 
     updateBoardListOnDrag: (state, action) => {
