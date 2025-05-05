@@ -55,7 +55,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/about" element={<AboutUs />} /> {/* Added About Us */}
             <Route path="/contactus" element={<Contactus />} />{" "}
-            <Route path="/forget-password" element={<ForgetPassword/>}/>
+            <Route path="/forgot-password" element={<ForgetPassword />} />
             {/* Added About Us */}
           </Route>
         </Routes>
