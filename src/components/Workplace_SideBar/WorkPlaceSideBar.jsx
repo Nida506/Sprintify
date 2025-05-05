@@ -31,19 +31,6 @@ function WorkPlaceSideBar() {
   const handleAddBoard =async () => {
     
     if (newBoardName.trim()) {
-<<<<<<< HEAD
-      axios.post(BASE_URL + "/boards", {
-        name: newBoardName,
-        bgColor: bgColor,
-      }, { withCredentials: true }) //
-        .then(res => {
-          setBoards(prev => [...prev, res.data.data.board]); // 
-          setNewBoardName('');
-          setBgColor('#ffffff');
-          setShowPopup(false);
-        })
-        .catch(err => console.error(err));
-=======
       try {
 
         let response =await axios.post(BASE_URL + "/createboard", {
@@ -61,7 +48,6 @@ function WorkPlaceSideBar() {
       {
         console.log(error);
       }
->>>>>>> c2fe7223503f7dc99ea65b647d9bb092d119b760
     }
     
   };
