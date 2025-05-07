@@ -4,6 +4,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { FaCheckCircle } from "react-icons/fa";
 import ChatPage from "@/Pages/ChatPage/ChatPage";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 function Header({ activeDashboard, currentUser }) {
   const [copied, setCopied] = useState(false);
@@ -16,13 +17,16 @@ function Header({ activeDashboard, currentUser }) {
     const randomId = Math.random().toString(36).substring(2, 10);
     const meetingLink = `https://meet.jit.si/${randomId}`;
     navigator.clipboard.writeText(meetingLink).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      toast.success(
+        <div className="flex items-center gap-2">
+          <FaCheckCircle className="text-green-500" />
+          <span className="font-semibold">Meeting link copied to clipboard!</span>
+        </div>
+      );
     });
   };
 
   const handleSendInvite = async () => {
-    console.log(activeDashboard);
     if (!activeDashboard?._id) return;
     setLoading(true);
     try {
@@ -47,27 +51,16 @@ function Header({ activeDashboard, currentUser }) {
 
   return (
     <>
-      {/* Toast for meeting link copy */}
-      {copied && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-success bg-white border-pink-600 border-2 font-normal text-black">
-            <span className="text-green-400 text-2xl">
-              <FaCheckCircle />
-            </span>
-            <span className="font-semibold">
-              Meeting link copied to clipboard!
-            </span>
-          </div>
-        </div>
-      )}
+      <Toaster position="top-center" reverseOrder={false} />
 
-      {/* Header bar */}
+      {/* Header Bar */}
       <div className="flex justify-between items-center overflow-hidden bg-black bg-opacity-30 w-full px-9 h-[55px] shadow-2xl">
         <div className="left">
           <h1 className="font-semibold text-xl text-white ms-4">
             {activeDashboard?.name}
           </h1>
         </div>
+
         <div className="right flex justify-around items-center gap-4 border-l px-4">
           {/* Avatar */}
           <div className="avatar cursor-pointer">
@@ -79,7 +72,7 @@ function Header({ activeDashboard, currentUser }) {
             </div>
           </div>
 
-          {/* Jitsi button */}
+          {/* Meeting Button */}
           <button onClick={handleCreateMeeting}>
             <img
               src="/images/jitsiMeet.png"
@@ -88,12 +81,12 @@ function Header({ activeDashboard, currentUser }) {
             />
           </button>
 
-          {/* Chat button */}
+          {/* Chat Button */}
           <button className="bg-white flex text-black px-2 py-1 rounded-lg gap-1">
             <ChatPage />
           </button>
 
-          {/* Share button */}
+          {/* Share/Invite Button */}
           <button
             className="bg-white flex text-black px-2 py-1 rounded-lg gap-1"
             onClick={() => setShowModal(true)}
@@ -102,7 +95,6 @@ function Header({ activeDashboard, currentUser }) {
             <h1>Share</h1>
           </button>
 
-          {/* More menu icon */}
           <MoreVertIcon className="cursor-pointer" />
         </div>
       </div>
