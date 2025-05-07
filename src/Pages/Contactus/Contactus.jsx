@@ -1,7 +1,7 @@
-import React from 'react';
-import { Mail, User, Phone, FileText } from 'lucide-react';
-import MainFooter from '@/components/MainFooter/MainFooter';
-import Contactus from '../../assets/ContactUs.png';
+import React from "react";
+import { Mail, User, Phone, FileText } from "lucide-react";
+import MainFooter from "@/components/MainFooter/MainFooter";
+import Contactus from "../../assets/ContactUs.png";
 
 const ContactUs = () => {
   return (
@@ -64,18 +64,18 @@ const ContactUs = () => {
             </div>
 
             {/* Submit Button */}
-            <div className="flex justify-center w-full">
-              <button className="w-[300px] bg-blue-900 text-white py-3 rounded-lg font-semibold  hover:bg-blue-700 transition">
-                Send Message
-              </button>
-            </div>
           </form>
+          <div className="flex justify-center w-full mt-4">
+            <button className="w-[300px] bg-blue-900 text-white py-3 rounded-lg font-semibold  hover:bg-blue-700 transition">
+              Send Message
+            </button>
+          </div>
         </div>
       </section>
 
       {/* Contact Form Section */}
       <section className=" overflow-x-hidden w-full min-h-[600px] flex flex-col lg:flex-row lg:justify-center lg:items-center bg-white ">
-        <div className='w-full lg:w-1/2 lg:h-1/2  flex justify-center items-center'>
+        <div className="w-full lg:w-1/2 lg:h-1/2  flex justify-center items-center">
           <img src={Contactus} classname="w-1/2 h-1/2" alt="Contact Us" />
         </div>
         <div className=" w-full  lg:w-1/2 lg:h-1/2 max-w-3xl bg-gray-100 p-10 rounded-lg shadow-md">
@@ -106,13 +106,12 @@ const ContactUs = () => {
               className="w-full p-3 border rounded-lg outline-none bg-transparent"
               rows="5"
             ></textarea>
-
-            <div className='flex justify-center'>
-              <button className="w-[300px] bg-blue-900 text-white py-3 rounded-lg font-semibold  hover:bg-blue-700 transition">
-                Send Message
-              </button>
-            </div>
           </form>
+          <div className="flex justify-center mt-4">
+            <button className="w-[300px] bg-blue-900 text-white py-3 rounded-lg font-semibold  hover:bg-blue-700 transition">
+              Send Message
+            </button>
+          </div>
         </div>
       </section>
 

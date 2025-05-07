@@ -32,7 +32,7 @@ const MainNavBar = () => {
   return (
     <nav className="bg-white font-outfit shadow-md px-5 sm:px-[40px] md:px-[100px] py-4 flex justify-between items-center">
       {/* Logo */}
-      <NavLink to={user?.firstName ? "/" : "/signup"}>
+      <NavLink to={"/"}>
         <h1
           className="md:text-4xl ps-10 lg:ps-0 text-2xl font-bold text-gray-900"
           data-aos="zoom-in"
@@ -44,34 +44,22 @@ const MainNavBar = () => {
       {/* Desktop Menu */}
       <ul className="hidden lg:flex space-x-6 text-gray-600">
         <li>
-          <Link
-            to={user?.firstName ? "/" : "/signup"}
-            className="hover:text-blue-700"
-          >
+          <Link to={"/"} className="hover:text-blue-700">
             Home
           </Link>
         </li>
         <li>
-          <Link
-            to={user?.firstName ? "/about" : "/signup"}
-            className="hover:text-blue-700"
-          >
+          <Link to={"/about"} className="hover:text-blue-700">
             About
           </Link>
         </li>
         <li>
-          <Link
-            to={user?.firstName ? "/blog" : "/signup"}
-            className="hover:text-blue-700"
-          >
+          <Link to={"/blog"} className="hover:text-blue-700">
             Blog
           </Link>
         </li>
         <li>
-          <Link
-            to={user?.firstName ? "/contactus" : "/signup"}
-            className="hover:text-blue-700"
-          >
+          <Link to={"/contactus"} className="hover:text-blue-700">
             Contact
           </Link>
         </li>

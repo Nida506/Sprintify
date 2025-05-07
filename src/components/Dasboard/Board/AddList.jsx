@@ -1,23 +1,29 @@
-import { useState } from "react"
-import CloseIcon from '@mui/icons-material/Close';
+import { useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import { BASE_URL } from "@/utils/constants";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addNewListToBoard } from "@/Redux/BoardsSlice/BoardsSlice";
 
-
-function AddList({setAddListModel}) {
+function AddList({ setAddListModel }) {
   let [listName, setListName] = useState("");
   let active = useSelector((store) => {
-      return store.boards.active
+    return store.boards.active;
   });
+
+
+
   let dispatch = useDispatch();
 
+
   let addListToDashbaord = async () => {
-      try {
-        let response = await axios.post(BASE_URL + "/board/addNewList", {
+    try {
+      let response = await axios.post(
+        BASE_URL + "/board/addNewList",
+        {
           board_id: active._id,
+
           listName: listName
         }, { withCredentials: true });
        
@@ -49,6 +55,7 @@ function AddList({setAddListModel}) {
              </div>
            </div>
     )
+
 }
 
-export default AddList
+export default AddList;
