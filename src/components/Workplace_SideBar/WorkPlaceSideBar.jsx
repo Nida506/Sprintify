@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
-import { MdKeyboardArrowRight } from "react-icons/md";
 import axios from "axios";
 import { BASE_URL } from "@/utils/constants";
 import {
@@ -8,9 +7,8 @@ import {
   addBoard,
   fetchAllDashboards,
 } from "@/Redux/BoardsSlice/BoardsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Dot } from "lucide-react";
 
 function WorkPlaceSideBar() {
@@ -19,9 +17,9 @@ function WorkPlaceSideBar() {
   const [bgColor, setBgColor] = useState("#ffffff");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let boards = useSelector((store) => {
-    return store.boards.boards;
-  });
+
+  const boards = useSelector((store) => store.boards.boards);
+
   const fetchBoards = async () => {
     try {
       const res = await axios.get(BASE_URL + "/getallboards", {
@@ -36,29 +34,25 @@ function WorkPlaceSideBar() {
   const handleAddBoard = async () => {
     if (newBoardName.trim()) {
       try {
-        let response = await axios.post(
+        const response = await axios.post(
           BASE_URL + "/createboard",
-          {
-            name: newBoardName,
-            bgColor: bgColor,
-          },
+          { name: newBoardName, bgColor },
           { withCredentials: true }
         );
         dispatch(addBoard([response.data.data.board]));
         dispatch(activeBoard(response.data.data.board._id));
-        // setBoards(prev => [...prev, res.data.data.board]);
         setNewBoardName("");
         setBgColor("#ffffff");
         setShowPopup(false);
         navigate("/dashboards");
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
   };
 
   useEffect(() => {
-    fetchBoards(); // get boards on mount
+    fetchBoards(); // Fetch boards on component mount
   }, []);
 
   return (
@@ -87,7 +81,7 @@ function WorkPlaceSideBar() {
         {/* Boards List */}
         <div className="p-4 bg-gray-100 rounded-md">
           <div className="flex justify-between items-center">
-            <h4 className="font-semibold text-[18px]  mb-4 text-blue-800">
+            <h4 className="font-semibold text-[18px] mb-4 text-blue-800">
               Your Boards
             </h4>
             <FaPlus
@@ -100,15 +94,13 @@ function WorkPlaceSideBar() {
             {boards.map((board, index) => (
               <li
                 key={board._id || index}
-                // data-aos=""
                 onClick={() => {
                   dispatch(activeBoard(board._id));
                   navigate("/dashboards");
                 }}
                 className="text-gray-700 flex items-center gap-2 text-[16px] font-medium cursor-pointer hover:text-blue-800"
               >
-                <Dot className="" />
-
+                <Dot />
                 {board.name}
               </li>
             ))}

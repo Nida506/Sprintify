@@ -8,7 +8,7 @@ const Profile = () => {
   const user = useSelector((store) => store.user);
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
-  const [photoUrl, setPhotoUrl] = useState("images/profileImg.png");
+  const [photoUrl, setPhotoUrl] = useState(user?.photoUrl);
   const [age, setAge] = useState(user?.age);
   const [about, setAbout] = useState(user?.about);
 
@@ -22,6 +22,7 @@ const Profile = () => {
         { withCredentials: true }
       );
 
+     
       dispatch(addUser(res.data.data));
 
       toast.success(

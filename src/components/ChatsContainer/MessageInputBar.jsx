@@ -5,13 +5,29 @@ import ImageIcon from '@mui/icons-material/Image';
 import { useState, useRef, useEffect } from 'react';
 import ImagePreview from './ImagePreview'; // Keep the ImagePreview for image display
 import toast from 'react-hot-toast';
+import axios from 'axios';
+import { BASE_URL } from '@/utils/constants';
+import { useSelector,useDispatch } from "react-redux";
+import { useContext } from "react";
+import SocketContext from '@/Sockets/socketContext';
+import { addNewMessage } from '@/Redux/BoardsSlice/BoardsSlice';
+
 
 function MessageInputBar() {
+
   const [newMessage, setNewMessage] = useState({ id: '', text: '' });
   const [imagePreview, setImagePreview] = useState(null);
   const [emojiPicker, setEmojiPicker] = useState(false);
   const emojiRef = useRef();
   const fileImageRef = useRef(null);
+  let { socket, connectSocket, disconnectSocket, userId } = useContext(SocketContext);
+  let dispatch = useDispatch();
+  let user= useSelector((store) => {
+    return store.user;
+  });
+  let active = useSelector((store) => {
+    return store.boards.active;
+  });
 
   // Close the emoji picker if clicked outside of it
   useEffect(() => {
@@ -32,22 +48,43 @@ function MessageInputBar() {
     setNewMessage((prev) => ({ ...prev, text: prev.text + emoji.emoji }));
   };
 
-  const sendMessageHandler = (event) => {
+  const sendMessageHandler =async (event) => {
     event.preventDefault();
-    console.log('Message Sent: ', newMessage.text);
 
     // If no message or image is provided, return early
     if (!newMessage.text && !imagePreview) return;
-
-    // You can handle the logic to display or process the message here
-    toast.success("Message Sent!");
-
-    // Clear the input fields after sending
-    setNewMessage({ id: '', text: '' });
-    setImagePreview(null);
-    if (fileImageRef.current) {
-      fileImageRef.current.value = '';
+    if (!socket?.connected) {
+      connectSocket();
+      socket?.emit("joinCollaboration", activeDashboard._id, user?._id);
     }
+    try
+    {
+      let response=await axios.post(BASE_URL + "/chat/sendMessage", {
+        board_id: active?._id,
+        msgText: newMessage.text,
+        imageUrl: imagePreview,
+        userId: user?._id,
+      }, {
+        withCredentials: true,
+      });
+
+      dispatch(addNewMessage(response.data.chatMessage));
+      if (fileImageRef.current) {
+        fileImageRef.current.value = '';
+      }
+  
+      setNewMessage({
+        id: '',
+        text: '',
+      });
+      setImagePreview('');
+     
+    }catch(error)
+    {
+      console.log(error);
+    }
+    // You can handle the logic to display or process the message here
+  
   };
 
   const imageChangeHandler = (e) => {
@@ -61,11 +98,17 @@ function MessageInputBar() {
       setImagePreview(reader.result);
     };
     reader.readAsDataURL(file);
+
   };
 
   const removeImage = () => {
     setImagePreview(null);
   };
+
+  useEffect(() => {
+    if (!socket)
+      connectSocket();
+  });
 
   return (
     <div className="w-[100%] transition-all duration-300">

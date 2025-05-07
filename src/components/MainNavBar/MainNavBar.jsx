@@ -88,7 +88,7 @@ const MainNavBar = () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <div className="w-10 rounded-full">
-                  <img alt="User Avatar" src="images/profileImg.png" />
+                  <img alt="User Avatar" src={user?.photoUrl} />
                 </div>
               </div>
 

@@ -13,11 +13,9 @@ function Board({ dashboardData }) {
     let dispatch = useDispatch();
     let fetchBoard = async () =>
     {
-        console.log(activeDashboard);
         if (activeDashboard?._id) return;
         try {
             let response = await axios.get(BASE_URL + "/" + activeDashboard, { withCredentials: true });
-            console.log(response.data.data.board);
             dispatch(activeBoard(response.data.data.board));
         } catch (error)
         {
@@ -35,8 +33,9 @@ function Board({ dashboardData }) {
     useEffect(() => {
         fetchBoard();
 
-         if( !socket?.connected)
+         if(!socket ||  !socket?.connected)
             connectSocket();
+
         socket?.emit("joinCollaboration", activeDashboard._id, userId);
         () =>
         {

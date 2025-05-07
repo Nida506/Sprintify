@@ -1,14 +1,13 @@
 import ChatHeader from './ChatHeader';
 import MessageInputBar from './MessageInputBar';
 import MessagesContainer from './MessagesContainer';
-
+import { useSelector } from "react-redux";
 function ChatsContainer() {
-  // Mock data for demonstration
+  const active = useSelector(store => store.boards.active);
   const mockChatData = {
     friendData: [{
       photoUrl: "https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE=",
-      firstName: "John",
-      lastName: "Doe"
+      name:active?.name
     }]
   };
 

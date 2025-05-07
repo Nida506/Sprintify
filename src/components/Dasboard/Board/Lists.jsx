@@ -15,7 +15,6 @@ import AddList from './AddList';
 import axios from 'axios';
 
 function Lists({ activeDashboard }) {
-  console.log(activeDashboard);
   const dispatch = useDispatch();
   const [selectedCard, setSelectedCard] = useState(null);
   const [addListModel, setAddListModel] = useState(false);
@@ -26,7 +25,6 @@ function Lists({ activeDashboard }) {
   if (!activeDashboard?.toString()) return null;
 
   const activeShowAddCardSection = (id) => {
-    console.log(id);
     dispatch(activeAddCardListId(id));
   };
 
@@ -67,7 +65,6 @@ function Lists({ activeDashboard }) {
         sourceIndex: source.index,
         destinationIndex: destination.index,
       },{withCredentials:true});
-      console.log(data);
     } catch (err) {
       console.error('Error moving card:', err);
       // Optionally: rollback the UI state or show a toast error

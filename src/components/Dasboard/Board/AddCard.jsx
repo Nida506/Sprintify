@@ -26,7 +26,6 @@ function AddCard({ list}) {
       // console.log(res.data);
       let listId = list._id;
       let item = res.data.card;
-      console.log(res.data.card);
       dispatch(addNewCardToList({item, listId}))
       // return navigate("/create");
     } catch (err) {
