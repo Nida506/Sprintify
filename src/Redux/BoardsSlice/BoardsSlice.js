@@ -92,6 +92,12 @@ const boardSlice = createSlice({
         chatMessages: [...state.chatMessages, action.payload],
       };
     },
+    addPreviousMessages: (state, action) => {
+      return {
+        ...state,
+        chatMessages: action.payload,
+      };
+    },
   },
 });
 export let {
@@ -103,5 +109,6 @@ export let {
   updateBoardListOnDrag,
   fetchAllDashboards,
   addNewMessage,
+  addPreviousMessages,
 } = boardSlice.actions;
 export default boardSlice.reducer;
