@@ -2,7 +2,8 @@ import { io } from "socket.io-client";
 import React, { createContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "@/utils/constants";
-import { addNewListToBoard } from "@/Redux/BoardsSlice/BoardsSlice";
+import { addNewListToBoard, addNewMessage } from "@/Redux/BoardsSlice/BoardsSlice";
+
 const SocketContext = createContext();
 
 export const SocketProvider = ({ children }) => {
@@ -47,19 +48,19 @@ export const SocketProvider = ({ children }) => {
 
   //====================================================Messages Handler====================================================
   useEffect(() => {
-    const handleMessage = (msg) => {};
-    const handleError = (problem) => {
-      toast.error("Network Error");
+    const handleMessage = (msg) => {
+      console.log(user?._id, msg.senderId._id);
+      if(user?._id != msg.senderId._id)
+      dispatch(addNewMessage(msg));
     };
+    
     //HANDLER OF RECEIVE MESSAE HANDLER
     socket?.on("messageReceived", handleMessage);
     //Message in case of error
 
     // =====================New List added
     socket?.on("list-added", (data) => {
-      console.log(data.newList);
       if (data.newList.user_id != user?._id) {
-        alert("hello");
         dispatch(addNewListToBoard(data.newList));
       }
     });

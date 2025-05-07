@@ -4,7 +4,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 const ChatHeader = ({ contactData }) => {
   // Simulated close handler
   const closeChat = () => {
-    console.log('Chat closed');
+    
   };
 
   return (
@@ -22,7 +22,7 @@ const ChatHeader = ({ contactData }) => {
         {/* User Info */}
         <div className="flex flex-col">
           <h2 className="font-semibold text-[17px] text-black">
-            {contactData?.firstName} {contactData?.lastName}
+            {contactData?.name} 
           </h2>
           <span className="text-sm text-gray-400">
             Online {/* Static status for demo */}
