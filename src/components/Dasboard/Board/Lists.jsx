@@ -32,6 +32,8 @@ function Lists({ activeDashboard }) {
     dispatch(activeAddCardListId(""));
   }, [activeDashboard]);
 
+  console.log(activeDashboard);
+
   useEffect(() => {
     document.body.style.overflow = selectedCard ? "hidden" : "auto";
     return () => {
@@ -239,10 +241,10 @@ function Lists({ activeDashboard }) {
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
                               >
-                                {list.items?.map((card, index) => (
+                                {list.cards?.map((card, index) => (
                                   <Draggable
-                                    key={card.id}
-                                    draggableId={card.id}
+                                    key={card._id}
+                                    draggableId={card._id}
                                     index={index}
                                   >
                                     {(provided, snapshot) => (
@@ -264,7 +266,7 @@ function Lists({ activeDashboard }) {
                                         {...provided.dragHandleProps}
                                       >
                                         <p className="text-[14px] px-1 w-full break-words">
-                                          {card.content}
+                                          {card.description}
                                         </p>
                                         <div className="hidden group-hover:flex absolute top-1 right-1">
                                           <Edit

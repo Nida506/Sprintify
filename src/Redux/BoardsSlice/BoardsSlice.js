@@ -1,10 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const boardSlice = createSlice({
-  name: "boardsData",
+  name: 'boardsData',
   initialState: {
-    activeAddCardListId: "",
-    // boards: [
+    activeAddCardListId: '',
     //   {
     //     name: 'My Trello Board',
     //     _id: 'randomID2',
@@ -197,6 +196,7 @@ const boardSlice = createSlice({
 
     //to add new item to the list of the given dashboard
     addNewCardToList: (state, action) => {
+      console.log(action.payload);
       const newCard = action.payload.item;
       const boardList = action.payload.listId;
 
@@ -212,12 +212,11 @@ const boardSlice = createSlice({
           }
         }),
       };
-
       // Return the new state
+
       return {
         ...state,
-        boards: boardsNewData,
-        activeAddCardListId: "", // Reset the active add card ID
+        activeAddCardListId: '', // Reset the active add card ID
         active: updatedBoard, // Update the active board
       };
     },
