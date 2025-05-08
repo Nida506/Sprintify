@@ -19,8 +19,9 @@ function Header({ activeDashboard, currentUser }) {
     navigator.clipboard.writeText(meetingLink).then(() => {
       toast.success(
         <div className="flex items-center gap-2">
-          <FaCheckCircle className="text-green-500" />
-          <span className="font-semibold">Meeting link copied to clipboard!</span>
+          <span className="font-semibold">
+            Meeting link copied to clipboard!
+          </span>
         </div>
       );
     });
@@ -62,7 +63,7 @@ function Header({ activeDashboard, currentUser }) {
         </div>
 
         <div className="right flex justify-around items-center gap-4 border-l px-4">
-          {/* Avatar */}
+          {/* Avatar
           <div className="avatar cursor-pointer">
             <div className="w-[40px] h-[40px] rounded-full overflow-hidden">
               <img
@@ -70,7 +71,7 @@ function Header({ activeDashboard, currentUser }) {
                 alt="Avatar"
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Meeting Button */}
           <button onClick={handleCreateMeeting}>
