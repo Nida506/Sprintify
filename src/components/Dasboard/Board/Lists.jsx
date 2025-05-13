@@ -104,59 +104,43 @@ function Lists({ activeDashboard }) {
   const onDragEnd = async (result) => {
     const { source, destination, type } = result;
     if (!destination) return;
-
+  
     const listsCopy = JSON.parse(JSON.stringify(activeDashboard.lists));
-
-    if (type === "group") {
-      const [movedList] = listsCopy.splice(source.index, 1);
-      listsCopy.splice(destination.index, 0, movedList);
-
-      dispatch(updateBoardListOnDrag(listsCopy));
-
-      try {
-        const orderedListIds = listsCopy.map((list) => list._id);
-        await axios.patch(
-          BASE_URL + "/update-list-order",
-          { board_id: activeDashboard._id, orderedListIds },
-          { withCredentials: true }
-        );
-      } catch (err) {
-        console.error("Error updating list order:", err);
-      }
-    } else if (type === "CARD") {
+  
+    if (type === "CARD") {
       const sourceListIndex = listsCopy.findIndex(
         (list) => list._id === source.droppableId
       );
       const destListIndex = listsCopy.findIndex(
         (list) => list._id === destination.droppableId
       );
-
-      const [movedCard] = listsCopy[sourceListIndex].items.splice(
-        source.index,
-        1
-      );
-      listsCopy[destListIndex].items.splice(destination.index, 0, movedCard);
-
-      dispatch(updateBoardListOnDrag(listsCopy));
-
+  
+      const [movedCard] = listsCopy[sourceListIndex].cards.splice(source.index, 1);
+      listsCopy[destListIndex].cards.splice(destination.index, 0, movedCard);
+  
       try {
-        await axios.patch(
-          BASE_URL + "/update-card-order",
+        const response = await axios.post(
+          BASE_URL + "/update-position",
           {
-            board_id: activeDashboard._id,
+            cardId: movedCard._id,
             sourceListId: listsCopy[sourceListIndex]._id,
-            destListId: listsCopy[destListIndex]._id,
-            cardId: movedCard.id,
+            destinationListId: listsCopy[destListIndex]._id,
+            sourceIndex: source.index,
             destinationIndex: destination.index,
           },
           { withCredentials: true }
         );
+  
+        console.log("card position updated:", response.data);
+  
+        dispatch(updateBoardListOnDrag(listsCopy));
       } catch (err) {
-        console.error("Error updating card order:", err);
+        console.error("Failed to update card position", err);
       }
     }
   };
-
+  
+  
   return (
     <div className="flex flex-col w-full flex-grow relative h-full">
       <div className="flex flex-row h-full w-full overflow-y-auto overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
