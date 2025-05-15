@@ -126,9 +126,27 @@ function Lists({ activeDashboard }) {
   const onDragEnd = async (result) => {
     const { source, destination, type } = result;
     if (!destination) return;
-  
+
     const listsCopy = JSON.parse(JSON.stringify(activeDashboard.lists));
-  
+
+    if (type === "group") {
+      const [movedList] = listsCopy.splice(source.index, 1);
+      listsCopy.splice(destination.index, 0, movedList);
+
+      dispatch(updateBoardListOnDrag(listsCopy));
+
+      try {
+        const orderedListIds = listsCopy.map((list) => list._id);
+        await axios.patch(
+          BASE_URL + "/update-list-order",
+          { board_id: activeDashboard._id, orderedListIds },
+          { withCredentials: true }
+        );
+      } catch (err) {
+        console.error("Error updating list order:", err);
+      }
+    }
+
     if (type === "CARD") {
       const sourceListIndex = listsCopy.findIndex(
         (list) => list._id === source.droppableId
@@ -136,33 +154,33 @@ function Lists({ activeDashboard }) {
       const destListIndex = listsCopy.findIndex(
         (list) => list._id === destination.droppableId
       );
-  
-      const [movedCard] = listsCopy[sourceListIndex].cards.splice(source.index, 1);
-      listsCopy[destListIndex].cards.splice(destination.index, 0, movedCard);
-  
+
+      const [movedCard] = listsCopy[sourceListIndex].items.splice(
+        source.index,
+        1
+      );
+      listsCopy[destListIndex].items.splice(destination.index, 0, movedCard);
+
+      dispatch(updateBoardListOnDrag(listsCopy));
+
       try {
-        const response = await axios.post(
-          BASE_URL + "/update-position",
+        await axios.patch(
+          BASE_URL + "/update-card-order",
           {
-            cardId: movedCard._id,
+            board_id: activeDashboard._id,
             sourceListId: listsCopy[sourceListIndex]._id,
-            destinationListId: listsCopy[destListIndex]._id,
-            sourceIndex: source.index,
+            destListId: listsCopy[destListIndex]._id,
+            cardId: movedCard.id,
             destinationIndex: destination.index,
           },
           { withCredentials: true }
         );
-  
-        console.log("card position updated:", response.data);
-  
-        dispatch(updateBoardListOnDrag(listsCopy));
       } catch (err) {
-        console.error("Failed to update card position", err);
+        console.error("Error updating card order:", err);
       }
     }
   };
-  
-  
+
   return (
     <div className="flex flex-col w-full flex-grow relative h-full">
       <div className="flex flex-row h-full w-full overflow-y-auto overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
@@ -293,18 +311,20 @@ function Lists({ activeDashboard }) {
                           </Droppable>
                         </div>
 
-                       {!activeAddCardListID &&  <li className="item flex p-[5px] rounded cursor-pointer">
-                          <div
-                            className="flex flex-row w-[90%] gap-1 items-center hover:bg-gray-300 p-1 rounded-lg"
-                            onClick={() => activeShowAddCardSection(list._id)}
-                          >
-                            <AddIcon className="text-[10px] text-gray-500" />
-                            <span className="text-[13px] text-gray-500 font-bold">
-                              Add Card
-                            </span>
-                          </div>
-                          <CopyAllRounded className="text-[10px] text-gray-500 hover:text-black" />
-                        </li>}
+                        {!activeAddCardListID && (
+                          <li className="item flex p-[5px] rounded cursor-pointer">
+                            <div
+                              className="flex flex-row w-[90%] gap-1 items-center hover:bg-gray-300 p-1 rounded-lg"
+                              onClick={() => activeShowAddCardSection(list._id)}
+                            >
+                              <AddIcon className="text-[10px] text-gray-500" />
+                              <span className="text-[13px] text-gray-500 font-bold">
+                                Add Card
+                              </span>
+                            </div>
+                            <CopyAllRounded className="text-[10px] text-gray-500 hover:text-black" />
+                          </li>
+                        )}
                       </div>
                     )}
                   </Draggable>
