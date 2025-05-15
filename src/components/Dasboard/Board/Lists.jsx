@@ -41,6 +41,28 @@ function Lists({ activeDashboard }) {
     };
   }, [selectedCard]);
 
+  // useEffect(() => {
+  //   if (!userId) {
+  //     return;
+  //   }
+  //   const socket = createSocketConnection();
+  //   // As soon as the page loaded, the socket connection is made and joinChat event is emitted
+  //   socket.emit("joinChat", {
+  //     firstName: user.firstName,
+  //     userId,
+  //     targetUserId,
+  //   });
+
+  //   socket.on("messageReceived", ({ firstName, lastName, text }) => {
+  //     console.log(firstName + " :  " + text);
+  //     setMessages((messages) => [...messages, { firstName, lastName, text }]);
+  //   });
+
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, [userId, targetUserId]);
+
   const activeShowAddCardSection = (id) => {
     dispatch(activeAddCardListId(id));
   };
