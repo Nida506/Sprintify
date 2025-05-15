@@ -3,6 +3,10 @@ import axios from 'axios';
 import { useSelector,useDispatch } from 'react-redux';
 import { BASE_URL } from '@/utils/constants';
 import { addNewMessage, addPreviousMessages } from '@/Redux/BoardsSlice/BoardsSlice';
+import saveAs from 'file-saver';
+import Lottie from 'lottie-react';
+import LoadingSpinner from '../../assets/LoadingSpinner.json';
+
 
 function MessagesContainer({ messages = [] }) {
   const chatRef = useRef(null);
@@ -10,6 +14,7 @@ function MessagesContainer({ messages = [] }) {
   const user = useSelector((store) => store.user);
   const activeDashboard = useSelector((store) => store.boards.active);
   const dispatch=useDispatch();
+  const [loading, setLoading] = useState(false);
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -20,10 +25,7 @@ function MessagesContainer({ messages = [] }) {
 
   // IMAGE DONWLOAD HANDLER
   const downloadImage = (imageURL) => {
-    const link = document.createElement(imageURL);
-    link.href = imageURL;
-    link.download = 'download.jpg';
-    link.click();
+    saveAs(imageURL, 'downloadImage');
   };
 
   // FORMATTED MESSAGES CHAT
@@ -49,15 +51,20 @@ function MessagesContainer({ messages = [] }) {
   //GET ALL THE PREVIOUS CHAT MESSAGE
   const getPreviousMessages = async () => {
     if (!activeDashboard?._id) return;
+ 
     try {
+      setLoading(true);
       let messages = await axios.get(
         BASE_URL + '/chat/getPreviousChat/' + activeDashboard?._id,
         { withCredentials: true }
       );
-      dispatch(addPreviousMessages(messages.data.messages));
-      console.log(messages.data);
+      console.log(messages);
+      dispatch(addPreviousMessages(messages.data.messages?messages.data.messages:[]));
+      
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,7 +78,7 @@ function MessagesContainer({ messages = [] }) {
       className="rounded-lg   pb-4 flex flex-col flex-1 space-y-2 px-2  w-full overflow-y-auto scrollbar-custom"
       ref={chatRef}
     >
-      {formattedMessages?.map((msg, index) => {
+      {loading?   <div className='flex h-full justify-center items-center'> <Lottie className='h-[50px]' animationData={LoadingSpinner} /></div>:formattedMessages?.length ? formattedMessages?.map((msg, index) => {
         return (
           (msg.imageURL || msg.text) && (
             <div
@@ -110,7 +117,7 @@ function MessagesContainer({ messages = [] }) {
                     {msg.text}
                   </div>
                   <div className="chat-footer opacity-50 text-black">
-                    Delivered
+                    {msg?.senderId?.firstName} {msg?.senderId?.lastName} 
                   </div>
                 </>
               ) : (
@@ -201,7 +208,7 @@ function MessagesContainer({ messages = [] }) {
                               : 'text-black'
                           }`}
                         >
-                          Delivered
+                         Delivered
                         </span>
                       </div>
                     </div>
@@ -211,7 +218,7 @@ function MessagesContainer({ messages = [] }) {
             </div>
           )
         );
-      })}
+      }):<div className="flex items-center justify-center h-full text-black font-semibold text-[20px]"> <h1>Start chat Now 😊</h1> </div>}
     </div>
   );
 }

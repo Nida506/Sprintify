@@ -4,7 +4,6 @@ const boardSlice = createSlice({
   name: 'boardsData',
   initialState: {
     activeAddCardListId: '',
-    //   {
     //     name: 'My Trello Board',
     //     _id: 'randomID2',
     //     bgColor: 'pink',
@@ -257,9 +256,10 @@ const boardSlice = createSlice({
       }
     },
     addNewMessage: (state, action) => {
+      let previosMessage = state.chatMessages ? state.chatMessages : [];
       return {
         ...state,
-        chatMessages: [...state.chatMessages, action.payload],
+        chatMessages: [...previosMessage, action.payload],
       };
     },
     addPreviousMessages: (state, action) => {

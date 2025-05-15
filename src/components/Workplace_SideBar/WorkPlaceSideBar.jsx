@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Dot } from "lucide-react";
+import toast from "react-hot-toast";
 
 function WorkPlaceSideBar() {
   const [showPopup, setShowPopup] = useState(false);
@@ -45,8 +46,10 @@ function WorkPlaceSideBar() {
         setBgColor("#ffffff");
         setShowPopup(false);
         navigate("/dashboards");
+        toast.success("Board Added Successfully!");
       } catch (error) {
         console.error(error);
+        toast.error("Something went wrong!");
       }
     }
   };

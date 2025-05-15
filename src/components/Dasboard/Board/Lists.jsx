@@ -271,7 +271,7 @@ function Lists({ activeDashboard }) {
                           </Droppable>
                         </div>
 
-                        <li className="item flex p-[5px] rounded cursor-pointer">
+                       {!activeAddCardListID &&  <li className="item flex p-[5px] rounded cursor-pointer">
                           <div
                             className="flex flex-row w-[90%] gap-1 items-center hover:bg-gray-300 p-1 rounded-lg"
                             onClick={() => activeShowAddCardSection(list._id)}
@@ -282,7 +282,7 @@ function Lists({ activeDashboard }) {
                             </span>
                           </div>
                           <CopyAllRounded className="text-[10px] text-gray-500 hover:text-black" />
-                        </li>
+                        </li>}
                       </div>
                     )}
                   </Draggable>
