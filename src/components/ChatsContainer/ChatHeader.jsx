@@ -3,9 +3,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 const ChatHeader = ({ contactData }) => {
   // Simulated close handler
-  const closeChat = () => {
-    
-  };
+ 
 
   return (
     <div className="w-full flex items-center justify-between p-4 border-b-[0.1px] border-gray-500/10 bg-white h-[80px]">
@@ -25,7 +23,7 @@ const ChatHeader = ({ contactData }) => {
             {contactData?.name} 
           </h2>
           <span className="text-sm text-gray-400">
-            Online {/* Static status for demo */}
+            {/* Online Static status for demo */}
           </span>
         </div>
       </div>

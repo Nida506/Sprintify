@@ -2,6 +2,7 @@ import ChatHeader from './ChatHeader';
 import MessageInputBar from './MessageInputBar';
 import MessagesContainer from './MessagesContainer';
 import { useSelector } from "react-redux";
+
 function ChatsContainer() {
   const active = useSelector(store => store.boards.active);
   const mockChatData = {

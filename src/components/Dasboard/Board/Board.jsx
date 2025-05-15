@@ -7,8 +7,9 @@ import { useContext, useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { activeBoard } from '@/Redux/BoardsSlice/BoardsSlice';
-import Lottie from 'lottie-react';
 import LoadingSpinner from '../../../assets/LoadingSpinner.json';
+import Lottie from 'lottie-react';
+import EmptyChatScreenAnimation from '../../../assets/EmptyChatScreen_Animation.json';
 
 function Board({ dashboardData }) {
   let activeDashboard = useSelector((store) =>
@@ -51,15 +52,27 @@ function Board({ dashboardData }) {
     };
   }, [activeDashboard]);
 
-
   return (
-    <div className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <div
+      className={`h-full bg-gradient-to-r `}
+      style={{
+    background:!activeDashboard?._id? "#ffffff": activeDashboard?._id
+      ? activeDashboard.bgColor
+      : 'linear-gradient(to right, indigo, purple, pink)',
+  }}
+    >
       {loading ? (
         <div className="flex justify-center items-center h-full w-full">
           <Lottie animationData={LoadingSpinner} />
         </div>
-      ) : !activeDashboard ? (
-        <div></div>
+      ) : !activeDashboard?._id ? (
+        <div className="h-full flex justify-center pt-[50px] ">
+          <Lottie
+            className="h-[300px] w-[400px]"
+            isClickToPauseDisabled={true}
+            animationData={EmptyChatScreenAnimation}
+          />
+        </div>
       ) : (
         <>
           <Header activeDashboard={activeDashboard} currentUser={currentUser} />
