@@ -137,11 +137,11 @@ const Homepage = () => {
               </div>
             </div>
           </div>
-          <div className="text-white flex min-[1139px]:ps-24 justify-around items-center max-[1140px]:w-[0px] max-[1140px]:pe-0  pe-20">
+          <div className="text-white flex min-[1139px]:ps-14 justify-around items-center max-[1140px]:w-[0px] max-[1140px]:pe-0  pe-20">
             <div className=" ">
               <img
                 src="/images/dashboard.png"
-                className="h-[22rem] max-[1140px]:h-[25rem] rounded-sm"
+                className="h-[22rem] max-[1140px]:h-[24rem] rounded-sm"
                 alt="img"
               />
             </div>

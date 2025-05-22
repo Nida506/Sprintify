@@ -5,7 +5,7 @@ import {
   PlusIcon,
   Search,
   Settings,
-} from 'lucide-react';
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -16,40 +16,39 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ShadcnComponents/sidebar';
-import { Square } from '@mui/icons-material';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+} from "@/components/ShadcnComponents/sidebar";
+
+import { Square } from "@mui/icons-material";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 //INTERNAL IMPORTS
-import { activeBoard } from '@/Redux/BoardsSlice/BoardsSlice';
+import { activeBoard } from "@/Redux/BoardsSlice/BoardsSlice";
 
 // Menu items.
 
 export function AppSidebar({ dashboardData }) {
+  const user = useSelector((store) => store.user);
   let dispatch = useDispatch();
-  let setActiveBoard = (id) =>
-  {
+  let setActiveBoard = (id) => {
     dispatch(activeBoard(id));
-  }
+  };
   return (
     <Sidebar className="pt-[85px]" side="left">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-sm h-auto text-black border-b py-2 gap-2 rounded-none border-b-slate-[#9fadbc29]">
-            <div className="avatar">
-              <div className="mask mask-squircle w-[40px] h-[40px]">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            <div>
+              <div>
+                <img src={user?.photoUrl} className=" w-[37px] h-[37px]" />
               </div>
-            </div>{' '}
+            </div>{" "}
             <h1 className="text-[16px]">
-              <span className='font-semibold'>
-            JaveriaKanwal's
-              <br /> workplace ...
+              <span className="font-semibold">
+                {`${user?.firstName?.charAt(0).toUpperCase()}${user?.firstName
+                  ?.slice(1)
+                  .toLowerCase()}'s Workplace`}
               </span>
-              <br />
-              <span className='text-xs'>Free</span>
             </h1>
-           
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -61,16 +60,16 @@ export function AppSidebar({ dashboardData }) {
                   </button>
                 </div>
                 <ul className="gap-3 mt-2">
-                {
-                  dashboardData?.boards?.map(board => (
-                    <li className="boardsList py-2 px-1 hover:bg-gray-300 flex cursor-pointer items-center" onClick={()=>setActiveBoard(board._id)}>
+                  {dashboardData?.boards?.map((board) => (
+                    <li
+                      className="boardsList py-2 px-1 hover:bg-gray-300 flex cursor-pointer items-center"
+                      onClick={() => setActiveBoard(board._id)}
+                    >
                       <Square sx={{ color: board?.bgColor }} />
-                    <h1>{board?.name}</h1>
-                 </li>
-                ))
-               }
+                      <h1>{board?.name}</h1>
+                    </li>
+                  ))}
                 </ul>
-               
               </div>
             </SidebarMenu>
           </SidebarGroupContent>

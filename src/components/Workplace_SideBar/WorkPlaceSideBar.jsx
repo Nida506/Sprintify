@@ -18,7 +18,7 @@ function WorkPlaceSideBar() {
   const [bgColor, setBgColor] = useState("#ffffff");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const user = useSelector((store) => store.user);
   const boards = useSelector((store) => store.boards.boards);
 
   const fetchBoards = async () => {
@@ -71,12 +71,17 @@ function WorkPlaceSideBar() {
           className="bg-[#3845B1] bg-opacity-[81%] text-white p-4 flex shadow-lg rounded-lg gap-4"
         >
           <img
-            src="images/user1.png"
+            src={user?.photoUrl}
             alt="Profile"
             className="w-12 h-12 rounded-full object-cover border-2 border-white"
           />
           <div>
-            <h3 className="font-semibold">Asia Workplace</h3>
+            <h3 className="font-semibold">
+              {" "}
+              {`${user?.firstName?.charAt(0).toUpperCase()}${user?.firstName
+                ?.slice(1)
+                .toLowerCase()}'s Workplace`}
+            </h3>
             <p className="text-sm">Free</p>
           </div>
         </div>

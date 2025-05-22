@@ -30,7 +30,7 @@ const MainNavBar = () => {
   const closeDropdown = () => setDropdownOpen(false);
 
   return (
-    <nav className="bg-white font-outfit shadow-md px-5 sm:px-[40px] md:px-[100px] py-4 flex justify-between items-center">
+    <nav className="bg-white font-outfit border-b-2  px-5 sm:px-[40px] md:px-[100px] py-4 flex justify-between items-center">
       {/* Logo */}
       <NavLink to={"/"}>
         <h1
