@@ -909,23 +909,24 @@ const CardDetail = (Props) => {
   
 
   // Add comment and save activity to API
-  const handleAddComment = () => {
-    if (comment.trim() === "") return;
-  
-    const updatedActivity = [...activity, comment];
-    setActivity(updatedActivity);
-    setComment("");
-  
-    axios
-      .put(`http://localhost:8214/api/cards/${cardId}/comments`, { activity: updatedActivity })
-      .then(() => {
-        console.log("Activity updated successfully!");
-      })
-      .catch((err) => {
-        console.error("Failed to update activity", err);
-      });
-  };
-  
+const handleAddComment = () => {
+  if (comment.trim() === "") return;
+
+  const newComment = comment.trim();
+  setComment("");
+
+  axios
+    .put(`http://localhost:8214/api/cards/${cardId}/comments`, { comment: newComment })
+    .then((res) => {
+      console.log("Activity updated successfully!");
+      setActivity((prev) => [...prev, res.data.newComment]); // Add the new comment object
+    })
+    .catch((err) => {
+      console.error("Failed to update activity", err);
+    });
+};
+
+
 
   // Delete comment and update activity on API
 const handleDeleteComment = (index) => {
